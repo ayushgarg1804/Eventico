@@ -1,0 +1,8 @@
+# HTTrack Website Copier Cookie File
+# This file format is compatible with Netscape cookies
+teslathemes.com	TRUE	/	FALSE	1999999999	TeslaThemesVisited	visited
+.onesignal.com	TRUE	/	FALSE	1999999999	__cfduid	d0d596598a4cc73e6dbda6ae78a965db01489087787
+.optimizely.com	TRUE	/	FALSE	1999999999	cdn	http%3a%2f%2fakamai%3adsd%40cdn.optimizely.com%2fjs%2f2750011591.js
+.clickfunnels.com	TRUE	/	FALSE	1999999999	__cfduid	d57525039cfb94fe94ba62594d7121fa01489087810
+.teslathemes.com	TRUE	/	FALSE	1999999999	PHPSESSID	skijm6nd3oao85ms3v19rbolk4
+
