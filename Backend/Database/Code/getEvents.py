@@ -1,3 +1,9 @@
+# -*- coding: utf-8 -*-
+# @Author: Ayush Garg
+# @Date:   2017-03-10 12:42:26
+# @Last Modified by:   Ayush Garg
+# @Last Modified time: 2017-03-16 20:09:03
+
 import requests as rq
 import json
 import os
