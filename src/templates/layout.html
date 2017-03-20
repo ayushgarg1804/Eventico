@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>{% block title %}Welcome{% endblock %}</title>
+        <meta name="description" content="Here goes description" />
+        <meta name="author" content="author name" />
+        <link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.ico') }}" type="image/x-icon" />
+        <!-- Mobile Specific Meta -->
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+        <!-- Style CSS + Google Fonts -->
+        {% assets "default_css" %}
+            <link rel="stylesheet" href="{{ ASSET_URL }}" />
+        {% endassets %}
+    </head>
+    <body {% block body_class %}{% endblock %} >
+        {% block body %}{% endblock %}
+        <footer class="footer-v1">
+            <div class="footer-map">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m8!1m3!1d6052.183019241734!2d-73.94249441534424!3d40.67195262395485!3m2!1i1024!2i768!4f13.1!4m7!1i0!3e6!4m3!3m2!1d40.6753947!2d-73.9459706!4m0!5e0!3m2!1sen!2s!4v1425633499040" width="600" height="450" frameborder="0" style="border:0"></iframe>
+            </div>
+            <div class="container">
+                <div class="bottom-footer">
+                    <div class="subscribe-box">
+                        <i class="fa fa-newspaper-o"></i>
+                        <form>
+                            <input type="text" class="subscribe-line" placeholder="Subscribe for updates about new events" />
+                            <input type="submit" class="subscribe-button" value="Subscribe" />
+                        </form>
+                    </div>
+                    <ul class="footer-social">
+                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+                        <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                    </ul>
+                    <div class="box-footer">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <div class="logo">
+                                    <a href="#"><img src="images/logo.png" alt="logo" /></a>
+                                </div>
+                            </div>
+                            <div class="col-md-10">
+                                <nav class="second-nav">
+                                    <ul>
+                                        <li><a href="index.html">Home</a></li>
+                                        <li><a href="events.html">Events</a></li>
+                                        <li><a href="speakers.html">Speakers</a></li>
+                                        <li><a href="schedule.html">Schedule</a></li>
+                                        <li><a href="blog.html">Blog</a></li>
+                                        <li><a href="contact.html">Contact</a></li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="copyright">&copy; 2015 E-event • All rights reserved <i class="the-dot"></i> Designed & Developed by TeslaThemes</div>
+                </div>
+            </div>
+        </footer>
+        <!-- end footer -->
+        {% assets "default_js" %}
+            <script src="{{ ASSET_URL }}" type="text/javascript"></script>
+        {% endassets %}
+    </body>
+</html>
