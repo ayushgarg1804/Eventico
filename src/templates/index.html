@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>E-event</title>
+        <meta name="description" content="Here goes description" />
+        <meta name="author" content="author name" />
+        <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+        <!-- Mobile Specific Meta -->
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+        <!-- Style CSS + Google Fonts -->
+        {% assets "default_css" %}
+            <link rel="stylesheet" href="{{ ASSET_URL }}" />
+        {% endassets %}
+    </head>
+    <body class="homepage">
+        <!-- start site image -->
+        <div class="site-image home-img">
+            <!-- start header -->
+            <header class="sticky-bar">
+                <div class="top-header">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <ul class="header-info">
+                                    <li>Don't miss the next event!</li>
+                                    <li><i class="fa fa-phone"></i>+341 234 412</li>
+                                    <li><i class="fa fa-envelope-o"></i><a href="mailto:contact@e-event.com">contact@e-event.com</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-md-4">
+                                <ul class="header-social">
+                                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bottom-header">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-4 col-xs-6">
+                                <div class="logo">
+                                    <a href="index.html"><img src="images/logo.png" alt="logo" /></a>
+                                </div>
+                            </div>
+                            <div class="col-md-8 col-xs-6">
+                                <nav class="main-nav">
+                                    <div class="responsive-menu"><i class="fa fa-bars"></i></div>
+                                    <ul>
+                                        <li><a href="index.html">Home</a></li>
+                                        <li>
+                                            <a href="#">Pages</a>
+                                            <ul>
+                                                <li><a href="rsvp.html">RSVP Page</a></li>
+                                                <li><a href="login-register.html">Login / Register</a></li>
+                                                <li>
+                                                    <a href="#">Events</a>
+                                                    <ul>
+                                                        <li><a href="events-4c.html">Events 4 col</a></li>
+                                                        <li><a href="events-3c.html">Events 3 col</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li><a href="event.html">Single Event</a></li>
+                                                <li>
+                                                    <a href="#">Gallery</a>
+                                                    <ul>
+                                                        <li><a href="gallery-4c.html">Gallery 4 col</a></li>
+                                                        <li><a href="gallery-3c.html">Gallery 3 col</a></li>
+                                                        <li><a href="gallery-2c.html">Gallery 2 col</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li><a href="pricing.html">Pricing</a></li>
+                                                <li><a href="error-404.html">Error 404</a></li>
+                                                <li><a href="index-footerv2.html">Footer v2</a></li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a href="#">Speakers</a>
+                                            <ul>
+                                                <li><a href="speakers.html">Speakers v1</a></li>
+                                                <li><a href="speakers-2.html">Speakers v2</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="schedule.html">Schedule</a></li>
+                                        <li>
+                                            <a href="#">Blog</a>
+                                            <ul>
+                                                <li><a href="blog.html">Blog</a></li>
+                                                <li><a href="blog-leftsidebar.html">Blog LeftSidebar</a></li>
+                                                <li><a href="post.html">Single Post</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="contact.html">Contact</a></li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <!-- end header -->
+            <!-- slider -->
+            <div class="the-countdown-slider" data-tesla-plugin="slider" data-tesla-item=".slide" data-tesla-next=".slide-right" data-tesla-prev=".slide-left" data-tesla-container=".slide-wrapper">
+                <div class="container">
+                    <div class="slide-arrows">
+                        <div class="slide-left the-link-3">Prev</div>
+                        <div class="slide-right the-link-2">Next</div>
+                    </div>
+                </div>
+                <ul class="slide-wrapper">
+                    <li class="slide">
+                        <!-- start countdown -->
+                        <section class="countdown-section">
+                            <div class="container">
+                                <h1><a href="#">How To Organize Your Business</a></h1>
+                                <div class="event-link">
+                                    <span>Event</span> starts in
+                                </div>
+                                <div class="countdown-box">
+                                    <div id="the-countdown" class="row the-countdown" data-duedate="12/12/2017">
+                                        <div class="col-md-3 col-xs-6">
+                                            <div class="time-box" id="days">00</div>
+                                            <span>Days</span>
+                                        </div>
+                                        <div class="col-md-3 col-xs-6">
+                                            <div class="time-box" id="hours">00</div>
+                                            <span>Hours</span>
+                                        </div>
+                                        <div class="col-md-3 col-xs-6">
+                                            <div class="time-box" id="minutes">00</div>
+                                            <span>Minutes</span>
+                                        </div>
+                                        <div class="col-md-3 col-xs-6">
+                                            <div class="time-box" id="seconds">00</div>
+                                            <span>Seconds</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        <!-- end countdown -->
+                    </li>
+                    <li class="slide">
+                        <!-- start countdown -->
+                        <section class="countdown-section">
+                            <div class="container">
+                                <h1><a href="#">My life needs a change</a></h1>
+                                <div class="event-link">
+                                    <span>Event</span> starts in
+                                </div>
+                                <div class="countdown-box">
+                                    <div id="the-countdown" class="row the-countdown" data-duedate="6/11/2016 07:30">
+                                        <div class="col-md-3 col-xs-6">
+                                            <div class="time-box" id="days">00</div>
+                                            <span>Days</span>
+                                        </div>
+                                        <div class="col-md-3 col-xs-6">
+                                            <div class="time-box" id="hours">00</div>
+                                            <span>Hours</span>
+                                        </div>
+                                        <div class="col-md-3 col-xs-6">
+                                            <div class="time-box" id="minutes">00</div>
+                                            <span>Minutes</span>
+                                        </div>
+                                        <div class="col-md-3 col-xs-6">
+                                            <div class="time-box" id="seconds">00</div>
+                                            <span>Seconds</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        <!-- end countdown -->
+                    </li>
+                    <li class="slide">
+                        <!-- start countdown -->
+                        <section class="countdown-section">
+                            <div class="container">
+                                <h1><a href="#">The Last event You have listed</a></h1>
+                                <div class="event-link">
+                                    <span>Event</span> starts in
+                                </div>
+                                <div class="countdown-box">
+                                    <div id="the-countdown" class="row the-countdown" data-duedate="6/1/2017 07:30">
+                                        <div class="col-md-3 col-xs-6">
+                                            <div class="time-box" id="days">00</div>
+                                            <span>Days</span>
+                                        </div>
+                                        <div class="col-md-3 col-xs-6">
+                                            <div class="time-box" id="hours">00</div>
+                                            <span>Hours</span>
+                                        </div>
+                                        <div class="col-md-3 col-xs-6">
+                                            <div class="time-box" id="minutes">00</div>
+                                            <span>Minutes</span>
+                                        </div>
+                                        <div class="col-md-3 col-xs-6">
+                                            <div class="time-box" id="seconds">00</div>
+                                            <span>Seconds</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        <!-- end countdown -->
+                    </li>
+                </ul>
+            </div>
+            <!-- slider -->
+        </div>
+        <!-- end siteimage -->
+        <!-- start coming-events -->
+        <section class="coming-events" data-tesla-plugin="carousel" data-tesla-container=".tesla-carousel-items" data-tesla-item="&gt;div" data-tesla-rotate="false" data-tesla-autoplay="false" data-tesla-hide-effect="false">
+            <div class="container">
+                <h3 class="site-title">Upcoming <span>Events</span><i></i></h3>
+                <div class="row tesla-carousel-items no-margin">
+                    <div class="col-md-3 col-xs-6">
+                        <div class="event-box">
+                            <div class="event-box-cover">
+                                <div class="event-box-hover">
+                                    <div class="event-box-share">25<span>Shares</span></div>
+                                    <h6>Entrepreneurship</h6>
+                                </div>
+                                <img src="images/event-1.jpg" alt="event" />
+                            </div>
+                            <h4><a href="event.html">How To Organize Your Business</a></h4>
+                            <p>May 18, 2015</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-xs-6">
+                        <div class="event-box">
+                            <div class="event-box-cover">
+                                <div class="event-box-hover">
+                                    <div class="event-box-share">25<span>Shares</span></div>
+                                    <h6>Entrepreneurship</h6>
+                                </div>
+                                <img src="images/event-2.jpg" alt="event" />
+                            </div>
+                            <h4><a href="event.html">How To Organize Your Business</a></h4>
+                            <p>May 18, 2015</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-xs-6">
+                        <div class="event-box">
+                            <div class="event-box-cover">
+                                <div class="event-box-hover">
+                                    <div class="event-box-share">25<span>Shares</span></div>
+                                    <h6>Entrepreneurship</h6>
+                                </div>
+                                <img src="images/event-3.jpg" alt="event" />
+                            </div>
+                            <h4><a href="event.html">How To Organize Your Business</a></h4>
+                            <p>May 18, 2015</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-xs-6">
+                        <div class="event-box">
+                            <div class="event-box-cover">
+                                <div class="event-box-hover">
+                                    <div class="event-box-share">25<span>Shares</span></div>
+                                    <h6>Entrepreneurship</h6>
+                                </div>
+                                <img src="images/event-4.jpg" alt="event" />
+                            </div>
+                            <h4><a href="event.html">How To Organize Your Business</a></h4>
+                            <p>May 18, 2015</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-xs-6">
+                        <div class="event-box">
+                            <div class="event-box-cover">
+                                <div class="event-box-hover">
+                                    <div class="event-box-share">25<span>Shares</span></div>
+                                    <h6>Entrepreneurship</h6>
+                                </div>
+                                <img src="images/event-5.jpg" alt="event" />
+                            </div>
+                            <h4><a href="event.html">How To Organize Your Business</a></h4>
+                            <p>May 18, 2015</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-xs-6">
+                        <div class="event-box">
+                            <div class="event-box-cover">
+                                <div class="event-box-hover">
+                                    <div class="event-box-share">25<span>Shares</span></div>
+                                    <h6>Entrepreneurship</h6>
+                                </div>
+                                <img src="images/event-6.jpg" alt="event" />
+                            </div>
+                            <h4><a href="event.html">How To Organize Your Business</a></h4>
+                            <p>May 18, 2015</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-xs-6">
+                        <div class="event-box">
+                            <div class="event-box-cover">
+                                <div class="event-box-hover">
+                                    <div class="event-box-share">25<span>Shares</span></div>
+                                    <h6>Entrepreneurship</h6>
+                                </div>
+                                <img src="images/event-1.jpg" alt="event" />
+                            </div>
+                            <h4><a href="event.html">How To Organize Your Business</a></h4>
+                            <p>May 18, 2015</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-xs-6">
+                        <div class="event-box">
+                            <div class="event-box-cover">
+                                <div class="event-box-hover">
+                                    <div class="event-box-share">25<span>Shares</span></div>
+                                    <h6>Entrepreneurship</h6>
+                                </div>
+                                <img src="images/event-2.jpg" alt="event" />
+                            </div>
+                            <h4><a href="event.html">How To Organize Your Business</a></h4>
+                            <p>May 18, 2015</p>
+                        </div>
+                    </div>
+                </div>
+                <ul>
+                    <li class="prev disabled"><i class="fa fa-arrow-circle-left"></i></li>
+                    <li><i class="fa fa-circle"></i></li>
+                    <li class="next"><i class="fa fa-arrow-circle-right"></i></li>
+                </ul>
+            </div>
+        </section>
+        <!-- end coming-events -->
+        <!-- start team -->
+        <section class="our-team">
+            <div class="container">
+                <h3 class="site-title">Our <span>Speakers</span><i></i></h3>
+                <div class="row">
+                    <div class="col-md-3 col-xs-6">
+                        <div class="team-member">
+                            <div class="member-cover">
+                                <div class="round-relative">
+                                    <ul class="team-social">
+                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                                    </ul>
+                                    <img src="images/member-1.jpg" alt="member" />
+                                </div>
+                            </div>
+                            <h5>Steve Maguire</h5>
+                            <h6>technology systems</h6>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-xs-6">
+                        <br/><br/><br/><br/>
+                        <div class="team-member">
+                            <div class="member-cover">
+                                <div class="round-relative">
+                                    <ul class="team-social">
+                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                                    </ul>
+                                    <img src="images/member-2.jpg" alt="member" />
+                                </div>
+                            </div>
+                            <h5>Mike mccarthy</h5>
+                            <h6>entrepreneurship</h6>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-xs-6">
+                        <div class="team-member">
+                            <div class="member-cover">
+                                <div class="round-relative">
+                                    <ul class="team-social">
+                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                                    </ul>
+                                    <img src="images/member-3.jpg" alt="member" />
+                                </div>
+                            </div>
+                            <h5>angie bergman</h5>
+                            <h6>design mockups</h6>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-xs-6">
+                        <br/><br/><br/><br/>
+                        <div class="team-member">
+                            <div class="member-cover">
+                                <div class="round-relative">
+                                    <ul class="team-social">
+                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                                    </ul>
+                                    <img src="images/member-4.jpg" alt="member" />
+                                </div>
+                            </div>
+                            <h5>walter baines</h5>
+                            <h6>business innovation</h6>
+                        </div>
+                    </div>
+                </div>
+                <p class="align-center">
+                    <a href="speakers.html" class="section-link">View all the speakers</a>
+                </p>
+            </div>
+        </section>
+        <!-- end team -->
+        <!-- start events schedule -->
+        <section class="event-schedule">
+            <div class="container">
+                <h3 class="site-title">Events <span>schedule</span><i></i></h3>
+                <div role="tabpanel">
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation"><a href="#schedule1" aria-controls="schedule1" role="tab" data-toggle="tab">April</a></li>
+                        <li role="presentation" class="active"><a href="#schedule2" aria-controls="schedule2" role="tab" data-toggle="tab">May</a></li>
+                        <li role="presentation"><a href="#schedule3" aria-controls="schedule3" role="tab" data-toggle="tab">June</a></li>
+                        <li role="presentation"><a href="#schedule4" aria-controls="schedule4" role="tab" data-toggle="tab">July</a></li>
+                    </ul>
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane" id="schedule1">
+                            <div class="event-day">
+                                <h5>April <span>20</span></h5>
+                                <ul class="row">
+                                    <li class="col-md-1"><span>10:00 AM</span>13:30 PM</li>
+                                    <li class="col-md-5"><a href="event.html">How to organize your business.</a></li>
+                                    <li class="col-md-2"><i>Speaker: Walter Baines</i></li>
+                                    <li class="col-md-3"><span>Venue:</span> London Baker street, 386F</li>
+                                </ul>
+                                <ul class="row">
+                                    <li class="col-md-1"><span>14:00 PM</span>16:00 PM</li>
+                                    <li class="col-md-5"><a href="event.html">The next web conference.</a></li>
+                                    <li class="col-md-2"><i>Speaker: Steve Maguire</i></li>
+                                    <li class="col-md-3"><span>Venue:</span> London Baker street, 236C</li>
+                                </ul>
+                            </div>
+                            <div class="event-day">
+                                <h5>April <span>23</span></h5>
+                                <ul class="row">
+                                    <li class="col-md-1"><span>10:00 AM</span>13:30 PM</li>
+                                    <li class="col-md-5"><a href="event.html">How to organize your business.</a></li>
+                                    <li class="col-md-2"><i>Speaker: Walter Baines</i></li>
+                                    <li class="col-md-3"><span>Venue:</span> London Baker street, 386F</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div role="tabpanel" class="tab-pane active" id="schedule2">
+                            <div class="event-day">
+                                <h5>May <span>18</span></h5>
+                                <ul class="row">
+                                    <li class="col-md-1"><span>10:00 AM</span>13:30 PM</li>
+                                    <li class="col-md-5"><a href="event.html">How to organize your business.</a></li>
+                                    <li class="col-md-2"><i>Speaker: Walter Baines</i></li>
+                                    <li class="col-md-3"><span>Venue:</span> London Baker street, 386F</li>
+                                </ul>
+                                <ul class="row">
+                                    <li class="col-md-1"><span>14:00 PM</span>16:00 PM</li>
+                                    <li class="col-md-5"><a href="event.html">The next web conference.</a></li>
+                                    <li class="col-md-2"><i>Speaker: Steve Maguire</i></li>
+                                    <li class="col-md-3"><span>Venue:</span> London Baker street, 236C</li>
+                                </ul>
+                                <ul class="row">
+                                    <li class="col-md-1"><span>16:20 PM</span>18:30 PM</li>
+                                    <li class="col-md-5"><a href="event.html">Grow intelligence, through learning.</a></li>
+                                    <li class="col-md-2"><i>Speaker: Walter Baines</i></li>
+                                    <li class="col-md-3"><span>Venue:</span> Vienta Amadeus street, 129A</li>
+                                </ul>
+                                <ul class="row">
+                                    <li class="col-md-1"><span>19:00 PM</span>20:30 PM</li>
+                                    <li class="col-md-5"><a href="event.html">The more you learn, the better.</a></li>
+                                    <li class="col-md-2"><i>Speaker: Steve Maguire</i></li>
+                                    <li class="col-md-3"><span>Venue:</span> London Baker street, 236C</li>
+                                </ul>
+                            </div>
+                            <div class="event-day">
+                                <h5>May <span>21</span></h5>
+                                <ul class="row">
+                                    <li class="col-md-1"><span>10:00 AM</span>13:30 PM</li>
+                                    <li class="col-md-5"><a href="event.html">How to organize your business.</a></li>
+                                    <li class="col-md-2"><i>Speaker: Walter Baines</i></li>
+                                    <li class="col-md-3"><span>Venue:</span> London Baker street, 386F</li>
+                                </ul>
+                                <ul class="row">
+                                    <li class="col-md-1"><span>14:00 PM</span>16:00 PM</li>
+                                    <li class="col-md-5"><a href="event.html">The next web conference.</a></li>
+                                    <li class="col-md-2"><i>Speaker: Steve Maguire</i></li>
+                                    <li class="col-md-3"><span>Venue:</span> London Baker street, 236C</li>
+                                </ul>
+                                <ul class="row">
+                                    <li class="col-md-1"><span>16:20 PM</span>18:30 PM</li>
+                                    <li class="col-md-5"><a href="event.html">Grow intelligence, through learning.</a></li>
+                                    <li class="col-md-2"><i>Speaker: Walter Baines</i></li>
+                                    <li class="col-md-3"><span>Venue:</span> Vienta Amadeus street, 129A</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="schedule3">
+                            <div class="event-day">
+                                <h5>June <span>09</span></h5>
+                                <ul class="row">
+                                    <li class="col-md-1"><span>10:00 AM</span>13:30 PM</li>
+                                    <li class="col-md-5"><a href="event.html">How to organize your business.</a></li>
+                                    <li class="col-md-2"><i>Speaker: Walter Baines</i></li>
+                                    <li class="col-md-3"><span>Venue:</span> London Baker street, 386F</li>
+                                </ul>
+                                <ul class="row">
+                                    <li class="col-md-1"><span>14:00 PM</span>16:00 PM</li>
+                                    <li class="col-md-5"><a href="event.html">The next web conference.</a></li>
+                                    <li class="col-md-2"><i>Speaker: Steve Maguire</i></li>
+                                    <li class="col-md-3"><span>Venue:</span> London Baker street, 236C</li>
+                                </ul>
+                                <ul class="row">
+                                    <li class="col-md-1"><span>16:20 PM</span>18:30 PM</li>
+                                    <li class="col-md-5"><a href="event.html">Grow intelligence, through learning.</a></li>
+                                    <li class="col-md-2"><i>Speaker: Walter Baines</i></li>
+                                    <li class="col-md-3"><span>Venue:</span> Vienta Amadeus street, 129A</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="schedule4">
+                            <div class="event-day">
+                                <h5>July <span>28</span></h5>
+                                <ul class="row">
+                                    <li class="col-md-1"><span>10:00 AM</span>13:30 PM</li>
+                                    <li class="col-md-5"><a href="event.html">How to organize your business.</a></li>
+                                    <li class="col-md-2"><i>Speaker: Walter Baines</i></li>
+                                    <li class="col-md-3"><span>Venue:</span> London Baker street, 386F</li>
+                                </ul>
+                                <ul class="row">
+                                    <li class="col-md-1"><span>16:20 PM</span>18:30 PM</li>
+                                    <li class="col-md-5"><a href="event.html">Grow intelligence, through learning.</a></li>
+                                    <li class="col-md-2"><i>Speaker: Walter Baines</i></li>
+                                    <li class="col-md-3"><span>Venue:</span> Vienta Amadeus street, 129A</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- end events schedule -->
+        <!-- start partners -->
+        <section class="our-partners" data-tesla-plugin="carousel" data-tesla-container=".tesla-carousel-items" data-tesla-item="&gt;div" data-tesla-rotate="false" data-tesla-autoplay="false" data-tesla-hide-effect="false">
+            <div class="container">
+                <h3 class="site-title">Main <span>Partners</span><i></i></h3>
+                <div class="row tesla-carousel-items">
+                    <div class="col-md-2 col-xs-4">
+                        <a href="http://themeforest.net/"><img src="images/partner-1.png" alt="partner"/></a>
+                    </div>
+                    <div class="col-md-2 col-xs-4">
+                        <a href="http://codecanyon.net/"><img src="images/partner-2.png" alt="partner"/></a>
+                    </div>
+                    <div class="col-md-2 col-xs-4">
+                        <a href="http://videohive.net/"><img src="images/partner-3.png" alt="partner"/></a>
+                    </div>
+                    <div class="col-md-2 col-xs-4">
+                        <a href="http://audiojungle.net/"><img src="images/partner-4.png" alt="partner"/></a>
+                    </div>
+                    <div class="col-md-2 col-xs-4">
+                        <a href="http://graphicriver.net/"><img src="images/partner-5.png" alt="partner"/></a>
+                    </div>
+                    <div class="col-md-2 col-xs-4">
+                        <a href="photodune.net/index.html"><img src="images/partner-6.png" alt="partner"/></a>
+                    </div>
+                    <div class="col-md-2 col-xs-4">
+                        <a href="http://3docean.net/"><img src="images/partner-7.png" alt="partner"/></a>
+                    </div>
+                    <div class="col-md-2 col-xs-4">
+                        <a href="http://activeden.net/"><img src="images/partner-8.png" alt="partner"/></a>
+                    </div>
+                </div>
+                <ul>
+                    <li class="prev disabled"><i class="fa fa-arrow-circle-left"></i></li>
+                    <li><i class="fa fa-circle"></i></li>
+                    <li class="next"><i class="fa fa-arrow-circle-right"></i></li>
+                </ul>
+            </div>
+        </section>
+        <!-- end partners -->
+        <!-- start footer -->
+        <footer class="footer-v1">
+            <div class="footer-map">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m8!1m3!1d6052.183019241734!2d-73.94249441534424!3d40.67195262395485!3m2!1i1024!2i768!4f13.1!4m7!1i0!3e6!4m3!3m2!1d40.6753947!2d-73.9459706!4m0!5e0!3m2!1sen!2s!4v1425633499040" width="600" height="450" frameborder="0" style="border:0"></iframe>
+            </div>
+            <div class="container">
+                <div class="bottom-footer">
+                    <div class="subscribe-box">
+                        <i class="fa fa-newspaper-o"></i>
+                        <form>
+                            <input type="text" class="subscribe-line" placeholder="Subscribe for updates about new events" />
+                            <input type="submit" class="subscribe-button" value="Subscribe" />
+                        </form>
+                    </div>
+                    <ul class="footer-social">
+                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+                        <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                    </ul>
+                    <div class="box-footer">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <div class="logo">
+                                    <a href="#"><img src="images/logo.png" alt="logo" /></a>
+                                </div>
+                            </div>
+                            <div class="col-md-10">
+                                <nav class="second-nav">
+                                    <ul>
+                                        <li><a href="index.html">Home</a></li>
+                                        <li><a href="events.html">Events</a></li>
+                                        <li><a href="speakers.html">Speakers</a></li>
+                                        <li><a href="schedule.html">Schedule</a></li>
+                                        <li><a href="blog.html">Blog</a></li>
+                                        <li><a href="contact.html">Contact</a></li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="copyright">&copy; 2015 E-event • All rights reserved <i class="the-dot"></i> Designed & Developed by TeslaThemes</div>
+                </div>
+            </div>
+        </footer>
+        <!-- end footer -->
+        {% assets "default_js" %}
+            <script src="{{ ASSET_URL }}" type="text/javascript"></script>
+        {% endassets %}
+        <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+        <!-- ========================== END SCRIPTS ========================== -->
+    </body>
+</html>
