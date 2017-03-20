@@ -2,7 +2,7 @@
 # @Author: Ayush Garg
 # @Date:   2017-03-18 02:13:43
 # @Last Modified by:   Ayush Garg
-# @Last Modified time: 2017-03-18 19:51:24
+# @Last Modified time: 2017-03-21 00:43:30
 
 from flask import Flask, session, redirect, url_for, escape, request, render_template
 from hashlib import md5
@@ -71,7 +71,7 @@ def login():
                     raise ServerError('Passwords dont match')
 
                 user_new = (username_form, md5(password_form).hexdigest(), email_form)
-                cur.execute("INSERT INTO users VALUES (?,?,?)", user_new)
+                cur.execute("INSERT INTO users (username, password, email) VALUES (?,?,?)", user_new)
                 # return redirect(url_for('email_sent'))
 
     except ServerError as e:
