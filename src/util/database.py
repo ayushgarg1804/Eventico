@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 # @Author: Aman Priyadarshi
 # @Date:   2017-03-21 10:05:17
-# @Last Modified by:   Aman Priyadarshi
-# @Last Modified time: 2017-03-21 10:40:13
+# @Last Modified by:   Ayush Garg
+# @Last Modified time: 2017-03-21 22:43:07
 
 import sqlite3 as sql
 
-database = 'eventico.db'
+database = '../database/eventico.db'
 connection = None
 
 def sql_connect():
