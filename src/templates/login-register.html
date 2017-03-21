@@ -101,27 +101,30 @@
     </div>
     <div class="login-register">
         <div class="container">
+            {% if status.error %}
+                <div class="alert alert-danger fade in">
+                    <a href="#" class="close" data-dismiss="alert">&times;</a>
+                    <strong>Error!</strong>  {{ status.error }}
+                </div>
+            {% endif %}
             <div class="row">
                 <div class="col-md-5 col-md-offset-1">
-                    {% if error %}
-                        <p class=error><strong>Error:</strong> {{ error }}
-                    {% endif %}
-                    <form class="login-form" action="" method="POST">
+                    <form class="login-form" action="login" method="POST">
                         <h3>Welcome <i class="the-dot"></i></h3>
-                        <input type="text" name="username" placeholder="Username or e-mail">
-                        <input type="password" name="password" placeholder="Password">
+                        <input type="text" name="user" placeholder="Username or e-mail">
+                        <input type="password" name="pass" placeholder="Password">
                         <!-- <span>Remember me <input type="checkbox" name="remember" value="remember"></span> -->
-                        <input type="submit" name="submit_B" value="Login button">
+                        <input type="submit" name="submit" value="Login button">
                     </form>
                 </div>
                 <div class="col-md-5">
-                    <form class="register-form" action="" method="POST">
+                    <form class="register-form" action="register" method="POST">
                         <h3>Not a user yet? <i class="the-dot"></i></h3>
-                        <input type="text" name="username_R" placeholder="Username">
+                        <input type="text" name="user" placeholder="Username">
                         <input type="text" name="email" placeholder="E-mail">
-                        <input type="password" name="password_R" placeholder="Password">
-                        <input type="password" name="password_R_retype" placeholder="Repeat Password">
-                        <input type="submit" name="submit_B" value="Register button">
+                        <input type="password" name="pass" placeholder="Password">
+                        <input type="password" name="pass2" placeholder="Repeat Password">
+                        <input type="submit" name="submit" value="Register button">
                     </form>
                 </div>
             </div>
