@@ -102,19 +102,20 @@
     <div class="login-register">
         <div class="container">
             {% if status.error %}
-                <div class="alert alert-danger fade in">
+                <div class="alert alert-danger fade in col-md-10 col-md-offset-1">
                     <a href="#" class="close" data-dismiss="alert">&times;</a>
                     <strong>Error!</strong>  {{ status.error }}
                 </div>
+                <div style="height:15px; width:100%; clear:both;"></div>
             {% endif %}
             <div class="row">
                 <div class="col-md-5 col-md-offset-1">
                     <form class="login-form" action="login" method="POST">
                         <h3>Welcome <i class="the-dot"></i></h3>
-                        <input type="text" name="user" placeholder="Username or e-mail">
+                        <input type="text" name="user" placeholder="Username">
                         <input type="password" name="pass" placeholder="Password">
                         <!-- <span>Remember me <input type="checkbox" name="remember" value="remember"></span> -->
-                        <input type="submit" name="submit" value="Login button">
+                        <input type="submit" name="submit" value="Login">
                     </form>
                 </div>
                 <div class="col-md-5">
@@ -124,7 +125,7 @@
                         <input type="text" name="email" placeholder="E-mail">
                         <input type="password" name="pass" placeholder="Password">
                         <input type="password" name="pass2" placeholder="Repeat Password">
-                        <input type="submit" name="submit" value="Register button">
+                        <input type="submit" name="submit" value="Register">
                     </form>
                 </div>
             </div>
