@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 # @Author: Ayush Garg
 # @Date:   2017-03-18 02:13:43
-# @Last Modified by:   Ayush Garg
-# @Last Modified time: 2017-03-21 23:02:51
+# @Last Modified by:   Aman Priyadarshi
+# @Last Modified time: 2017-03-22 10:18:31
 
 import os
 import re
@@ -10,8 +10,7 @@ from hashlib import md5
 from . import database as DB
 
 def get_user(username, password):
-	global connection
-	DB.sql_connect()
+	connection = DB.sql_connect()
 
 	cursor = connection.cursor()
 	t = (username, password, )
@@ -22,8 +21,7 @@ def get_user(username, password):
 	return row[0]
 
 def user_exist(username, email):
-	global connection
-	DB.sql_connect()
+	connection = DB.sql_connect()
 
 	cursor = connection.cursor()
 	t = (username, email, )
@@ -31,11 +29,10 @@ def user_exist(username, email):
 	return cursor.fetchone() is not None
 
 def add_user(username, password, email):
-	global connection
-	DB.sql_connect()
+	connection = DB.sql_connect()
 
 	cursor = connection.cursor()
-	t = (username, password, email)
+	t = (username, password, email, )
 	cursor.execute('INSERT INTO users (username, password, email) VALUES (?, ?, ?)', t)
 
 def do_login(form):

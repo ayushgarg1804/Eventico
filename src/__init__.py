@@ -2,7 +2,7 @@
 # @Author: Aman Priyadarshi
 # @Date:   2017-03-20 20:09:41
 # @Last Modified by:   Aman Priyadarshi
-# @Last Modified time: 2017-03-21 22:00:12
+# @Last Modified time: 2017-03-22 10:22:34
 
 from flask import Flask, render_template, request, session
 
@@ -35,7 +35,6 @@ def login():
 		if status['success'] == True:
 			session['logged'] = True
 			session['uid'] = status['uid']
-	print status
 	return render_template('login-register.html', status=status)
 
 @app.route('/logout')
