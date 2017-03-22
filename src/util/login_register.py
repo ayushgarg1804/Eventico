@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 # @Author: Ayush Garg
 # @Date:   2017-03-18 02:13:43
-# @Last Modified by:   Aman Priyadarshi
-# @Last Modified time: 2017-03-22 10:18:31
+# @Last Modified by:   Ayush Garg
+# @Last Modified time: 2017-03-22 18:51:41
 
 import os
 import re
@@ -55,17 +55,17 @@ def do_register(form):
 		pass2 = form['pass2']
 		email = form['email']
 
-		if re.match("(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)", email) is None:
-			raise ValueError('Invalid Email ID')
-
 		if re.match("^[a-zA-Z0-9_.-]+$", username) is None:
 			raise ValueError('Invalid Username')
 
-		if pass1 != pass2:
-			raise ValueError('Password does not match')
-
 		if user_exist(username, email):
 			raise ValueError('User already exist')
+
+		if re.match("(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)", email) is None:
+			raise ValueError('Invalid Email ID')
+
+		if pass1 != pass2:
+			raise ValueError('Password does not match')
 
 		username = escape(username)
 		password = md5(pass1).hexdigest()
