@@ -1,103 +1,17 @@
 {% extends "layout.html" %}
 {% block title %}404 Not Found{% endblock %}
-{% block body %}
-    <div class="site-image error-img">
-        <header class="sticky-bar">
-            <div class="top-header">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-8">
-                            <ul class="header-info">
-                                <li>Don't miss the next event!</li>
-                                <li><i class="fa fa-phone"></i>+341 234 412</li>
-                                <li><i class="fa fa-envelope-o"></i><a href="mailto:contact@e-event.com">contact@e-event.com</a></li>
-                            </ul>
-                        </div>
-                        <div class="col-md-4">
-                            <ul class="header-social">
-                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
-                                <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="bottom-header">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-4 col-xs-6">
-                            <div class="logo">
-                                <a href="index.html"><img src="images/logow.png" alt="logo" /></a>
-                            </div>
-                        </div>
-                        <div class="col-md-8 col-xs-6">
-                            <nav class="main-nav">
-                                <div class="responsive-menu"><i class="fa fa-bars"></i></div>
-                                <ul>
-                                    <li><a href="index.html">Home</a></li>
-                                    <li>
-                                        <a href="#">Pages</a>
-                                        <ul>
-                                            <li><a href="rsvp.html">RSVP Page</a></li>
-                                            <li><a href="login-register.html">Login / Register</a></li>
-                                            <li>
-                                                <a href="#">Events</a>
-                                                <ul>
-                                                    <li><a href="events-4c.html">Events 4 col</a></li>
-                                                    <li><a href="events-3c.html">Events 3 col</a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="event.html">Single Event</a></li>
-                                            <li>
-                                                <a href="#">Gallery</a>
-                                                <ul>
-                                                    <li><a href="gallery-4c.html">Gallery 4 col</a></li>
-                                                    <li><a href="gallery-3c.html">Gallery 3 col</a></li>
-                                                    <li><a href="gallery-2c.html">Gallery 2 col</a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="pricing.html">Pricing</a></li>
-                                            <li><a href="error-404.html">Error 404</a></li>
-                                            <li><a href="index-footerv2.html">Footer v2</a></li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <a href="#">Speakers</a>
-                                        <ul>
-                                            <li><a href="speakers.html">Speakers v1</a></li>
-                                            <li><a href="speakers-2.html">Speakers v2</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="schedule.html">Schedule</a></li>
-                                    <li>
-                                        <a href="#">Blog</a>
-                                        <ul>
-                                            <li><a href="blog.html">Blog</a></li>
-                                            <li><a href="blog-leftsidebar.html">Blog LeftSidebar</a></li>
-                                            <li><a href="post.html">Single Post</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="contact.html">Contact</a></li>
-                                </ul>
-                            </nav>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </header>
-        <section class="error-section">
-            <div class="container">
-                <h3>404</h3>
-                <h4>Error Page not found</h4>
-                <ul class="site-dot">
-                    <li></li>
-                    <li><span><i></i></span></li>
-                    <li></li>
-                </ul>
-                <a href="{{ url_for('index') }}" class="the-link">Go home</a>
-            </div>
-        </section>
-    </div>
+{% block main_div_class %}site-image error-img{% endblock %}
+{% block sections %}
+    <section class="error-section">
+        <div class="container">
+            <h3>404</h3>
+            <h4>Error Page not found</h4>
+            <ul class="site-dot">
+                <li></li>
+                <li><span><i></i></span></li>
+                <li></li>
+            </ul>
+            <a href="{{ url_for('index') }}" class="the-link">Go home</a>
+        </div>
+    </section>
 {% endblock %}

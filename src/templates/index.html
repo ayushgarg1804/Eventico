@@ -1,195 +1,110 @@
 {% extends "layout.html" %}
 {% block title %}Home{% endblock %}
-{% block body_class %}homepage{% endblock %}
-{% block body %}
-    <div class="site-image home-img">
-        <header class="sticky-bar">
-            <div class="top-header">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-8">
-                            <ul class="header-info">
-                                <li>Don't miss the next event!</li>
-                                <li><i class="fa fa-phone"></i>+341 234 412</li>
-                                <li><i class="fa fa-envelope-o"></i><a href="mailto:contact@e-event.com">contact@e-event.com</a></li>
-                            </ul>
-                        </div>
-                        <div class="col-md-4">
-                            <ul class="header-social">
-                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
-                                <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+{% block main_div_class %}site-image home-img{% endblock %}
+{% block main_div %}
+    <div class="the-countdown-slider" data-tesla-plugin="slider" data-tesla-item=".slide" data-tesla-next=".slide-right" data-tesla-prev=".slide-left" data-tesla-container=".slide-wrapper">
+        <div class="container">
+            <div class="slide-arrows">
+                <div class="slide-left the-link-3">Prev</div>
+                <div class="slide-right the-link-2">Next</div>
             </div>
-            <div class="bottom-header">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-4 col-xs-6">
-                            <div class="logo">
-                                <a href="index.html"><img src="images/logo.png" alt="logo" /></a>
-                            </div>
-                        </div>
-                        <div class="col-md-8 col-xs-6">
-                            <nav class="main-nav">
-                                <div class="responsive-menu"><i class="fa fa-bars"></i></div>
-                                <ul>
-                                    <li><a href="index.html">Home</a></li>
-                                    <li>
-                                        <a href="#">Pages</a>
-                                        <ul>
-                                            <li><a href="rsvp.html">RSVP Page</a></li>
-                                            <li><a href="login-register.html">Login / Register</a></li>
-                                            <li>
-                                                <a href="#">Events</a>
-                                                <ul>
-                                                    <li><a href="events-4c.html">Events 4 col</a></li>
-                                                    <li><a href="events-3c.html">Events 3 col</a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="event.html">Single Event</a></li>
-                                            <li>
-                                                <a href="#">Gallery</a>
-                                                <ul>
-                                                    <li><a href="gallery-4c.html">Gallery 4 col</a></li>
-                                                    <li><a href="gallery-3c.html">Gallery 3 col</a></li>
-                                                    <li><a href="gallery-2c.html">Gallery 2 col</a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="pricing.html">Pricing</a></li>
-                                            <li><a href="error-404.html">Error 404</a></li>
-                                            <li><a href="index-footerv2.html">Footer v2</a></li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <a href="#">Speakers</a>
-                                        <ul>
-                                            <li><a href="speakers.html">Speakers v1</a></li>
-                                            <li><a href="speakers-2.html">Speakers v2</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="schedule.html">Schedule</a></li>
-                                    <li>
-                                        <a href="#">Blog</a>
-                                        <ul>
-                                            <li><a href="blog.html">Blog</a></li>
-                                            <li><a href="blog-leftsidebar.html">Blog LeftSidebar</a></li>
-                                            <li><a href="post.html">Single Post</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="contact.html">Contact</a></li>
-                                </ul>
-                            </nav>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </header>
-        <div class="the-countdown-slider" data-tesla-plugin="slider" data-tesla-item=".slide" data-tesla-next=".slide-right" data-tesla-prev=".slide-left" data-tesla-container=".slide-wrapper">
-            <div class="container">
-                <div class="slide-arrows">
-                    <div class="slide-left the-link-3">Prev</div>
-                    <div class="slide-right the-link-2">Next</div>
-                </div>
-            </div>
-            <ul class="slide-wrapper">
-                <li class="slide">
-                    <!-- start countdown -->
-                    <section class="countdown-section">
-                        <div class="container">
-                            <h1><a href="#">How To Organize Your Business</a></h1>
-                            <div class="event-link">
-                                <span>Event</span> starts in
-                            </div>
-                            <div class="countdown-box">
-                                <div id="the-countdown" class="row the-countdown" data-duedate="12/12/2017">
-                                    <div class="col-md-3 col-xs-6">
-                                        <div class="time-box" id="days">00</div>
-                                        <span>Days</span>
-                                    </div>
-                                    <div class="col-md-3 col-xs-6">
-                                        <div class="time-box" id="hours">00</div>
-                                        <span>Hours</span>
-                                    </div>
-                                    <div class="col-md-3 col-xs-6">
-                                        <div class="time-box" id="minutes">00</div>
-                                        <span>Minutes</span>
-                                    </div>
-                                    <div class="col-md-3 col-xs-6">
-                                        <div class="time-box" id="seconds">00</div>
-                                        <span>Seconds</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-                </li>
-                <li class="slide">
-                    <section class="countdown-section">
-                        <div class="container">
-                            <h1><a href="#">My life needs a change</a></h1>
-                            <div class="event-link">
-                                <span>Event</span> starts in
-                            </div>
-                            <div class="countdown-box">
-                                <div id="the-countdown" class="row the-countdown" data-duedate="6/11/2016 07:30">
-                                    <div class="col-md-3 col-xs-6">
-                                        <div class="time-box" id="days">00</div>
-                                        <span>Days</span>
-                                    </div>
-                                    <div class="col-md-3 col-xs-6">
-                                        <div class="time-box" id="hours">00</div>
-                                        <span>Hours</span>
-                                    </div>
-                                    <div class="col-md-3 col-xs-6">
-                                        <div class="time-box" id="minutes">00</div>
-                                        <span>Minutes</span>
-                                    </div>
-                                    <div class="col-md-3 col-xs-6">
-                                        <div class="time-box" id="seconds">00</div>
-                                        <span>Seconds</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-                </li>
-                <li class="slide">
-                    <section class="countdown-section">
-                        <div class="container">
-                            <h1><a href="#">The Last event You have listed</a></h1>
-                            <div class="event-link">
-                                <span>Event</span> starts in
-                            </div>
-                            <div class="countdown-box">
-                                <div id="the-countdown" class="row the-countdown" data-duedate="6/1/2017 07:30">
-                                    <div class="col-md-3 col-xs-6">
-                                        <div class="time-box" id="days">00</div>
-                                        <span>Days</span>
-                                    </div>
-                                    <div class="col-md-3 col-xs-6">
-                                        <div class="time-box" id="hours">00</div>
-                                        <span>Hours</span>
-                                    </div>
-                                    <div class="col-md-3 col-xs-6">
-                                        <div class="time-box" id="minutes">00</div>
-                                        <span>Minutes</span>
-                                    </div>
-                                    <div class="col-md-3 col-xs-6">
-                                        <div class="time-box" id="seconds">00</div>
-                                        <span>Seconds</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-                </li>
-            </ul>
         </div>
+        <ul class="slide-wrapper">
+            <li class="slide">
+                <!-- start countdown -->
+                <section class="countdown-section">
+                    <div class="container">
+                        <h1><a href="#">How To Organize Your Business</a></h1>
+                        <div class="event-link">
+                            <span>Event</span> starts in
+                        </div>
+                        <div class="countdown-box">
+                            <div id="the-countdown" class="row the-countdown" data-duedate="12/12/2017">
+                                <div class="col-md-3 col-xs-6">
+                                    <div class="time-box" id="days">00</div>
+                                    <span>Days</span>
+                                </div>
+                                <div class="col-md-3 col-xs-6">
+                                    <div class="time-box" id="hours">00</div>
+                                    <span>Hours</span>
+                                </div>
+                                <div class="col-md-3 col-xs-6">
+                                    <div class="time-box" id="minutes">00</div>
+                                    <span>Minutes</span>
+                                </div>
+                                <div class="col-md-3 col-xs-6">
+                                    <div class="time-box" id="seconds">00</div>
+                                    <span>Seconds</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </li>
+            <li class="slide">
+                <section class="countdown-section">
+                    <div class="container">
+                        <h1><a href="#">My life needs a change</a></h1>
+                        <div class="event-link">
+                            <span>Event</span> starts in
+                        </div>
+                        <div class="countdown-box">
+                            <div id="the-countdown" class="row the-countdown" data-duedate="6/11/2016 07:30">
+                                <div class="col-md-3 col-xs-6">
+                                    <div class="time-box" id="days">00</div>
+                                    <span>Days</span>
+                                </div>
+                                <div class="col-md-3 col-xs-6">
+                                    <div class="time-box" id="hours">00</div>
+                                    <span>Hours</span>
+                                </div>
+                                <div class="col-md-3 col-xs-6">
+                                    <div class="time-box" id="minutes">00</div>
+                                    <span>Minutes</span>
+                                </div>
+                                <div class="col-md-3 col-xs-6">
+                                    <div class="time-box" id="seconds">00</div>
+                                    <span>Seconds</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </li>
+            <li class="slide">
+                <section class="countdown-section">
+                    <div class="container">
+                        <h1><a href="#">The Last event You have listed</a></h1>
+                        <div class="event-link">
+                            <span>Event</span> starts in
+                        </div>
+                        <div class="countdown-box">
+                            <div id="the-countdown" class="row the-countdown" data-duedate="6/1/2017 07:30">
+                                <div class="col-md-3 col-xs-6">
+                                    <div class="time-box" id="days">00</div>
+                                    <span>Days</span>
+                                </div>
+                                <div class="col-md-3 col-xs-6">
+                                    <div class="time-box" id="hours">00</div>
+                                    <span>Hours</span>
+                                </div>
+                                <div class="col-md-3 col-xs-6">
+                                    <div class="time-box" id="minutes">00</div>
+                                    <span>Minutes</span>
+                                </div>
+                                <div class="col-md-3 col-xs-6">
+                                    <div class="time-box" id="seconds">00</div>
+                                    <span>Seconds</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </li>
+        </ul>
     </div>
+{% endblock %}
+{% block sections %}
     <section class="coming-events" data-tesla-plugin="carousel" data-tesla-container=".tesla-carousel-items" data-tesla-item="&gt;div" data-tesla-rotate="false" data-tesla-autoplay="false" data-tesla-hide-effect="false">
         <div class="container">
             <h3 class="site-title">Upcoming <span>Events</span><i></i></h3>
