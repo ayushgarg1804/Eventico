@@ -1,13 +1,13 @@
 /*
 * @Author: Aman Priyadarshi
 * @Date:   2017-03-15 23:12:45
-* @Last Modified by:   Aman Priyadarshi
-* @Last Modified time: 2017-03-15 23:42:30
+* @Last Modified by:   Ayush Garg
+* @Last Modified time: 2017-03-25 23:14:09
 */
 
 CREATE TABLE IF NOT EXISTS Events
 (
-	id INTEGER primary key,
+	id INTEGER primary key NOT NULL,
 	name VARCHAR,
 	created DATETIME,
 	status INTEGER,

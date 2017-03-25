@@ -2,12 +2,17 @@
 # @Author: Aman Priyadarshi
 # @Date:   2017-03-21 10:05:17
 # @Last Modified by:   Ayush Garg
-# @Last Modified time: 2017-03-24 19:20:17
+# @Last Modified time: 2017-03-25 23:49:42
 
 import sqlite3 as sql
 import os
 import glob
 import json
+import random
+import string
+import re
+from hashlib import md5
+from datetime import datetime
 
 database = 'src/database/eventico.db'
 connection = None
@@ -19,6 +24,7 @@ def sql_connect():
 		connection.isolation_level = None
 		create_tables()
 		create_event_database()
+		create_fake_database()
 	return connection
 
 def create_tables():
@@ -39,7 +45,6 @@ def get_json_val(data, attri):
 		return None
 	return get_json_val(data[attri[0]], attri[1:])
 
-
 def create_event_database():
 	# unicode to sqlite supported format conversion not required
 	global connection
@@ -55,7 +60,8 @@ def create_event_database():
 			jsonfile.close()
 			data = get_json_val(data, ['events'])
 			for eventnumber in range(len(data)):
-				print eventnumber # can be used for logging
+				# print eventnumber # can be used for logging
+				print ('.'),
 				data_event = get_json_val(data, [eventnumber])
 				if data_event is None:
 					continue
@@ -79,7 +85,9 @@ def create_event_database():
 				try:
 					cursor.execute('INSERT INTO events VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)', event)
 				except:
-					print "Error in event"
+					# print "Error in event"
+					pass
+
 				category = (
 								get_json_val(data_event, ['category', 'id']),
 								get_json_val(data_event, ['category', 'name']),
@@ -88,7 +96,9 @@ def create_event_database():
 				try:
 					cursor.execute('INSERT INTO categories VALUES (?,?,?)', category)
 				except:
-					print "Error in category"
+					# print "Error in category"
+					pass
+
 				organizer = (
 								get_json_val(data_event, ['organizer', 'id']),
 								get_json_val(data_event, ['organizer', 'description', 'html']),
@@ -101,7 +111,9 @@ def create_event_database():
 				try:
 					cursor.execute('INSERT INTO organizers VALUES (?,?,?,?,?,?)', organizer)
 				except:
-					print "Error in organizer"
+					# print "Error in organizer"
+					pass
+
 				venue = (
 							get_json_val(data_event, ['venue', 'id']),
 							get_json_val(data_event, ['venue', 'name']),
@@ -115,9 +127,75 @@ def create_event_database():
 				try:
 					cursor.execute('INSERT INTO venues VALUES (?,?,?,?,?,?,?)', venue)
 				except:
-					print "Error in venue"
+					# print "Error in venue"
+					pass
+		print "event database created"
 
 	connection.commit()
 
-def create_fake_database():
-	pass
+def id_gen(size = 6, chars = string.letters + string.digits):
+	return ''.join(random.choice(chars) for _ in range(size))
+
+def user_exist(username, email):
+	if username is None or email is None:
+		return True
+	global connection
+	cursor = connection.cursor()
+	t = (username, email, )
+	cursor.execute('SELECT uid FROM users WHERE username=? OR email=?', t)
+	return cursor.fetchone() is not None
+
+def add_user(username, password, email):
+	global connection
+	cursor = connection.cursor()
+	t = (username, password, email, )
+	cursor.execute('INSERT INTO users (username, password, email) VALUES (?, ?, ?)', t)
+	connection.commit()
+
+def create_fake_database(num_users = 100, num_reviews= 10):
+	global connection
+	cursor = connection.cursor()
+	cursor.execute('SELECT count(*) from users')
+	res = cursor.fetchone()[0]
+	if res == 0:
+		for i in range(num_users):
+			username = ""
+			email = ""
+			while user_exist(username, email):
+				while(re.match("^[a-zA-Z0-9_.-]+$", username) is None):
+					username = id_gen(size = random.randint(6,20))
+				while (re.match("(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)", email) is None):
+					email = id_gen(size = random.randint(6,20)) + "@gmail.com"
+			# print username + " " + email
+			print ('.'),
+			passw = id_gen(random.randint(6,20), string.letters + string.digits + string.punctuation)
+			passw = md5(passw).hexdigest()
+			add_user(username, passw, email)
+		print "users table data inserted"
+	connection.commit()
+
+	cursor.execute('DELETE from reviews')
+	cursor.execute('SELECT count(*) FROM reviews')
+	res = cursor.fetchone()[0]
+	if res == 0:
+		cursor.execute('SELECT id FROM events')
+		event_ids = cursor.fetchall()
+		cursor.execute('SELECT uid FROM users')
+		user_ids = cursor.fetchall()
+		# print user_ids
+		for user in user_ids:
+			if user[0] is None:
+				continue
+			for i in range(random.randint(0,num_reviews)):
+				comment = id_gen(random.randint(20,100), string.letters + " .!")
+				stars = random.randint(0,5)
+				timestamp = datetime(2017, random.randint(1,3), random.randint(1,28), random.randint(00, 23), random.randint(00,59))
+				eid = random.sample(event_ids, 1)
+				eid = eid[0][0]
+				review = (eid, user[0], stars, comment, timestamp,)
+				# print review
+				cursor.execute('INSERT INTO reviews (eid, uid, stars, comment, posted_time) VALUES (?,?,?,?,?)', 
+								review);
+				print ('.'),
+		print "review table data inserted"
+	connection.commit()
