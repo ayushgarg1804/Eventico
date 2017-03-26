@@ -2,7 +2,7 @@
 # @Author: Aman Priyadarshi
 # @Date:   2017-03-21 10:05:17
 # @Last Modified by:   Ayush Garg
-# @Last Modified time: 2017-03-26 15:46:17
+# @Last Modified time: 2017-03-26 17:48:52
 
 import os
 import glob
@@ -149,7 +149,7 @@ def get_user(username, password):
 	return row[0]
 
 def user_exist(username, email):
-	if username is None or email is None:
+	if username is "" or email is "":
 		return True
 	connection = sql_connect()
 	cursor = connection.cursor()
