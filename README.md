@@ -11,7 +11,7 @@ We are using [event-brite](https://www.eventbrite.com/developer/v3/) developer a
 - Recommendation
 
 ### Project
-This is a part of Acadmic Project Report under the course **Inf. System and Data Management** (COE-317) at [**NSIT**](www.nsit.ac.in).
+This is a part of Acadmic Project Report under the course **Information System and Data Management** (COE-317) at [**NSIT**](www.nsit.ac.in).
 
 ### Contributors
 - Ayush Garg (236CO14)

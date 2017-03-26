@@ -2,7 +2,7 @@
 # @Author: Aman Priyadarshi
 # @Date:   2017-03-20 20:09:41
 # @Last Modified by:   Aman Priyadarshi
-# @Last Modified time: 2017-03-26 14:16:46
+# @Last Modified time: 2017-03-26 15:28:22
 
 from flask import Flask, render_template, request, session, redirect, url_for
 
@@ -44,7 +44,9 @@ def logout():
 	if 'logged' in session:
 		status = LR.do_logout()
 		if status['success'] == True:
+			session.pop('uid', None)
 			session.pop('logged', None)
+			session.pop('username', None)
 	return render_template('index.html', status=status)
 
 @app.errorhandler(404)
