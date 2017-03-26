@@ -2,13 +2,13 @@
 # @Author: Ayush Garg
 # @Date:   2017-03-10 12:42:26
 # @Last Modified by:   Ayush Garg
-# @Last Modified time: 2017-03-16 20:09:03
+# @Last Modified time: 2017-03-26 15:58:58
 
 import requests as rq
 import json
 import os
 
-token = "token=JUEUY62BK5ZOWANSKAJX"
+token = "token="
 
 parameters = "location.address=New Delhi, India&location.within=50km&sort_by=best"
 url = "https://www.eventbriteapi.com/v3/events/search/?"
