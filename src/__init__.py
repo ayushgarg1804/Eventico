@@ -2,9 +2,9 @@
 # @Author: Aman Priyadarshi
 # @Date:   2017-03-20 20:09:41
 # @Last Modified by:   Aman Priyadarshi
-# @Last Modified time: 2017-03-22 10:22:34
+# @Last Modified time: 2017-03-26 14:16:46
 
-from flask import Flask, render_template, request, session
+from flask import Flask, render_template, request, session, redirect, url_for
 
 app = Flask(__name__)
 from util import assets, login_register as LR
@@ -35,6 +35,7 @@ def login():
 		if status['success'] == True:
 			session['logged'] = True
 			session['uid'] = status['uid']
+			session['username'] = status['username']
 	return render_template('login-register.html', status=status)
 
 @app.route('/logout')
@@ -49,3 +50,7 @@ def logout():
 @app.errorhandler(404)
 def not_found(e):
 	return render_template('error-404.html'), 404
+
+@app.context_processor
+def inject_session():
+    return dict(session=session)

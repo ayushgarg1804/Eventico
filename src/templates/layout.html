@@ -21,17 +21,8 @@
                             <div class="row">
                                 <div class="col-md-8">
                                     <ul class="header-info">
-                                        <li>Don't miss the next event!</li>
-                                        <li><i class="fa fa-phone"></i>+341 234 412</li>
-                                        <li><i class="fa fa-envelope-o"></i><a href="mailto:contact@e-event.com">contact@e-event.com</a></li>
-                                    </ul>
-                                </div>
-                                <div class="col-md-4">
-                                    <ul class="header-social">
-                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                                        <li href="mailto:aman.eureka@gmail.com"><i class="fa fa-cog"></i>Aman Priyadarshi (216CO14)</li>
+                                        <li href="mailto:ayushgarg1804@gmail.com"><i class="fa fa-cog"></i>Ayush Garg (236CO14)</li>
                                     </ul>
                                 </div>
                             </div>
@@ -49,12 +40,19 @@
                                     <nav class="main-nav">
                                         <div class="responsive-menu"><i class="fa fa-bars"></i></div>
                                         <ul>
-                                            <li><a href="index.html">Home</a></li>
                                             <li>
-                                                <a href="#">Pages</a>
+                                                {% if session.uid %}
+                                                    <a> Hi {{ session.username }}!
+                                                {% else %}
+                                                    <a>Dashboard</a>
+                                                {% endif %}
                                                 <ul>
                                                     <li><a href="rsvp.html">RSVP Page</a></li>
-                                                    <li><a href="login-register.html">Login / Register</a></li>
+                                                    {% if session.uid %}
+                                                        <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                                                    {% else %}
+                                                        <li><a href="{{ url_for('login') }}">Login / Register</a></li>
+                                                    {% endif %}
                                                     <li>
                                                         <a href="#">Events</a>
                                                         <ul>
@@ -72,27 +70,10 @@
                                                         </ul>
                                                     </li>
                                                     <li><a href="pricing.html">Pricing</a></li>
-                                                    <li><a href="error-404.html">Error 404</a></li>
+                                                    <li><a href="404">Error 404</a></li>
                                                     <li><a href="index-footerv2.html">Footer v2</a></li>
                                                 </ul>
                                             </li>
-                                            <li>
-                                                <a href="#">Speakers</a>
-                                                <ul>
-                                                    <li><a href="speakers.html">Speakers v1</a></li>
-                                                    <li><a href="speakers-2.html">Speakers v2</a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="schedule.html">Schedule</a></li>
-                                            <li>
-                                                <a href="#">Blog</a>
-                                                <ul>
-                                                    <li><a href="blog.html">Blog</a></li>
-                                                    <li><a href="blog-leftsidebar.html">Blog LeftSidebar</a></li>
-                                                    <li><a href="post.html">Single Post</a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="contact.html">Contact</a></li>
                                         </ul>
                                     </nav>
                                 </div>
@@ -105,7 +86,7 @@
         </div>
         <footer class="footer-v1">
             <div class="footer-map">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m8!1m3!1d6052.183019241734!2d-73.94249441534424!3d40.67195262395485!3m2!1i1024!2i768!4f13.1!4m7!1i0!3e6!4m3!3m2!1d40.6753947!2d-73.9459706!4m0!5e0!3m2!1sen!2s!4v1425633499040" width="600" height="450" frameborder="0" style="border:0"></iframe>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3502.6881476313824!2d77.03287455020494!3d28.609130882340814!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d053516783c9b%3A0x7e540ab22a28446!2sNetaji+Subhas+Institute+Of+Technology!5e0!3m2!1sen!2sin!4v1490519574224" width="600" height="450" frameborder="0" style="border:0"></iframe>
             </div>
             <div class="container">
                 <div class="bottom-footer">
@@ -132,18 +113,18 @@
                             <div class="col-md-10">
                                 <nav class="second-nav">
                                     <ul>
-                                        <li><a href="index.html">Home</a></li>
-                                        <li><a href="events.html">Events</a></li>
-                                        <li><a href="speakers.html">Speakers</a></li>
-                                        <li><a href="schedule.html">Schedule</a></li>
-                                        <li><a href="blog.html">Blog</a></li>
-                                        <li><a href="contact.html">Contact</a></li>
+                                        <li><a href="{{ url_for('index') }}">Home</a></li>
+                                        <li><a href="{{ url_for('index') }}">Events</a></li>
+                                        <li><a href="{{ url_for('index') }}">Speakers</a></li>
+                                        <li><a href="{{ url_for('index') }}">Schedule</a></li>
+                                        <li><a href="{{ url_for('index') }}">Blog</a></li>
+                                        <li><a href="{{ url_for('index') }}">Contact</a></li>
                                     </ul>
                                 </nav>
                             </div>
                         </div>
                     </div>
-                    <div class="copyright">&copy; 2015 E-event • All rights reserved <i class="the-dot"></i> Designed & Developed by TeslaThemes</div>
+                    <div class="copyright">Aman Priyadarshi (216CO14) <i class="the-dot"></i> Ayush Garg (236CO14)</div>
                 </div>
             </div>
         </footer>

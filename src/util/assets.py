@@ -2,7 +2,7 @@
 # @Author: Aman Priyadarshi
 # @Date:   2017-03-20 20:05:09
 # @Last Modified by:   Aman Priyadarshi
-# @Last Modified time: 2017-03-20 20:31:12
+# @Last Modified time: 2017-03-26 14:53:22
 
 from flask_assets import Bundle, Environment
 from .. import app

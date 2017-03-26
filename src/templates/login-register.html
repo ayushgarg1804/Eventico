@@ -25,7 +25,7 @@
                 <div class="alert alert-success fade in col-md-10 col-md-offset-1">
                     <a href="#" class="close" data-dismiss="alert">&times;</a>
                     {% if status.submit == 'login' %}
-                        <strong>Welcome {{ status.username }}!</strong> You are being redirected to home page.
+                        <i class="fa fa-refresh fa-spin fa-3x fa-fw"></i> <strong>Welcome {{ status.username }}!</strong> You are being redirected to home page.
                     {% elif status.submit == 'register' %}
                         <strong>Success!</strong> Account Created Successfully.
                     {% endif %}
