@@ -21,6 +21,16 @@
                     <strong>Error!</strong>  {{ status.error }}
                 </div>
                 <div style="height:15px; width:100%; clear:both;"></div>
+            {% elif status.submit %}
+                <div class="alert alert-success fade in col-md-10 col-md-offset-1">
+                    <a href="#" class="close" data-dismiss="alert">&times;</a>
+                    {% if status.submit == 'login' %}
+                        <strong>Welcome {{ status.username }}!</strong> You are being redirected to home page.
+                    {% elif status.submit == 'register' %}
+                        <strong>Success!</strong> Account Created Successfully.
+                    {% endif %}
+                </div>
+                <div style="height:15px; width:100%; clear:both;"></div>
             {% endif %}
             <div class="row">
                 <div class="col-md-5 col-md-offset-1">

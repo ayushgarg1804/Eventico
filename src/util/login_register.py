@@ -2,7 +2,7 @@
 # @Author: Ayush Garg
 # @Date:   2017-03-18 02:13:43
 # @Last Modified by:   Aman Priyadarshi
-# @Last Modified time: 2017-03-26 12:57:47
+# @Last Modified time: 2017-03-26 13:07:26
 
 import os
 import re
@@ -16,6 +16,7 @@ def do_login(form):
 		password = md5(form['pass']).hexdigest()
 		uid = DB.get_user(username, password)
 		status['uid'] = uid
+		status['username'] = username
 	except Exception as e:
 		status['error'] = str(e)
 		status['success'] = False

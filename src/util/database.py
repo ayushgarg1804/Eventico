@@ -2,15 +2,15 @@
 # @Author: Aman Priyadarshi
 # @Date:   2017-03-21 10:05:17
 # @Last Modified by:   Aman Priyadarshi
-# @Last Modified time: 2017-03-26 13:02:24
+# @Last Modified time: 2017-03-26 14:05:29
 
-import sqlite3 as sql
 import os
 import glob
 import json
 import random
 import string
 import re
+import sqlite3 as sql
 from hashlib import md5
 from datetime import datetime
 
@@ -18,12 +18,14 @@ database = 'src/database/eventico.db'
 connection = None
 
 def sql_init():
-	sql_connect()
-	create_tables()
-	create_event_database()
-	create_fake_database()
-	add_user('amaneureka', 'abc123', 'aman.eureka@gmail.com')
-	add_user('ayush', 'abc123', 'ayushgarg1804@gmail.com')
+	if not os.path.isfile(database):
+		global connection
+		create_tables()
+		create_event_database()
+		create_fake_database()
+		connection.close()
+		# we can't create sqlite instance in main thread
+		connection = None
 
 def sql_connect():
 	global connection
@@ -33,7 +35,7 @@ def sql_connect():
 	return connection
 
 def create_tables():
-	global connection
+	connection = sql_connect()
 	cursor = connection.cursor()
 	path = 'src/schema'
 	for scriptfilename in glob.glob(os.path.join(path, '*.sql')):
@@ -52,7 +54,7 @@ def get_json_val(data, attri):
 
 def create_event_database():
 	# unicode to sqlite supported format conversion not required
-	global connection
+	connection = sql_connect()
 	cursor = connection.cursor()
 	cursor.execute('SELECT count(*) FROM events')
 	res = cursor.fetchone()[0]
@@ -142,8 +144,7 @@ def id_gen(size = 6, chars = string.letters + string.digits):
 	return ''.join(random.choice(chars) for _ in range(size))
 
 def get_user(username, password):
-	global connection
-
+	connection = sql_connect()
 	cursor = connection.cursor()
 	t = (username, password, )
 	cursor.execute('SELECT uid FROM users WHERE username=? AND password=?', t)
@@ -155,21 +156,21 @@ def get_user(username, password):
 def user_exist(username, email):
 	if username is None or email is None:
 		return True
-	global connection
+	connection = sql_connect()
 	cursor = connection.cursor()
 	t = (username, email, )
 	cursor.execute('SELECT uid FROM users WHERE username=? OR email=?', t)
 	return cursor.fetchone() is not None
 
 def add_user(username, password, email):
-	global connection
+	connection = sql_connect()
 	cursor = connection.cursor()
 	t = (username, password, email, )
 	cursor.execute('INSERT INTO users (username, password, email) VALUES (?, ?, ?)', t)
 	connection.commit()
 
 def create_fake_database(num_users = 100, num_reviews= 10):
-	global connection
+	connection = sql_connect()
 	cursor = connection.cursor()
 	cursor.execute('SELECT count(*) from users')
 	res = cursor.fetchone()[0]
