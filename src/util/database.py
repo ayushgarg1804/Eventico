@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 # @Author: Aman Priyadarshi
 # @Date:   2017-03-21 10:05:17
-# @Last Modified by:   Aman Priyadarshi
-# @Last Modified time: 2017-03-26 14:05:29
+# @Last Modified by:   Ayush Garg
+# @Last Modified time: 2017-03-26 15:46:17
 
 import os
 import glob
@@ -67,7 +67,6 @@ def create_event_database():
 			jsonfile.close()
 			data = get_json_val(data, ['events'])
 			for eventnumber in range(len(data)):
-				# print eventnumber # can be used for logging
 				print ('.'),
 				data_event = get_json_val(data, [eventnumber])
 				if data_event is None:
@@ -92,7 +91,6 @@ def create_event_database():
 				try:
 					cursor.execute('INSERT INTO events VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)', event)
 				except:
-					# print "Error in event"
 					pass
 
 				category = (
@@ -103,7 +101,6 @@ def create_event_database():
 				try:
 					cursor.execute('INSERT INTO categories VALUES (?,?,?)', category)
 				except:
-					# print "Error in category"
 					pass
 
 				organizer = (
@@ -118,7 +115,6 @@ def create_event_database():
 				try:
 					cursor.execute('INSERT INTO organizers VALUES (?,?,?,?,?,?)', organizer)
 				except:
-					# print "Error in organizer"
 					pass
 
 				venue = (
@@ -134,7 +130,6 @@ def create_event_database():
 				try:
 					cursor.execute('INSERT INTO venues VALUES (?,?,?,?,?,?,?)', venue)
 				except:
-					# print "Error in venue"
 					pass
 		print "event database created"
 
@@ -183,7 +178,6 @@ def create_fake_database(num_users = 100, num_reviews= 10):
 					username = id_gen(size = random.randint(6,20))
 				while (re.match("(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)", email) is None):
 					email = id_gen(size = random.randint(6,20)) + "@gmail.com"
-			# print username + " " + email
 			print ('.'),
 			passw = id_gen(random.randint(6,20), string.letters + string.digits + string.punctuation)
 			passw = md5(passw).hexdigest()
@@ -191,7 +185,6 @@ def create_fake_database(num_users = 100, num_reviews= 10):
 		print "users table data inserted"
 	connection.commit()
 
-	cursor.execute('DELETE from reviews')
 	cursor.execute('SELECT count(*) FROM reviews')
 	res = cursor.fetchone()[0]
 	if res == 0:
@@ -199,7 +192,6 @@ def create_fake_database(num_users = 100, num_reviews= 10):
 		event_ids = cursor.fetchall()
 		cursor.execute('SELECT uid FROM users')
 		user_ids = cursor.fetchall()
-		# print user_ids
 		for user in user_ids:
 			if user[0] is None:
 				continue
@@ -210,7 +202,6 @@ def create_fake_database(num_users = 100, num_reviews= 10):
 				eid = random.sample(event_ids, 1)
 				eid = eid[0][0]
 				review = (eid, user[0], stars, comment, timestamp,)
-				# print review
 				cursor.execute('INSERT INTO reviews (eid, uid, stars, comment, posted_time) VALUES (?,?,?,?,?)',
 								review);
 				print ('.'),
