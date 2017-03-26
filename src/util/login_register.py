@@ -1,46 +1,20 @@
 # -*- coding: utf-8 -*-
 # @Author: Ayush Garg
 # @Date:   2017-03-18 02:13:43
-# @Last Modified by:   Ayush Garg
-# @Last Modified time: 2017-03-22 18:51:41
+# @Last Modified by:   Aman Priyadarshi
+# @Last Modified time: 2017-03-26 12:57:47
 
 import os
 import re
 from hashlib import md5
 from . import database as DB
 
-def get_user(username, password):
-	connection = DB.sql_connect()
-
-	cursor = connection.cursor()
-	t = (username, password, )
-	cursor.execute('SELECT uid FROM users WHERE username=? AND password=?', t)
-	row = cursor.fetchone()
-	if row is None:
-		raise ValueError("Invalid Credentials")
-	return row[0]
-
-def user_exist(username, email):
-	connection = DB.sql_connect()
-
-	cursor = connection.cursor()
-	t = (username, email, )
-	cursor.execute('SELECT uid FROM users WHERE username=? OR email=?', t)
-	return cursor.fetchone() is not None
-
-def add_user(username, password, email):
-	connection = DB.sql_connect()
-
-	cursor = connection.cursor()
-	t = (username, password, email, )
-	cursor.execute('INSERT INTO users (username, password, email) VALUES (?, ?, ?)', t)
-
 def do_login(form):
 	status = { 'success' : True }
 	try:
 		username = re.escape(form['user'])
 		password = md5(form['pass']).hexdigest()
-		uid = get_user(username, password)
+		uid = DB.get_user(username, password)
 		status['uid'] = uid
 	except Exception as e:
 		status['error'] = str(e)
@@ -58,7 +32,7 @@ def do_register(form):
 		if re.match("^[a-zA-Z0-9_.-]+$", username) is None:
 			raise ValueError('Invalid Username')
 
-		if user_exist(username, email):
+		if DB.user_exist(username, email):
 			raise ValueError('User already exist')
 
 		if re.match("(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)", email) is None:
@@ -67,9 +41,9 @@ def do_register(form):
 		if pass1 != pass2:
 			raise ValueError('Password does not match')
 
-		username = escape(username)
+		username = re.escape(username)
 		password = md5(pass1).hexdigest()
-		add_user(username, password, email)
+		DB.add_user(username, password, email)
 	except Exception as e:
 		status['error'] = str(e)
 		status['success'] = False

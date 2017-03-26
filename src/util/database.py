@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 # @Author: Aman Priyadarshi
 # @Date:   2017-03-21 10:05:17
-# @Last Modified by:   Ayush Garg
-# @Last Modified time: 2017-03-25 23:49:42
+# @Last Modified by:   Aman Priyadarshi
+# @Last Modified time: 2017-03-26 13:02:24
 
 import sqlite3 as sql
 import os
@@ -17,14 +17,19 @@ from datetime import datetime
 database = 'src/database/eventico.db'
 connection = None
 
+def sql_init():
+	sql_connect()
+	create_tables()
+	create_event_database()
+	create_fake_database()
+	add_user('amaneureka', 'abc123', 'aman.eureka@gmail.com')
+	add_user('ayush', 'abc123', 'ayushgarg1804@gmail.com')
+
 def sql_connect():
 	global connection
 	if connection == None:
 		connection = sql.connect(database)
 		connection.isolation_level = None
-		create_tables()
-		create_event_database()
-		create_fake_database()
 	return connection
 
 def create_tables():
@@ -54,7 +59,7 @@ def create_event_database():
 	if res==0:
 		path = 'src/database/json'
 		for jsonfilename in glob.glob(os.path.join(path, '*.json')):
-			print jsonfilename # can be used for logging 
+			print jsonfilename # can be used for logging
 			jsonfile = open(jsonfilename, 'r')
 			data = json.load(jsonfile)
 			jsonfile.close()
@@ -66,7 +71,7 @@ def create_event_database():
 				if data_event is None:
 					continue
 				event = (
-							get_json_val(data_event, ['id']), 
+							get_json_val(data_event, ['id']),
 							get_json_val(data_event, ['name', 'html']),
 							get_json_val(data_event, ['created']),
 							get_json_val(data_event, ['status']),
@@ -136,6 +141,17 @@ def create_event_database():
 def id_gen(size = 6, chars = string.letters + string.digits):
 	return ''.join(random.choice(chars) for _ in range(size))
 
+def get_user(username, password):
+	global connection
+
+	cursor = connection.cursor()
+	t = (username, password, )
+	cursor.execute('SELECT uid FROM users WHERE username=? AND password=?', t)
+	row = cursor.fetchone()
+	if row is None:
+		raise ValueError("Invalid Credentials")
+	return row[0]
+
 def user_exist(username, email):
 	if username is None or email is None:
 		return True
@@ -194,7 +210,7 @@ def create_fake_database(num_users = 100, num_reviews= 10):
 				eid = eid[0][0]
 				review = (eid, user[0], stars, comment, timestamp,)
 				# print review
-				cursor.execute('INSERT INTO reviews (eid, uid, stars, comment, posted_time) VALUES (?,?,?,?,?)', 
+				cursor.execute('INSERT INTO reviews (eid, uid, stars, comment, posted_time) VALUES (?,?,?,?,?)',
 								review);
 				print ('.'),
 		print "review table data inserted"
