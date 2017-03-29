@@ -1487,6 +1487,10 @@ header .bottom-header .main-nav ul li ul li:hover ul {
     line-height: 1.5em;
     font-weight: 400;
     text-transform: none;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 100%;
+    text-overflow: ellipsis;
 }
 .coming-events .event-box h4 a {
     color: #5a6a70;

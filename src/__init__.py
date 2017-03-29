@@ -2,7 +2,7 @@
 # @Author: Aman Priyadarshi
 # @Date:   2017-03-20 20:09:41
 # @Last Modified by:   amaneureka
-# @Last Modified time: 2017-03-29 15:46:26
+# @Last Modified time: 2017-03-30 01:15:13
 
 import json
 
@@ -42,8 +42,6 @@ def login():
 
 @app.route('/events', methods=['GET', 'POST'])
 def events():
-	if 'logged' in session:
-		return redirect(url_for('index'))
 	if request.method == 'POST':
 		name = request.form['event_name']
 		result = DB.query_event(name)
