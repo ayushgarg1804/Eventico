@@ -2,7 +2,7 @@
 # @Author: Aman Priyadarshi
 # @Date:   2017-03-20 20:09:41
 # @Last Modified by:   amaneureka
-# @Last Modified time: 2017-03-30 01:15:13
+# @Last Modified time: 2017-03-30 01:53:48
 
 import json
 
@@ -72,3 +72,6 @@ def not_found(e):
 @app.context_processor
 def inject_session():
     return dict(session=session)
+
+app.secret_key = os.urandom(12)
+database.sql_init()

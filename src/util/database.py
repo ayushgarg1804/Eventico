@@ -2,7 +2,7 @@
 # @Author: Aman Priyadarshi
 # @Date:   2017-03-21 10:05:17
 # @Last Modified by:   amaneureka
-# @Last Modified time: 2017-03-30 01:49:06
+# @Last Modified time: 2017-03-30 01:51:39
 
 import os
 import glob
@@ -30,7 +30,6 @@ def sql_init():
 def sql_connect():
 	global connection
 	if connection == None:
-		sql_init()
 		connection = sql.connect(database)
 		connection.isolation_level = None
 	return connection
