@@ -1,13 +1,15 @@
 # -*- coding: utf-8 -*-
 # @Author: Aman Priyadarshi
 # @Date:   2017-03-20 20:09:41
-# @Last Modified by:   Aman Priyadarshi
-# @Last Modified time: 2017-03-26 15:28:22
+# @Last Modified by:   amaneureka
+# @Last Modified time: 2017-03-29 15:46:26
+
+import json
 
 from flask import Flask, render_template, request, session, redirect, url_for
 
 app = Flask(__name__)
-from util import assets, login_register as LR
+from util import assets, login_register as LR, database as DB
 
 @app.route('/')
 @app.route('/index')
@@ -37,6 +39,22 @@ def login():
 			session['uid'] = status['uid']
 			session['username'] = status['username']
 	return render_template('login-register.html', status=status)
+
+@app.route('/events', methods=['GET', 'POST'])
+def events():
+	if 'logged' in session:
+		return redirect(url_for('index'))
+	if request.method == 'POST':
+		name = request.form['event_name']
+		result = DB.query_event(name)
+		status = {
+			'success' : True,
+			'count': len(result),
+			'data' : result,
+			'query' : request.form
+		}
+		return json.dumps(status)
+	return render_template('events.html')
 
 @app.route('/logout')
 def logout():

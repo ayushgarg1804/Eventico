@@ -53,14 +53,7 @@
                                                     {% else %}
                                                         <li><a href="{{ url_for('login') }}">Login / Register</a></li>
                                                     {% endif %}
-                                                    <li>
-                                                        <a href="#">Events</a>
-                                                        <ul>
-                                                            <li><a href="events-4c.html">Events 4 col</a></li>
-                                                            <li><a href="events-3c.html">Events 3 col</a></li>
-                                                        </ul>
-                                                    </li>
-                                                    <li><a href="event.html">Single Event</a></li>
+                                                    <li><a href="{{ url_for('events') }}">Search Event</a></li>
                                                     <li>
                                                         <a href="#">Gallery</a>
                                                         <ul>
@@ -84,6 +77,7 @@
             {% block main_div %}{% endblock %}
             {% block sections %}{% endblock %}
         </div>
+        {% block extra_sections %}{% endblock %}
         <footer class="footer-v1">
             <div class="footer-map">
                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3502.6881476313824!2d77.03287455020494!3d28.609130882340814!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d053516783c9b%3A0x7e540ab22a28446!2sNetaji+Subhas+Institute+Of+Technology!5e0!3m2!1sen!2sin!4v1490519574224" width="600" height="450" frameborder="0" style="border:0"></iframe>
@@ -128,9 +122,9 @@
                 </div>
             </div>
         </footer>
-        <!-- end footer -->
         {% assets "default_js" %}
             <script src="{{ ASSET_URL }}" type="text/javascript"></script>
         {% endassets %}
+        {% block extra_scripts %}{% endblock %}
     </body>
 </html>

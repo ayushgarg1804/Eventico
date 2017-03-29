@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 # @Author: Aman Priyadarshi
 # @Date:   2017-03-20 20:05:09
-# @Last Modified by:   Aman Priyadarshi
-# @Last Modified time: 2017-03-26 14:53:22
+# @Last Modified by:   amaneureka
+# @Last Modified time: 2017-03-29 16:16:59
 
 from flask_assets import Bundle, Environment
 from .. import app
@@ -30,6 +30,7 @@ bundles = {
 		'js/sticky.js',
 		'js/options.js',
 		'js/plugins.js',
+		'js/pretty.js',
 		output='gen/default.js')
 }
 

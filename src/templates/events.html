@@ -1,0 +1,76 @@
+{% extends "layout.html" %}
+{% block title %}Search Event{% endblock %}
+{% block main_div_class %}site-image page-img{% endblock %}
+{% block sections %}
+    <section class="path-section">
+        <div class="container">
+            <h3>Events</h3>
+            <ul class="site-dot">
+                <li></li>
+                <li><span><i></i></span></li>
+                <li></li>
+            </ul>
+            <p>Home / Events</p>
+        </div>
+    </section>
+{% endblock %}
+{% block extra_sections %}
+<section class="coming-events">
+    <div class="container">
+        <div class="event-filter">
+            <div class="row">
+                <div class="col-md-9">
+                    <input id="event_name" type="text" name="keyword" placeholder="Enter Keyword" />
+                </div>
+                <div class="col-md-3">
+                    <a id="search_event">Find Events</a>
+                </div>
+            </div>
+        </div>
+        <div id="event-container" class="row">
+            <div class="col-md-4 col-xs-6">
+                <p>Search a Query!</p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+{% block extra_scripts %}
+    <script type="text/javascript">
+        $('#search_event').click(function() {
+
+            $.ajax({
+                url: '#',
+                type: 'POST',
+                data: {
+                    'event_name': document.querySelector('#event_name').value
+                },
+                success: function (response) {
+                    $("#event-container").html("");
+                    var html = "";
+                    var result = JSON.parse(response);
+                    var events = result.data;
+                    for (var i = 0; i < events.length; i++)
+                    {
+                        var obj = events[i];
+                        html += "<div class=\"col-md-4 col-xs-6\">";
+                        html += "<div class=\"event-box\">";
+                        html += "<div class=\"event-box-cover\">";
+                        html += "<div class=\"event-box-hover\">";
+                        html += "<div class=\"event-box-share\">" + obj[9] +"<span>Shares</span></div>";
+                        html += "<h6>" + obj[3] + "</h6>";
+                        html += "</div>";
+                        html += "<img src=\"" + obj[10] + "\" alt=\"event\" />";
+                        html += "</div>";
+                        html += "<h4><a href=\"#\">" + obj[1] + "</a></h4>";
+                        html += "<p>" + prettyDate(obj[5]) + "</p>";
+                        html += "</div>";
+                        html += "</div>";
+                    }
+                    $("#event-container").html(html);
+                }
+            });
+
+        });
+    </script>
+{% endblock %}
