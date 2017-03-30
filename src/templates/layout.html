@@ -48,7 +48,7 @@
                                                     <a>Dashboard</a>
                                                 {% endif %}
                                                 <ul>
-                                                    <li><a href="rsvp.html">RSVP Page</a></li>
+                                                    <li><a href="{{ url_for('index') }}">Home</a></li>
                                                     {% if session.uid %}
                                                         <li><a href="{{ url_for('logout') }}">Logout</a></li>
                                                     {% else %}
@@ -93,10 +93,9 @@
                         </form>
                     </div>
                     <ul class="footer-social">
-                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                        <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
-                        <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                        <li><a href="https://www.facebook.com/ayush.garg.940"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="https://twitter.com/amaneureka"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="https://github.com/ayushgarg1804/Eventico"><i class="fa fa-github"></i></a></li>
                     </ul>
                     <div class="box-footer">
                         <div class="row">
@@ -109,10 +108,9 @@
                                 <nav class="second-nav">
                                     <ul>
                                         <li><a href="{{ url_for('index') }}">Home</a></li>
-                                        <li><a href="{{ url_for('index') }}">Events</a></li>
-                                        <li><a href="{{ url_for('index') }}">Speakers</a></li>
-                                        <li><a href="{{ url_for('index') }}">Schedule</a></li>
-                                        <li><a href="{{ url_for('index') }}">Blog</a></li>
+                                        <li><a href="{{ url_for('events') }}">Events</a></li>
+                                        <li><a href="{{ url_for('login') }}">Member</a></li>
+                                        <li><a href="https://www.nsit.ac.in">NSIT</a></li>
                                         <li><a href="{{ url_for('index') }}">Contact</a></li>
                                     </ul>
                                 </nav>
