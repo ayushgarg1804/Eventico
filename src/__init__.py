@@ -2,7 +2,7 @@
 # @Author: Aman Priyadarshi
 # @Date:   2017-03-20 20:09:41
 # @Last Modified by:   amaneureka
-# @Last Modified time: 2017-03-30 21:36:10
+# @Last Modified time: 2017-03-30 22:06:12
 
 import os
 import json
@@ -46,8 +46,11 @@ def login():
 @app.route('/events', methods=['GET', 'POST'])
 def events(event_id = None):
 	if event_id is not None:
+		event_detail = DB.query_event_by_id(event_id)
+		if event_detail is None:
+			return render_template('error-404.html'), 404
 		recentevents = DB.query_event("", 3);
-		return render_template('event-detail.html', upcomingevents = recentevents)
+		return render_template('event-detail.html', upcomingevents = recentevents, event = event_detail)
 	if request.method == 'POST':
 		name = request.form['event_name']
 		status = {

@@ -2,7 +2,7 @@
 # @Author: Aman Priyadarshi
 # @Date:   2017-03-21 10:05:17
 # @Last Modified by:   amaneureka
-# @Last Modified time: 2017-03-30 21:35:55
+# @Last Modified time: 2017-03-30 22:23:29
 
 import os
 import glob
@@ -163,6 +163,21 @@ def add_user(username, password, email):
 	t = (username, password, email, )
 	cursor.execute('INSERT INTO users (username, password, email) VALUES (?, ?, ?)', t)
 	connection.commit()
+
+def query_event_by_id(event_id):
+	connection = sql_connect()
+	cursor = connection.cursor()
+
+	t = (event_id, )
+	row = cursor.execute('SELECT * FROM Events WHERE id=?', t).fetchone()
+	if row is None:
+		return None
+	t = (row[11], )
+	row2 = cursor.execute('SELECT * FROM venues WHERE id=?', t).fetchone()
+	t = (row[13], )
+	row3 = cursor.execute('SELECT * FROM Organizers WHERE id=?', t).fetchone()
+	row = row + row2 + row3
+	return row
 
 def query_event(name, limit = 20):
 	connection = sql_connect()

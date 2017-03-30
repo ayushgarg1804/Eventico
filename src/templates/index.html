@@ -124,7 +124,7 @@
                                 {% endif %}
                             </div>
                             <h4><a href="{{ url_for('events', event_id=item[0]) }}">{{ item[1] }}</a></h4>
-                            <p>{{ item[5]|strftime }}</p>
+                            <p>{{ item[5]|strftime('%b %d, %Y') }}</p>
                         </div>
                     </div>
                 {% endfor %}

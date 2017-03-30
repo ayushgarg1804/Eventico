@@ -1,5 +1,5 @@
 {% extends "layout.html" %}
-{% block title %}Event Details{% endblock %}
+{% block title %}Event - {{ event[1] }}{% endblock %}
 {% block main_div_class %}site-image page-img{% endblock %}
 {% block sections %}
     <section class="path-section">
@@ -26,30 +26,27 @@
                                 <div class="col-md-4">
                                     <div class="box-event-info">
                                         <i class="fa fa-calendar"></i>
-                                        <p>14 May 2015<br/>10:00 - 16:00</p>
+                                        <p>{{ event[5]|strftime('%b %d, %Y') }}<br/>{{ event[5]|strftime('%H:%M') }} - {{ event[6]|strftime('%H:%M') }}</p>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="box-event-info">
                                         <i class="fa fa-map-marker"></i>
-                                        <p>10 Rue Lamartine<br/>Montpellier, France</p>
+                                        <p>{{ event[15] }}<br/>{{ event[18] }}</p>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="box-event-info">
                                         <i class="fa fa-street-view"></i>
-                                        <p>Speaker:<br/> Walter Braines</p>
+                                        <p>Speaker:<br/> {{ event[24] }}</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <h2>How to organize your business</h2>
+                        <h2>{{ event[1] }}</h2>
                     </div>
                     <div class="event-content">
-                        <p>As it so contrasted oh estimating instrument. Size like body some one had. Are conduct viewing boy minutes warrant expense. Tolerably behaviour may admitting daughters offending her ask own. Praise effect wishes change way and any wanted. Lively use looked latter regard had. Do he it part more last in. Merits ye if mr narrow points. Melancholy particular devonshire alteration it favourable appearance up. </p>
-                        <h4>Event Description</h4>
-                        <p>As it so contrasted oh estimating instrument. Size like body some one had. Are conduct viewing boy minutes warrant expense. Tolerably behaviour may admitting daughters offending her ask own. Praise effect wishes change way and any wanted. Lively use looked latter regard had. Do he it part more last in. Merits ye if mr narrow points. Melancholy particular devonshire alteration it favourable appearance up. As it so contrasted oh estimating instrument. Size like body some one had. Are conduct viewing boy minutes warrant expense. Tolerably behaviour may admitting daughters offending her ask own. Praise effect wishes change way and any wanted. Lively use looked latter regard had. Do he it part more last in. Merits ye if mr narrow points. Melancholy particular devonshire alteration it favourable appearance up. As it so contrasted oh estimating instrument. Size like body some one had. Are conduct viewing boy minutes warrant expense. Tolerably behaviour may admitting daughters offending her ask own. Praise effect wishes change way and any wanted. Lively use looked latter regard had. Do he it part more last in. Merits ye if mr narrow points. Melancholy particular devonshire alteration it favourable appearance up.</p>
-                        <p>As it so contrasted oh estimating instrument. Size like body some one had. Are conduct viewing boy minutes warrant expense. Tolerably behaviour may admitting daughters offending her ask own. Praise effect wishes change way and any wanted. Lively use looked latter regard had. Do he it part more last in. Merits ye if mr narrow points. Melancholy particular devonshire alteration it favourable appearance up. As it so contrasted oh estimating instrument. Size like body some one had. Are conduct viewing boy minutes warrant expense. </p>
+                        {{ event[8]|safe }}
                     </div>
                     <div class="event-footer">
                         <ul class="event-socials">
@@ -80,7 +77,7 @@
                                         {% endif %}
                                     </div>
                                     <h4><a href="{{ url_for('events', event_id=item[0]) }}">{{ item[1] }}</a></h4>
-                                    <p>{{ item[5]|strftime }}</p>
+                                    <p>{{ item[5]|strftime('%b %d, %Y') }}</p>
                                 </div>
                             </div>
                         {% endfor %}
