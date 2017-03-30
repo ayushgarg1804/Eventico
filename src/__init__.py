@@ -2,7 +2,7 @@
 # @Author: Aman Priyadarshi
 # @Date:   2017-03-20 20:09:41
 # @Last Modified by:   amaneureka
-# @Last Modified time: 2017-03-30 13:50:02
+# @Last Modified time: 2017-03-30 14:15:39
 
 import os
 import json
@@ -10,7 +10,7 @@ from util import database
 from flask import Flask, render_template, request, session, redirect, url_for
 
 app = Flask(__name__)
-from util import assets, login_register as LR, database as DB
+from util import assets, filters, login_register as LR, database as DB
 
 @app.route('/')
 @app.route('/index')

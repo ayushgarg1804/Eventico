@@ -124,7 +124,7 @@
                                 {% endif %}
                             </div>
                             <h4><a href="event.html">{{ item[1] }}</a></h4>
-                            <p>{{ item[5] }}</p>
+                            <p>{{ item[5]|strftime }}</p>
                         </div>
                     </div>
                 {% endfor %}
