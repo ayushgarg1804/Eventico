@@ -13,6 +13,9 @@ We are using [event-brite](https://www.eventbrite.com/developer/v3/) developer a
 ### Project
 This is a part of Acadmic Project Report under the course **Information System and Data Management** (COE-317) at [**NSIT**](www.nsit.ac.in).
 
+### Deployment
+The master branch is automatically deployed to heroku app : *https://eventico.herokuapp.com/*
+
 ### Contributors
 - Ayush Garg (236CO14)
 - Aman Priyadarshi (216CO14)
