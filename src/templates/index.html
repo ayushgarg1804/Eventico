@@ -107,112 +107,27 @@
 {% block sections %}
     <section class="coming-events" data-tesla-plugin="carousel" data-tesla-container=".tesla-carousel-items" data-tesla-item="&gt;div" data-tesla-rotate="false" data-tesla-autoplay="false" data-tesla-hide-effect="false">
         <div class="container">
-            <h3 class="site-title">Upcoming <span>Events</span><i></i></h3>
+            <h3 class="site-title">Latest <span>Events</span><i></i></h3>
             <div class="row tesla-carousel-items no-margin">
-                <div class="col-md-3 col-xs-6">
-                    <div class="event-box">
-                        <div class="event-box-cover">
-                            <div class="event-box-hover">
-                                <div class="event-box-share">25<span>Shares</span></div>
-                                <h6>Entrepreneurship</h6>
+                {% for item in events %}
+                    <div class="col-md-3 col-xs-6">
+                        <div class="event-box">
+                            <div class="event-box-cover">
+                                <div class="event-box-hover">
+                                    <div class="event-box-share">{{ item[9] }}<span>Shares</span></div>
+                                    <h6>{{ item[3] }}</h6>
+                                </div>
+                                {% if item[10] %}
+                                    <img src="{{ item[10] }}" alt="event" />
+                                {% else %}
+                                    <img src="{{ url_for('static', filename='images/default-event.png') }}" alt="event" />
+                                {% endif %}
                             </div>
-                            <img src="images/event-1.jpg" alt="event" />
+                            <h4><a href="event.html">{{ item[1] }}</a></h4>
+                            <p>{{ item[5] }}</p>
                         </div>
-                        <h4><a href="event.html">How To Organize Your Business</a></h4>
-                        <p>May 18, 2015</p>
                     </div>
-                </div>
-                <div class="col-md-3 col-xs-6">
-                    <div class="event-box">
-                        <div class="event-box-cover">
-                            <div class="event-box-hover">
-                                <div class="event-box-share">25<span>Shares</span></div>
-                                <h6>Entrepreneurship</h6>
-                            </div>
-                            <img src="images/event-2.jpg" alt="event" />
-                        </div>
-                        <h4><a href="event.html">How To Organize Your Business</a></h4>
-                        <p>May 18, 2015</p>
-                    </div>
-                </div>
-                <div class="col-md-3 col-xs-6">
-                    <div class="event-box">
-                        <div class="event-box-cover">
-                            <div class="event-box-hover">
-                                <div class="event-box-share">25<span>Shares</span></div>
-                                <h6>Entrepreneurship</h6>
-                            </div>
-                            <img src="images/event-3.jpg" alt="event" />
-                        </div>
-                        <h4><a href="event.html">How To Organize Your Business</a></h4>
-                        <p>May 18, 2015</p>
-                    </div>
-                </div>
-                <div class="col-md-3 col-xs-6">
-                    <div class="event-box">
-                        <div class="event-box-cover">
-                            <div class="event-box-hover">
-                                <div class="event-box-share">25<span>Shares</span></div>
-                                <h6>Entrepreneurship</h6>
-                            </div>
-                            <img src="images/event-4.jpg" alt="event" />
-                        </div>
-                        <h4><a href="event.html">How To Organize Your Business</a></h4>
-                        <p>May 18, 2015</p>
-                    </div>
-                </div>
-                <div class="col-md-3 col-xs-6">
-                    <div class="event-box">
-                        <div class="event-box-cover">
-                            <div class="event-box-hover">
-                                <div class="event-box-share">25<span>Shares</span></div>
-                                <h6>Entrepreneurship</h6>
-                            </div>
-                            <img src="images/event-5.jpg" alt="event" />
-                        </div>
-                        <h4><a href="event.html">How To Organize Your Business</a></h4>
-                        <p>May 18, 2015</p>
-                    </div>
-                </div>
-                <div class="col-md-3 col-xs-6">
-                    <div class="event-box">
-                        <div class="event-box-cover">
-                            <div class="event-box-hover">
-                                <div class="event-box-share">25<span>Shares</span></div>
-                                <h6>Entrepreneurship</h6>
-                            </div>
-                            <img src="images/event-6.jpg" alt="event" />
-                        </div>
-                        <h4><a href="event.html">How To Organize Your Business</a></h4>
-                        <p>May 18, 2015</p>
-                    </div>
-                </div>
-                <div class="col-md-3 col-xs-6">
-                    <div class="event-box">
-                        <div class="event-box-cover">
-                            <div class="event-box-hover">
-                                <div class="event-box-share">25<span>Shares</span></div>
-                                <h6>Entrepreneurship</h6>
-                            </div>
-                            <img src="images/event-1.jpg" alt="event" />
-                        </div>
-                        <h4><a href="event.html">How To Organize Your Business</a></h4>
-                        <p>May 18, 2015</p>
-                    </div>
-                </div>
-                <div class="col-md-3 col-xs-6">
-                    <div class="event-box">
-                        <div class="event-box-cover">
-                            <div class="event-box-hover">
-                                <div class="event-box-share">25<span>Shares</span></div>
-                                <h6>Entrepreneurship</h6>
-                            </div>
-                            <img src="images/event-2.jpg" alt="event" />
-                        </div>
-                        <h4><a href="event.html">How To Organize Your Business</a></h4>
-                        <p>May 18, 2015</p>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
             <ul>
                 <li class="prev disabled"><i class="fa fa-arrow-circle-left"></i></li>

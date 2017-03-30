@@ -2,7 +2,7 @@
 # @Author: Aman Priyadarshi
 # @Date:   2017-03-20 20:09:41
 # @Last Modified by:   amaneureka
-# @Last Modified time: 2017-03-30 02:19:39
+# @Last Modified time: 2017-03-30 13:50:02
 
 import os
 import json
@@ -15,7 +15,8 @@ from util import assets, login_register as LR, database as DB
 @app.route('/')
 @app.route('/index')
 def index():
-	return render_template('index.html')
+	events = DB.query_event("");
+	return render_template('index.html', events=events)
 
 @app.route('/register', methods=['POST', 'GET'])
 def register():
