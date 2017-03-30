@@ -2,7 +2,7 @@
 # @Author: Aman Priyadarshi
 # @Date:   2017-03-21 10:05:17
 # @Last Modified by:   amaneureka
-# @Last Modified time: 2017-03-30 01:51:39
+# @Last Modified time: 2017-03-30 21:35:55
 
 import os
 import glob
@@ -164,14 +164,14 @@ def add_user(username, password, email):
 	cursor.execute('INSERT INTO users (username, password, email) VALUES (?, ?, ?)', t)
 	connection.commit()
 
-def query_event(name):
+def query_event(name, limit = 20):
 	connection = sql_connect()
 	cursor = connection.cursor()
 
 	name = '%' + re.escape(name) + '%'
 
-	t = (name, )
-	row = cursor.execute('SELECT * FROM Events WHERE name like ? ORDER BY start_utc ASC LIMIT 20', t)
+	t = (name, limit, )
+	row = cursor.execute('SELECT * FROM Events WHERE name like ? ORDER BY start_utc ASC LIMIT ?', t)
 	return row.fetchall()
 
 def create_fake_database(num_users = 100, num_reviews= 10):

@@ -2,7 +2,7 @@
 # @Author: Aman Priyadarshi
 # @Date:   2017-03-20 20:09:41
 # @Last Modified by:   amaneureka
-# @Last Modified time: 2017-03-30 14:15:39
+# @Last Modified time: 2017-03-30 21:36:10
 
 import os
 import json
@@ -42,8 +42,12 @@ def login():
 			session['username'] = status['username']
 	return render_template('login-register.html', status=status)
 
+@app.route('/events/<int:event_id>')
 @app.route('/events', methods=['GET', 'POST'])
-def events():
+def events(event_id = None):
+	if event_id is not None:
+		recentevents = DB.query_event("", 3);
+		return render_template('event-detail.html', upcomingevents = recentevents)
 	if request.method == 'POST':
 		name = request.form['event_name']
 		status = {

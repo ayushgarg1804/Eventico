@@ -1,0 +1,137 @@
+{% extends "layout.html" %}
+{% block title %}Event Details{% endblock %}
+{% block main_div_class %}site-image page-img{% endblock %}
+{% block sections %}
+    <section class="path-section">
+        <div class="container">
+            <h3>Event</h3>
+            <ul class="site-dot">
+                <li></li>
+                <li><span><i></i></span></li>
+                <li></li>
+            </ul>
+            <p>Home / Events / Single Event</p>
+        </div>
+    </section>
+{% endblock %}
+{% block extra_sections %}
+<section class="event-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9">
+                <div class="event-post">
+                    <div class="event-header">
+                        <div class="event-header-box">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="box-event-info">
+                                        <i class="fa fa-calendar"></i>
+                                        <p>14 May 2015<br/>10:00 - 16:00</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="box-event-info">
+                                        <i class="fa fa-map-marker"></i>
+                                        <p>10 Rue Lamartine<br/>Montpellier, France</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="box-event-info">
+                                        <i class="fa fa-street-view"></i>
+                                        <p>Speaker:<br/> Walter Braines</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <h2>How to organize your business</h2>
+                    </div>
+                    <div class="event-content">
+                        <p>As it so contrasted oh estimating instrument. Size like body some one had. Are conduct viewing boy minutes warrant expense. Tolerably behaviour may admitting daughters offending her ask own. Praise effect wishes change way and any wanted. Lively use looked latter regard had. Do he it part more last in. Merits ye if mr narrow points. Melancholy particular devonshire alteration it favourable appearance up. </p>
+                        <h4>Event Description</h4>
+                        <p>As it so contrasted oh estimating instrument. Size like body some one had. Are conduct viewing boy minutes warrant expense. Tolerably behaviour may admitting daughters offending her ask own. Praise effect wishes change way and any wanted. Lively use looked latter regard had. Do he it part more last in. Merits ye if mr narrow points. Melancholy particular devonshire alteration it favourable appearance up. As it so contrasted oh estimating instrument. Size like body some one had. Are conduct viewing boy minutes warrant expense. Tolerably behaviour may admitting daughters offending her ask own. Praise effect wishes change way and any wanted. Lively use looked latter regard had. Do he it part more last in. Merits ye if mr narrow points. Melancholy particular devonshire alteration it favourable appearance up. As it so contrasted oh estimating instrument. Size like body some one had. Are conduct viewing boy minutes warrant expense. Tolerably behaviour may admitting daughters offending her ask own. Praise effect wishes change way and any wanted. Lively use looked latter regard had. Do he it part more last in. Merits ye if mr narrow points. Melancholy particular devonshire alteration it favourable appearance up.</p>
+                        <p>As it so contrasted oh estimating instrument. Size like body some one had. Are conduct viewing boy minutes warrant expense. Tolerably behaviour may admitting daughters offending her ask own. Praise effect wishes change way and any wanted. Lively use looked latter regard had. Do he it part more last in. Merits ye if mr narrow points. Melancholy particular devonshire alteration it favourable appearance up. As it so contrasted oh estimating instrument. Size like body some one had. Are conduct viewing boy minutes warrant expense. </p>
+                    </div>
+                    <div class="event-footer">
+                        <ul class="event-socials">
+                            <li>Share: </li>
+                            <li><a href="#"><i class="fa fa-twitter"></i>Twitter</a></li>
+                            <li><a href="#"><i class="fa fa-facebook"></i>Facebook</a></li>
+                            <li><a href="#"><i class="fa fa-google-plus"></i>Google+</a></li>
+                        </ul>
+                        <div class="event-selections">
+                            <a href="#" class="the-link-3">Upcomming events</a>
+                        </div>
+                    </div>
+                </div>
+                <section class="coming-events">
+                    <div class="row">
+                        {% for item in upcomingevents %}
+                            <div class="col-md-4 col-xs-6">
+                                <div class="event-box">
+                                    <div class="event-box-cover">
+                                        <div class="event-box-hover">
+                                            <div class="event-box-share">{{ item[9] }}<span>Shares</span></div>
+                                            <h6>{{ item[3] }}</h6>
+                                        </div>
+                                        {% if item[10] %}
+                                            <img src="{{ item[10] }}" alt="event" />
+                                        {% else %}
+                                            <img src="{{ url_for('static', filename='images/default-event.png') }}" alt="event" />
+                                        {% endif %}
+                                    </div>
+                                    <h4><a href="{{ url_for('events', event_id=item[0]) }}">{{ item[1] }}</a></h4>
+                                    <p>{{ item[5]|strftime }}</p>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </section>
+            </div>
+            <div class="col-md-3">
+                <div class="main-sidebar">
+                    <div class="widget widget-price">
+                        <h3 class="widget-title">Price</h3>
+                        <ul class="site-dot">
+                            <li></li>
+                            <li><span><i></i></span></li>
+                            <li></li>
+                        </ul>
+                        <div class="pricing-box">
+                            <div class="pricing-box-circle">
+                                <div>
+                                    <i class="fa fa-ticket"></i>
+                                    <h6>149<span>$</span></h6>
+                                    <p>standard</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="widget widget-buy">
+                        <h3 class="widget-title">Buy tickets</h3>
+                        <ul class="site-dot">
+                            <li></li>
+                            <li><span><i></i></span></li>
+                            <li></li>
+                        </ul>
+                        <form class="buy-ticket-form">
+                            <input type="text" class="ticket-line" name="name" placeholder="Your Name" />
+                            <input type="text" class="ticket-line" name="email" placeholder="E-mail Address" />
+                            <input type="text" class="ticket-line" name="phone" placeholder="Phone Number" />
+                            <select class="ticket-line">
+                                <option>Select event</option>
+                                <option>Event nr.1</option>
+                                <option>Event nr.2</option>
+                                <option>Event nr.3</option>
+                            </select>
+                            <p class="align-center">
+                                <input class="ticket-button" type="submit" value="register" name="submit" />
+                            </p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

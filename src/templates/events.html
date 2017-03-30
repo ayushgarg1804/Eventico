@@ -63,7 +63,7 @@
                         else
                             html += "<img src=\"{{ url_for('static', filename='images/default-event.png') }}\" alt=\"event\" />";
                         html += "</div>";
-                        html += "<h4><a href=\"#\">" + obj[1] + "</a></h4>";
+                        html += "<h4><a href=\"{{ url_for('events') }}/" + obj[0] + "\">" + obj[1] + "</a></h4>";
                         html += "<p>" + prettyDate(obj[5]) + "</p>";
                         html += "</div>";
                         html += "</div>";
