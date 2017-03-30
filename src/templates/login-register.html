@@ -1,6 +1,11 @@
 {% extends "layout.html" %}
 {% block title %}User{% endblock %}
 {% block main_div_class %}site-image page-img{% endblock %}
+{% block metadata %}
+    {% if status.submit == 'login' %}
+        <meta http-equiv="refresh" content="3" >
+    {% endif %}
+{% endblock %}
 {% block sections %}
         <section class="path-section">
             <div class="container">
@@ -38,7 +43,7 @@
                         <h3>Welcome <i class="the-dot"></i></h3>
                         <input type="text" name="user" placeholder="Username">
                         <input type="password" name="pass" placeholder="Password">
-                        <!-- <span>Remember me <input type="checkbox" name="remember" value="remember"></span> -->
+                        <span>Remember me <input type="checkbox" name="remember" value="remember"></span>
                         <input type="submit" name="submit" value="Login">
                     </form>
                 </div>

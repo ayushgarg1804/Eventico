@@ -8,6 +8,7 @@
         <link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.ico') }}" type="image/x-icon" />
         <!-- Mobile Specific Meta -->
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+        {% block metadata %}{% endblock %}
         <!-- Style CSS + Google Fonts -->
         {% assets "default_css" %}
             <link rel="stylesheet" href="{{ ASSET_URL }}" />

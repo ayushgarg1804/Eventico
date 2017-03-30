@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 # @Author: Aman Priyadarshi
 # @Date:   2017-03-20 20:09:41
-# @Last Modified by:   Ayush Garg
-# @Last Modified time: 2017-03-30 01:58:35
+# @Last Modified by:   amaneureka
+# @Last Modified time: 2017-03-30 02:19:39
 
-import json
 import os
+import json
 from util import database
 from flask import Flask, render_template, request, session, redirect, url_for
 
@@ -45,11 +45,9 @@ def login():
 def events():
 	if request.method == 'POST':
 		name = request.form['event_name']
-		result = DB.query_event(name)
 		status = {
 			'success' : True,
-			'count': len(result),
-			'data' : result,
+			'data' : DB.query_event(name),
 			'query' : request.form
 		}
 		return json.dumps(status)

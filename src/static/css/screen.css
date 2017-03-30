@@ -1390,7 +1390,7 @@ header .bottom-header .main-nav ul li ul li:hover ul {
     font-weight: 400;
     color: #fff;
     line-height: 1.5em;
-    border-radius: 3px;
+    border-radius: 3px 0px 0px 3px;
     width: 100%;
     letter-spacing: 1px;
     padding: 15px;
@@ -1406,9 +1406,9 @@ header .bottom-header .main-nav ul li ul li:hover ul {
 .coming-events .event-filter input::-webkit-input-placeholder {
   color: #fff;
 }
-.coming-events .event-filter a {
+.coming-events .event-filter i {
     float: right;
-    font-size: 12px;
+    font-size: 30px;
     font-weight: 700;
     text-transform: uppercase;
     text-align: center;
@@ -1416,9 +1416,10 @@ header .bottom-header .main-nav ul li ul li:hover ul {
     background: #31393f;
     color: #fff;
     line-height: 1.5em;
-    border-radius: 3px;
+    border-radius: 0px 3px 3px 0px;
     letter-spacing: 1px;
-    padding: 15px 45px;
+    padding: 4px 40px;
+    cursor: pointer;
 }
 .coming-events .tesla-carousel-items {
     overflow: hidden;
