@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 # @Author: Aman Priyadarshi
 # @Date:   2017-03-21 10:05:17
-# @Last Modified by:   amaneureka
-# @Last Modified time: 2017-03-30 22:23:29
+# @Last Modified by:   Ayush Garg
+# @Last Modified time: 2017-03-31 13:13:18
 
 import os
 import glob
@@ -183,8 +183,9 @@ def query_event(name, limit = 20):
 	connection = sql_connect()
 	cursor = connection.cursor()
 
-	name = '%' + re.escape(name) + '%'
-
+	# name = '%' + re.escape(name) + '%'
+	# spaces gets replaced by // due to which no match is found
+	name = '%' + name + '%'
 	t = (name, limit, )
 	row = cursor.execute('SELECT * FROM Events WHERE name like ? ORDER BY start_utc ASC LIMIT ?', t)
 	return row.fetchall()

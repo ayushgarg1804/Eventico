@@ -348,7 +348,7 @@ header .top-header .header-social {
 header .top-header .header-info li i {
     margin-right: 5px;
     vertical-align: top;
-    padding-top: 4px;
+    padding-top: 3px;
 }
 header .top-header .header-social li,
 header .top-header .header-info li {
@@ -1408,7 +1408,7 @@ header .bottom-header .main-nav ul li ul li:hover ul {
 }
 .coming-events .event-filter i {
     float: right;
-    font-size: 30px;
+    font-size: 31px;
     font-weight: 700;
     text-transform: uppercase;
     text-align: center;
