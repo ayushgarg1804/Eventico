@@ -2,7 +2,7 @@
 # @Author: Aman Priyadarshi
 # @Date:   2017-03-21 10:05:17
 # @Last Modified by:   Ayush Garg
-# @Last Modified time: 2017-03-31 13:13:18
+# @Last Modified time: 2017-03-31 13:43:10
 
 import os
 import glob
@@ -184,7 +184,7 @@ def query_event(name, limit = 20):
 	cursor = connection.cursor()
 
 	# name = '%' + re.escape(name) + '%'
-	# spaces gets replaced by // due to which no match is found
+	# spaces gets replaced by \\ due to which no match is found
 	name = '%' + name + '%'
 	t = (name, limit, )
 	row = cursor.execute('SELECT * FROM Events WHERE name like ? ORDER BY start_utc ASC LIMIT ?', t)

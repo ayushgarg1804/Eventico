@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 # @Author: Aman Priyadarshi
 # @Date:   2017-03-20 20:05:09
-# @Last Modified by:   amaneureka
-# @Last Modified time: 2017-03-29 16:16:59
+# @Last Modified by:   Ayush Garg
+# @Last Modified time: 2017-04-01 01:12:18
 
 from flask_assets import Bundle, Environment
 from .. import app
@@ -14,6 +14,7 @@ bundles = {
 		'css/swipebox.css',
 		'css/bootstrap.css',
 		'css/font-awesome.min.css',
+		filters='cssmin',
 		output='gen/default.css'),
 
 	'default_js' : Bundle(
@@ -31,6 +32,7 @@ bundles = {
 		'js/options.js',
 		'js/plugins.js',
 		'js/pretty.js',
+		filters='jsmin',
 		output='gen/default.js')
 }
 

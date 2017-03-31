@@ -2,3 +2,5 @@ Flask
 Flask-Assets
 gunicorn
 python-dateutil
+jsmin
+cssmin
