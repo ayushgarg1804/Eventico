@@ -87,7 +87,7 @@
             <div class="col-md-3">
                 <div class="main-sidebar">
                     <div class="widget widget-price">
-                        <h3 class="widget-title">Price</h3>
+                        <h3 class="widget-title">Ratings</h3>
                         <ul class="site-dot">
                             <li></li>
                             <li><span><i></i></span></li>
@@ -97,35 +97,38 @@
                             <div class="pricing-box-circle">
                                 <div>
                                     <i class="fa fa-ticket"></i>
-                                    <h6>149<span>$</span></h6>
-                                    <p>standard</p>
+                                    <h6>{{ event[27] }}</h6>
+                                    <p>{{ event[28] }} user</p>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="widget widget-buy">
-                        <h3 class="widget-title">Buy tickets</h3>
-                        <ul class="site-dot">
-                            <li></li>
-                            <li><span><i></i></span></li>
-                            <li></li>
-                        </ul>
-                        <form class="buy-ticket-form">
-                            <input type="text" class="ticket-line" name="name" placeholder="Your Name" />
-                            <input type="text" class="ticket-line" name="email" placeholder="E-mail Address" />
-                            <input type="text" class="ticket-line" name="phone" placeholder="Phone Number" />
-                            <select class="ticket-line">
-                                <option>Select event</option>
-                                <option>Event nr.1</option>
-                                <option>Event nr.2</option>
-                                <option>Event nr.3</option>
-                            </select>
-                            <p class="align-center">
-                                <input class="ticket-button" type="submit" value="register" name="submit" />
-                            </p>
-                        </form>
-                    </div>
+                    {% if session.uid %}
+                        <div class="widget widget-buy">
+                            <h3 class="widget-title">Add Review</h3>
+                            <ul class="site-dot">
+                                <li></li>
+                                <li><span><i></i></span></li>
+                                <li></li>
+                            </ul>
+                            <form class="buy-ticket-form">
+                                <input type="text" class="ticket-line" name="name" placeholder="Your Name" />
+                                <input type="text" class="ticket-line" name="email" placeholder="E-mail Address" />
+                                <input type="text" class="ticket-line" name="phone" placeholder="Phone Number" />
+                                <select class="ticket-line">
+                                    <option>Select event</option>
+                                    <option>Event nr.1</option>
+                                    <option>Event nr.2</option>
+                                    <option>Event nr.3</option>
+                                </select>
+                                <p class="align-center">
+                                    <input class="ticket-button" type="submit" value="register" name="submit" />
+                                </p>
+                            </form>
+                        </div>
+                    {% endif %}
+
                 </div>
             </div>
         </div>

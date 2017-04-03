@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 # @Author: Aman Priyadarshi
 # @Date:   2017-03-21 10:05:17
-# @Last Modified by:   Ayush Garg
-# @Last Modified time: 2017-03-31 13:13:18
+# @Last Modified by:   amaneureka
+# @Last Modified time: 2017-04-03 16:48:42
 
 import os
 import glob
@@ -172,11 +172,17 @@ def query_event_by_id(event_id):
 	row = cursor.execute('SELECT * FROM Events WHERE id=?', t).fetchone()
 	if row is None:
 		return None
+
 	t = (row[11], )
 	row2 = cursor.execute('SELECT * FROM venues WHERE id=?', t).fetchone()
+
 	t = (row[13], )
 	row3 = cursor.execute('SELECT * FROM Organizers WHERE id=?', t).fetchone()
-	row = row + row2 + row3
+
+	t = (event_id, )
+	row4 = cursor.execute('SELECT AVG(stars), count(cid) FROM Reviews WHERE eid=?', t).fetchone()
+
+	row = row + row2 + row3 + row4
 	return row
 
 def query_event(name, limit = 20):

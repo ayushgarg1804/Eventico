@@ -1,8 +1,8 @@
 /*
 * @Author: Aman Priyadarshi
 * @Date:   2017-03-15 23:38:39
-* @Last Modified by:   Aman Priyadarshi
-* @Last Modified time: 2017-03-15 23:38:41
+* @Last Modified by:   amaneureka
+* @Last Modified time: 2017-04-03 16:44:13
 */
 
 CREATE TABLE IF NOT EXISTS Organizers
