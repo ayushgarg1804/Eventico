@@ -96,42 +96,58 @@
                         <div class="pricing-box">
                             <div class="pricing-box-circle">
                                 <div>
-                                    <i class="fa fa-ticket"></i>
-                                    <h6>{{ event[27] }}</h6>
+                                    <i class="fa fa-star"></i>
+                                    <h6>{{ event[27] | round(1) }}</h6>
                                     <p>{{ event[28] }} user</p>
                                 </div>
                             </div>
                         </div>
                     </div>
-
                     {% if session.uid %}
                         <div class="widget widget-buy">
-                            <h3 class="widget-title">Add Review</h3>
-                            <ul class="site-dot">
-                                <li></li>
-                                <li><span><i></i></span></li>
-                                <li></li>
-                            </ul>
-                            <form class="buy-ticket-form">
-                                <input type="text" class="ticket-line" name="name" placeholder="Your Name" />
-                                <input type="text" class="ticket-line" name="email" placeholder="E-mail Address" />
-                                <input type="text" class="ticket-line" name="phone" placeholder="Phone Number" />
-                                <select class="ticket-line">
-                                    <option>Select event</option>
-                                    <option>Event nr.1</option>
-                                    <option>Event nr.2</option>
-                                    <option>Event nr.3</option>
-                                </select>
-                                <p class="align-center">
-                                    <input class="ticket-button" type="submit" value="register" name="submit" />
-                                </p>
-                            </form>
+                            <div class="rsvp">
+                                <h3 class="widget-title">Add Review</h3>
+                                <ul class="site-dot">
+                                    <li></li>
+                                    <li><span><i></i></span></li>
+                                    <li></li>
+                                </ul>
+                                <div id="review-success" style="display: none;" class="alert alert-success fade in col-md-10 col-md-offset-1"><strong>Success!</strong></div>
+                                <form id="review-form">
+                                    <fieldset class="rating text-center">
+                                        <input type="radio" id="star5" name="rating" value="5" /><label for="star5" title="Rocks!">5 stars</label>
+                                        <input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="Pretty good">4 stars</label>
+                                        <input type="radio" id="star3" name="rating" value="3" /><label for="star3" title="Meh">3 stars</label>
+                                        <input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="Kinda bad">2 stars</label>
+                                        <input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="Sucks big time">1 star</label>
+                                    </fieldset>
+                                    <textarea id="message" placeholder="Message"></textarea>
+                                    <input type="button" id="submit_reviews" value="Write">
+                                </form>
+                            </div>
                         </div>
                     {% endif %}
-
                 </div>
             </div>
         </div>
     </div>
 </section>
+{% endblock %}
+{% block extra_scripts %}
+    <script type="text/javascript">
+        $('#submit_reviews').click(function() {
+            $.ajax({
+                url: '#',
+                type: 'POST',
+                data: {
+                    'rating': $('input[name="rating"]:checked').val(),
+                    'message': document.querySelector('#message').value
+                },
+                success: function (response){
+                    $('#review-form').hide();
+                    $('#review-success').show();
+                }
+            });
+        });
+    </script>
 {% endblock %}

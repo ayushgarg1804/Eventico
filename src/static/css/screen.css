@@ -3241,38 +3241,66 @@ header .bottom-header .main-nav ul li ul li:hover ul {
     border-bottom: 1px dotted;
 }
 
+/* star rating */
+.rating {
+
+}
+
+/* :not(:checked) is a filter, so that browsers that don’t support :checked don’t 
+   follow these rules. Every browser that supports :checked also supports :not(), so
+   it doesn’t make the test unnecessarily selective */
+.rating:not(:checked) > input {
+    position:absolute;
+    clip:rect(0,0,0,0);
+}
+
+.rating:not(:checked) > label {
+    width:1em;
+    padding:0 .1em;
+    overflow:hidden;
+    white-space:nowrap;
+    cursor:pointer;
+    font-size:300%;
+    line-height:1.2;
+    color:#ddd;
+    text-shadow:1px 1px #bbb, 2px 2px #666, .1em .1em .2em rgba(0,0,0,.5);
+}
+
+.rating:not(:checked) > label:before {
+    content: '★ ';
+}
+
+.rating > input:checked ~ label {
+    color: #f70;
+    text-shadow:1px 1px #c60, 2px 2px #940, .1em .1em .2em rgba(0,0,0,.5);
+}
+
+.rating:not(:checked) > label:hover,
+.rating:not(:checked) > label:hover ~ label {
+    color: gold;
+    text-shadow:1px 1px goldenrod, 2px 2px #B57340, .1em .1em .2em rgba(0,0,0,.5);
+}
+
+.rating > input:checked + label:hover,
+.rating > input:checked + label:hover ~ label,
+.rating > input:checked ~ label:hover,
+.rating > input:checked ~ label:hover ~ label,
+.rating > label:hover ~ input:checked ~ label {
+    color: #ea0;
+    text-shadow:1px 1px goldenrod, 2px 2px #B57340, .1em .1em .2em rgba(0,0,0,.5);
+}
+
+.rating > label:active {
+    position:relative;
+    top:2px;
+    left:2px;
+}
+
 /* Added 21.10.2015 RSVP CSS */
-.rsvp {
-    padding: 20px 0 40px;
-}
-.rsvp form h3 {
-    font-weight: 400;
-    text-transform: uppercase;
-    font-size: 14px;
-    position: absolute;
-    line-height: 1.5em;
-    text-align: center;
-    background: #fff;
-    border: 1px solid #ccc;
-    padding: 10px;
-    top: 0;
-    left: 0;
-    right: 0;
-    width: 180px;
-    margin: -23px auto 0;
-}
-.rsvp form h3 i {
-    margin: -2px 15px 0;
-}
 .rsvp form {
     position: relative;
-    border: 1px solid #ccc;
-    padding: 50px 30px 30px;
-    margin-bottom: 60px;
 }
-.rsvp form select,
-.rsvp form textarea,
-.rsvp form input[type="text"] {
+.rsvp form textarea {
     border: 1px solid #eee;
     margin-bottom: 20px;
     width: 100%;
@@ -3285,35 +3313,21 @@ header .bottom-header .main-nav ul li ul li:hover ul {
     resize: vertical;
     height: 172px;
 }
-.rsvp form select:focus,
-.rsvp form textarea:focus,
-.rsvp form input[type="text"]:focus {
+.rsvp form textarea:focus:focus {
     border: 1px solid #777;
 }
-.rsvp form input[type="submit"] {
+.rsvp form input[type="button"] {
     border: 1px solid #777;
     color: #777;
-    padding: 10px 40px;
+    padding: 10px;
     font-weight: 700;
+    width: 100%;
     text-transform: uppercase;
     font-size: 12px;
     background: #fff;
 }
-.rsvp form input[type="submit"]:hover {
+.rsvp form input[type="button"]:hover {
     color: #fff;
     border: 1px solid #eb3739;
     background: #eb3739;
-}
-.rsvp form label {
-    text-align: center;
-    margin: 0;
-    width: 48%;
-    padding: 10px 0 0 0;
-    color: #777;
-    font-weight: 400;
-    font-size: 12px;
-    text-transform: uppercase;
-}
-.rsvp form label input {
-    margin: 4px 5px 0 0;
 }

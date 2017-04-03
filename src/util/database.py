@@ -2,14 +2,15 @@
 # @Author: Aman Priyadarshi
 # @Date:   2017-03-21 10:05:17
 # @Last Modified by:   amaneureka
-# @Last Modified time: 2017-04-03 16:48:42
+# @Last Modified time: 2017-04-03 20:44:03
 
 import os
+import re
 import glob
 import json
 import random
 import string
-import re
+import time
 import sqlite3 as sql
 from hashlib import md5
 from datetime import datetime
@@ -162,6 +163,14 @@ def add_user(username, password, email):
 	cursor = connection.cursor()
 	t = (username, password, email, )
 	cursor.execute('INSERT INTO users (username, password, email) VALUES (?, ?, ?)', t)
+	connection.commit()
+
+def insert_new_review(eid, uid, rating, comment):
+	connection = sql_connect()
+	cursor = connection.cursor()
+
+	t = (eid, uid, rating, comment, time.strftime('%Y-%m-%d %H:%M:%S'), )
+	cursor.execute('INSERT INTO reviews (eid, uid, stars, comment, posted_time) VALUES (?,?,?,?,?)', t);
 	connection.commit()
 
 def query_event_by_id(event_id):
