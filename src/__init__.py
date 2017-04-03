@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 # @Author: Aman Priyadarshi
 # @Date:   2017-03-20 20:09:41
-# @Last Modified by:   amaneureka
-# @Last Modified time: 2017-04-03 20:46:49
+# @Last Modified by:   Ayush Garg
+# @Last Modified time: 2017-04-03 23:30:39
 
 import os
 import json
@@ -15,7 +15,7 @@ from util import assets, filters, login_register as LR, database as DB
 @app.route('/')
 @app.route('/index')
 def index():
-	events = DB.query_event("");
+	events = DB.query_event("",asc =False);
 	return render_template('index.html', events=events)
 
 @app.route('/register', methods=['POST', 'GET'])
@@ -47,14 +47,17 @@ def login():
 def events(event_id = None):
 	if event_id is not None:
 		if request.method == 'POST':
-			uid = session['uid']
-			rate = request.form['rating']
-			message = request.form['message']
-			DB.insert_new_review(event_id, uid, rate, message)
-			status = {
-				'success' : True
-			}
-			return json.dumps(status)
+			if 'logged' in session:
+				uid = session['uid']
+				rate = request.form['rating']
+				message = request.form['message']
+				DB.insert_new_review(event_id, uid, rate, message)
+				status = {
+					'success' : True
+				}
+				return json.dumps(status)
+			else:
+				return redirect(url_for('login'))
 		event_detail = DB.query_event_by_id(event_id)
 		if event_detail is None:
 			return render_template('error-404.html'), 404

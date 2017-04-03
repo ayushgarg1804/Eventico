@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 # @Author: Aman Priyadarshi
 # @Date:   2017-03-21 10:05:17
-# @Last Modified by:   amaneureka
-# @Last Modified time: 2017-04-03 20:49:32
+# @Last Modified by:   Ayush Garg
+# @Last Modified time: 2017-04-03 23:36:44
 
 import os
 import re
@@ -194,15 +194,25 @@ def query_event_by_id(event_id):
 	row = row + row2 + row3 + row4
 	return row
 
-def query_event(name, limit = 20):
+def monthdelta(date, delta):
+	m, y = (date.month+delta) % 12, date.year + ((date.month)+delta-1) // 12
+	if not m: m = 12
+	d = min(date.day, [31,29 if y%4==0 and not y%400==0 else 28,31,30,31,30,31,31,30,31,30,31][m-1])
+	return date.replace(day=d,month=m, year=y)
+
+def query_event(name, limit = 20, asc = True):
 	connection = sql_connect()
 	cursor = connection.cursor()
 
 	# name = '%' + re.escape(name) + '%'
 	# spaces gets replaced by \\ due to which no match is found
 	name = '%' + name + '%'
-	t = (name, limit, )
-	row = cursor.execute('SELECT * FROM Events WHERE name like ? ORDER BY start_utc ASC LIMIT ?', t)
+	if(asc == False):
+		t = (name, unicode(monthdelta(datetime.now(), 1)), limit, )
+		row = cursor.execute('SELECT * FROM Events WHERE name like ? AND start_utc < ? ORDER BY start_utc DESC LIMIT ?', t)
+	else:
+		t = (name, limit, )
+		row = cursor.execute('SELECT * FROM Events WHERE name like ? ORDER BY start_utc ASC LIMIT ?', t)
 	return row.fetchall()
 
 def create_fake_database(num_users = 100, num_reviews= 10):
