@@ -97,36 +97,43 @@
                             <div class="pricing-box-circle">
                                 <div>
                                     <i class="fa fa-star"></i>
-                                    <h6>{{ event[27] | round(1) }}</h6>
-                                    <p>{{ event[28] }} user</p>
+                                    {% if event[27] is not none %}
+                                        <h6>{{ event[27] | round(1) }}</h6>
+                                        <p>{{ event[28] }} user</p>
+                                    {% else %}
+                                        <h6>0</h6>
+                                        <p>{{ event[28] }} user</p> 
+                                    {% endif %}                                   
                                 </div>
                             </div>
                         </div>
                     </div>
-                    {% if session.uid %}
-                        <div class="widget widget-buy">
-                            <div class="rsvp">
-                                <h3 class="widget-title">Add Review</h3>
-                                <ul class="site-dot">
-                                    <li></li>
-                                    <li><span><i></i></span></li>
-                                    <li></li>
-                                </ul>
-                                <div id="review-success" style="display: none;" class="alert alert-success fade in col-md-10 col-md-offset-1"><strong>Success!</strong></div>
-                                <form id="review-form">
-                                    <fieldset class="rating text-center">
-                                        <input type="radio" id="star5" name="rating" value="5" /><label for="star5" title="Rocks!">5 stars</label>
-                                        <input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="Pretty good">4 stars</label>
-                                        <input type="radio" id="star3" name="rating" value="3" /><label for="star3" title="Meh">3 stars</label>
-                                        <input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="Kinda bad">2 stars</label>
-                                        <input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="Sucks big time">1 star</label>
-                                    </fieldset>
-                                    <textarea id="message" placeholder="Message"></textarea>
+                    <div class="widget widget-buy">
+                        <div class="rsvp">
+                            <h3 class="widget-title">Add Review</h3>
+                            <ul class="site-dot">
+                                <li></li>
+                                <li><span><i></i></span></li>
+                                <li></li>
+                            </ul>
+                            <div id="review-success" style="display: none;" class="alert alert-success fade in col-md-10 col-md-offset-1"><strong>Success!</strong></div>
+                            <form id="review-form">
+                                <fieldset class="rating text-center">
+                                    <input type="radio" id="star5" name="rating" value="5" /><label for="star5" title="Rocks!">5 stars</label>
+                                    <input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="Pretty good">4 stars</label>
+                                    <input type="radio" id="star3" name="rating" value="3" /><label for="star3" title="Meh">3 stars</label>
+                                    <input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="Kinda bad">2 stars</label>
+                                    <input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="Sucks big time">1 star</label>
+                                </fieldset>
+                                <textarea id="message" placeholder="Message"></textarea>
+                                {% if session.uid %}
                                     <input type="button" id="submit_reviews" value="Write">
-                                </form>
-                            </div>
+                                {% else %}
+                                    <h3><a href = "{{ url_for('login') }}"> Login first </a></h3>
+                                {% endif %}
+                            </form>
                         </div>
-                    {% endif %}
+                    </div>
                 </div>
             </div>
         </div>
