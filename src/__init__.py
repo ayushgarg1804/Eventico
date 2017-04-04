@@ -2,7 +2,7 @@
 # @Author: Aman Priyadarshi
 # @Date:   2017-03-20 20:09:41
 # @Last Modified by:   amaneureka
-# @Last Modified time: 2017-04-03 23:50:29
+# @Last Modified time: 2017-04-04 12:14:41
 
 import os
 import json
@@ -82,7 +82,7 @@ def logout():
 			session.pop('uid', None)
 			session.pop('logged', None)
 			session.pop('username', None)
-	return render_template('index.html', status=status)
+	return redirect(url_for('index'))
 
 @app.errorhandler(404)
 def not_found(e):
