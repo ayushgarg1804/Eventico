@@ -97,13 +97,13 @@
                             <div class="pricing-box-circle">
                                 <div>
                                     <i class="fa fa-star"></i>
-                                    {% if event[27] is not none %}
+                                    {% if event|length > 28 and event[27] and event[28] %}
                                         <h6>{{ event[27] | round(1) }}</h6>
                                         <p>{{ event[28] }} user</p>
                                     {% else %}
                                         <h6>0</h6>
-                                        <p>{{ event[28] }} user</p> 
-                                    {% endif %}                                   
+                                        <p>no user rated</p>
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>
