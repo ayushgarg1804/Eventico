@@ -4,3 +4,4 @@ gunicorn
 python-dateutil
 jsmin
 cssmin
+progressbar

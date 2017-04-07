@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 # @Author: Aman Priyadarshi
 # @Date:   2017-03-21 10:05:17
-# @Last Modified by:   amaneureka
-# @Last Modified time: 2017-04-04 12:04:30
+# @Last Modified by:   Ayush Garg
+# @Last Modified time: 2017-04-08 01:16:54
 
 import os
 import re
@@ -12,6 +12,7 @@ import random
 import string
 import time
 import sqlite3 as sql
+import progressbar
 from hashlib import md5
 from datetime import datetime
 
@@ -53,6 +54,85 @@ def get_json_val(data, attri):
 		return None
 	return get_json_val(data[attri[0]], attri[1:])
 
+def id_gen(size = 6, chars = string.letters + string.digits):
+	return ''.join(random.choice(chars) for _ in range(size))
+
+def get_user(username, password):
+	connection = sql_connect()
+	cursor = connection.cursor()
+	t = (username, password, )
+	cursor.execute('SELECT uid FROM users WHERE username=? AND password=?', t)
+	row = cursor.fetchone()
+	if row is None:
+		raise ValueError("Invalid Credentials")
+	return row[0]
+
+def user_exist(username, email):
+	if username is "" or email is "":
+		return True
+	connection = sql_connect()
+	cursor = connection.cursor()
+	t = (username, email, )
+	cursor.execute('SELECT uid FROM users WHERE username=? OR email=?', t)
+	return cursor.fetchone() is not None
+
+def add_user(username, password, email, user_level = 0):
+	connection = sql_connect()
+	cursor = connection.cursor()
+	t = (username, password, email, user_level)
+	cursor.execute('INSERT INTO users (username, password, email, user_level) VALUES (?, ?, ?, ?)', t)
+	connection.commit()
+
+def insert_new_review(eid, uid, rating, comment):
+	connection = sql_connect()
+	cursor = connection.cursor()
+
+	t = (eid, uid, rating, comment, time.strftime('%Y-%m-%d %H:%M:%S'), )
+	cursor.execute('INSERT INTO reviews (eid, uid, stars, comment, posted_time) VALUES (?,?,?,?,?)', t);
+	connection.commit()
+
+def query_event_by_id(event_id):
+	connection = sql_connect()
+	cursor = connection.cursor()
+
+	t = (event_id, )
+	row = cursor.execute('SELECT * FROM Events WHERE id=?', t).fetchone()
+	if row is None:
+		return None
+
+	t = (row[11], )
+	row2 = cursor.execute('SELECT * FROM venues WHERE id=?', t).fetchone()
+
+	t = (row[13], )
+	row3 = cursor.execute('SELECT * FROM Organizers WHERE id=?', t).fetchone()
+
+	t = (event_id, )
+	row4 = cursor.execute('SELECT AVG(stars), count(cid) FROM Reviews WHERE eid=?', t).fetchone()
+
+	row = row + row2 + row3 + row4
+	return row
+
+def monthdelta(date, delta):
+	m, y = (date.month+delta) % 12, date.year + ((date.month)+delta-1) // 12
+	if not m: m = 12
+	d = min(date.day, [31,29 if y%4==0 and not y%400==0 else 28,31,30,31,30,31,31,30,31,30,31][m-1])
+	return date.replace(day=d,month=m, year=y)
+
+def query_event(name, limit = 20, asc = True):
+	connection = sql_connect()
+	cursor = connection.cursor()
+
+	# name = '%' + re.escape(name) + '%'
+	# spaces gets replaced by \\ due to which no match is found
+	name = '%' + name + '%'
+	if(asc == False):
+		t = (name, unicode(monthdelta(datetime.now(), 1)), limit, )
+		row = cursor.execute('SELECT * FROM Events WHERE name like ? AND start_utc < ? ORDER BY start_utc DESC LIMIT ?', t)
+	else:
+		t = (name, limit, )
+		row = cursor.execute('SELECT * FROM Events WHERE name like ? ORDER BY start_utc ASC LIMIT ?', t)
+	return row.fetchall()
+
 def create_event_database():
 	# unicode to sqlite supported format conversion not required
 	connection = sql_connect()
@@ -62,13 +142,14 @@ def create_event_database():
 	if res==0:
 		path = 'src/database/json'
 		for jsonfilename in glob.glob(os.path.join(path, '*.json')):
-			print jsonfilename # can be used for logging
+			print "\n" + jsonfilename + "\n" # can be used for logging
 			jsonfile = open(jsonfilename, 'r')
 			data = json.load(jsonfile)
 			jsonfile.close()
 			data = get_json_val(data, ['events'])
+			bar = progressbar.ProgressBar(maxval = len(data))
+			bar.start()
 			for eventnumber in range(len(data)):
-				print ('.'),
 				data_event = get_json_val(data, [eventnumber])
 				if data_event is None:
 					continue
@@ -132,95 +213,21 @@ def create_event_database():
 					cursor.execute('INSERT INTO venues VALUES (?,?,?,?,?,?,?)', venue)
 				except:
 					pass
-		print "event database created"
-
+				bar.update(eventnumber+1)
+			bar.finish()
+		print "\nevent database created\n"
 	connection.commit()
 
-def id_gen(size = 6, chars = string.letters + string.digits):
-	return ''.join(random.choice(chars) for _ in range(size))
-
-def get_user(username, password):
-	connection = sql_connect()
-	cursor = connection.cursor()
-	t = (username, password, )
-	cursor.execute('SELECT uid FROM users WHERE username=? AND password=?', t)
-	row = cursor.fetchone()
-	if row is None:
-		raise ValueError("Invalid Credentials")
-	return row[0]
-
-def user_exist(username, email):
-	if username is "" or email is "":
-		return True
-	connection = sql_connect()
-	cursor = connection.cursor()
-	t = (username, email, )
-	cursor.execute('SELECT uid FROM users WHERE username=? OR email=?', t)
-	return cursor.fetchone() is not None
-
-def add_user(username, password, email):
-	connection = sql_connect()
-	cursor = connection.cursor()
-	t = (username, password, email, )
-	cursor.execute('INSERT INTO users (username, password, email) VALUES (?, ?, ?)', t)
-	connection.commit()
-
-def insert_new_review(eid, uid, rating, comment):
-	connection = sql_connect()
-	cursor = connection.cursor()
-
-	t = (eid, uid, rating, comment, time.strftime('%Y-%m-%d %H:%M:%S'), )
-	cursor.execute('INSERT INTO reviews (eid, uid, stars, comment, posted_time) VALUES (?,?,?,?,?)', t);
-	connection.commit()
-
-def query_event_by_id(event_id):
-	connection = sql_connect()
-	cursor = connection.cursor()
-
-	t = (event_id, )
-	row = cursor.execute('SELECT * FROM Events WHERE id=?', t).fetchone()
-	if row is None:
-		return None
-
-	t = (row[11], )
-	row2 = cursor.execute('SELECT * FROM venues WHERE id=?', t).fetchone()
-
-	t = (row[13], )
-	row3 = cursor.execute('SELECT * FROM Organizers WHERE id=?', t).fetchone()
-
-	t = (event_id, )
-	row4 = cursor.execute('SELECT AVG(stars), count(cid) FROM Reviews WHERE eid=?', t).fetchone()
-
-	row = row + row2 + row3 + row4
-	return row
-
-def monthdelta(date, delta):
-	m, y = (date.month+delta) % 12, date.year + ((date.month)+delta-1) // 12
-	if not m: m = 12
-	d = min(date.day, [31,29 if y%4==0 and not y%400==0 else 28,31,30,31,30,31,31,30,31,30,31][m-1])
-	return date.replace(day=d,month=m, year=y)
-
-def query_event(name, limit = 20, asc = True):
-	connection = sql_connect()
-	cursor = connection.cursor()
-
-	# name = '%' + re.escape(name) + '%'
-	# spaces gets replaced by \\ due to which no match is found
-	name = '%' + name + '%'
-	if(asc == False):
-		t = (name, unicode(monthdelta(datetime.now(), 1)), limit, )
-		row = cursor.execute('SELECT * FROM Events WHERE name like ? AND start_utc < ? ORDER BY start_utc DESC LIMIT ?', t)
-	else:
-		t = (name, limit, )
-		row = cursor.execute('SELECT * FROM Events WHERE name like ? ORDER BY start_utc ASC LIMIT ?', t)
-	return row.fetchall()
-
-def create_fake_database(num_users = 100, num_reviews= 10):
+def create_fake_database(num_users = 100, num_reviews= 30):
 	connection = sql_connect()
 	cursor = connection.cursor()
 	cursor.execute('SELECT count(*) from users')
 	res = cursor.fetchone()[0]
 	if res == 0:
+		add_user("admin", "132a9eef94c7ab110e7b1ab19e8eee75", "ayushgarg1804@gmail.com", 3)
+		print "\nUsers table data \n"
+		bar = progressbar.ProgressBar(maxval = num_users)
+		bar.start()
 		for i in range(num_users):
 			username = ""
 			email = ""
@@ -229,11 +236,11 @@ def create_fake_database(num_users = 100, num_reviews= 10):
 					username = id_gen(size = random.randint(6,20))
 				while (re.match("(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)", email) is None):
 					email = id_gen(size = random.randint(6,20)) + "@gmail.com"
-			print ('.'),
 			passw = id_gen(random.randint(6,20), string.letters + string.digits + string.punctuation)
 			passw = md5(passw).hexdigest()
 			add_user(username, passw, email)
-		print "users table data inserted"
+			bar.update(i+1)
+		bar.finish()
 	connection.commit()
 
 	cursor.execute('SELECT count(*) FROM reviews')
@@ -243,7 +250,12 @@ def create_fake_database(num_users = 100, num_reviews= 10):
 		event_ids = cursor.fetchall()
 		cursor.execute('SELECT uid FROM users')
 		user_ids = cursor.fetchall()
+		print "\nReview table data\n"
+		bar = progressbar.ProgressBar(maxval = len(user_ids))
+		bar.start()
+		x = 0
 		for user in user_ids:
+			x += 1
 			if user[0] is None:
 				continue
 			review_count = random.randint(0, num_reviews)
@@ -256,6 +268,7 @@ def create_fake_database(num_users = 100, num_reviews= 10):
 				review = (eid, user[0], stars, comment, timestamp,)
 				cursor.execute('INSERT INTO reviews (eid, uid, stars, comment, posted_time) VALUES (?,?,?,?,?)',
 								review);
-				print ('.'),
-		print "review table data inserted"
+			bar.update(x)
+		bar.finish()
+		print("")
 	connection.commit()
