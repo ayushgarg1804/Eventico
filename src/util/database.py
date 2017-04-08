@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 # @Author: Aman Priyadarshi
 # @Date:   2017-03-21 10:05:17
-# @Last Modified by:   Ayush Garg
-# @Last Modified time: 2017-04-08 01:16:54
+# @Last Modified by:   amaneureka
+# @Last Modified time: 2017-04-08 22:07:41
 
 import os
 import re
@@ -109,7 +109,10 @@ def query_event_by_id(event_id):
 	t = (event_id, )
 	row4 = cursor.execute('SELECT AVG(stars), count(cid) FROM Reviews WHERE eid=?', t).fetchone()
 
-	row = row + row2 + row3 + row4
+	t = (row[9], )
+	row5 = cursor.execute('SELECT * FROM Categories WHERE id=?', t).fetchone()
+
+	row = row + row2 + row3 + row4 + row5
 	return row
 
 def monthdelta(date, delta):

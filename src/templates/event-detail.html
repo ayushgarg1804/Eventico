@@ -23,22 +23,32 @@
                     <div class="event-header">
                         <div class="event-header-box">
                             <div class="row">
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <div class="box-event-info">
                                         <i class="fa fa-calendar"></i>
-                                        <p>{{ event[5]|strftime('%b %d, %Y') }}<br/>{{ event[5]|strftime('%H:%M') }} - {{ event[6]|strftime('%H:%M') }}</p>
+                                        {% if event[4]|strftime('%b %d, %Y') == event[6]|strftime('%b %d, %Y')  %}
+                                            <p>{{ event[4]|strftime('%b %d, %Y') }} <br> {{ event[4]|strftime('%H:%M') }} - {{ event[6]|strftime('%H:%M') }}</p>
+                                        {% else %}
+                                            <p>{{ event[4]|strftime('%H:%M') }} {{ event[4]|strftime('%b %d, %Y') }} <br> - {{ event[6]|strftime('%H:%M') }} {{ event[6]|strftime('%b %d, %Y') }}</p>
+                                        {% endif %}
                                     </div>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <div class="box-event-info">
                                         <i class="fa fa-map-marker"></i>
                                         <p>{{ event[15] }}<br/>{{ event[18] }}</p>
                                     </div>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <div class="box-event-info">
                                         <i class="fa fa-street-view"></i>
                                         <p>Author:<br/> {{ event[24] }}</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="box-event-info">
+                                        <i class="fa fa-cubes"></i>
+                                        <p>Category:<br/> {{ event[31] }}</p>
                                     </div>
                                 </div>
                             </div>
