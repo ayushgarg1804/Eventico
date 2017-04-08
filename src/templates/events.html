@@ -28,7 +28,8 @@
             </div>
         </div>
         <div id="event-container" class="row text-center">
-            <!-- <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i> -->
+            <p style="font-size: 20px;">Type a query in the search box</p>
+            <img src="{{ url_for('static', filename='images/search.png') }}" alt="event" />
         </div>
     </div>
 </section>
@@ -44,7 +45,7 @@
                     'event_name': document.querySelector('#event_name').value
                 },
                 success: function (response) {
-                    $("#event-container").html("No Result Found!");
+                    $("#event-container").html("<p style=\"font-size: 20px;\">No Result found!</p><img src=\"{{ url_for('static', filename='images/search.png') }}\" alt=\"event\" />");
                     var html = "";
                     var result = JSON.parse(response);
                     var events = result.data;
@@ -68,7 +69,9 @@
                         html += "</div>";
                         html += "</div>";
                     }
-                    $("#event-container").html(html);
+                    if (html) {
+                        $("#event-container").html(html);
+                    }
                 }
             });
 
