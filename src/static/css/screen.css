@@ -3331,6 +3331,7 @@ header .bottom-header .main-nav ul li ul li:hover ul {
     border: 1px solid #eb3739;
     background: #eb3739;
 }
+
 .text-area-styled {
     width: 100%;
     height: auto;
@@ -3338,3 +3339,17 @@ header .bottom-header .main-nav ul li ul li:hover ul {
     overflow-x: hidden;
     background-color: rgba(255, 255, 255, 0);
 }
+
+.non-drag, .logo img{
+    user-drag: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+.no-color li a:hover{
+    color: inherit !important;
+}
+
