@@ -150,10 +150,7 @@
             $('#daterange').daterangepicker({
                 timePicker: true,
                 timePickerIncrement: 30,
-                autoUpdateInput: false,
-                locale: {
-                    cancelLabel: 'Clear'
-                }
+                autoUpdateInput: false
             });
             $('#daterange').on('apply.daterangepicker', function(ev, picker) {
                 startDate = picker.startDate.format('mm:hh MMMM DD, YYYY');
