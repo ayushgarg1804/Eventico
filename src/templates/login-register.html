@@ -3,7 +3,7 @@
 {% block main_div_class %}site-image page-img{% endblock %}
 {% block metadata %}
     {% if status.submit == 'login' %}
-        <meta http-equiv="refresh" content="3" >
+        <meta http-equiv="refresh" content="3;url={{ redirect_url }}" >
     {% endif %}
 {% endblock %}
 {% block sections %}
@@ -30,7 +30,7 @@
                 <div class="alert alert-success fade in col-md-10 col-md-offset-1">
                     <a href="#" class="close" data-dismiss="alert">&times;</a>
                     {% if status.submit == 'login' %}
-                        <i class="fa fa-refresh fa-spin fa-3x fa-fw"></i> <strong>Welcome {{ status.username }}!</strong> You are being redirected to home page.
+                        <i class="fa fa-refresh fa-spin fa-3x fa-fw"></i> <strong>Welcome {{ status.username }}!</strong> You are being redirected to a new page.
                     {% elif status.submit == 'register' %}
                         <strong>Success!</strong> Account Created Successfully.
                     {% endif %}
@@ -39,7 +39,7 @@
             {% endif %}
             <div class="row">
                 <div class="col-md-5 col-md-offset-1">
-                    <form class="login-form" action="login" method="POST">
+                    <form class="login-form" action="login?redirect_url={{ redirect_url }}" method="POST">
                         <h3>Welcome <i class="the-dot"></i></h3>
                         <input type="text" name="user" placeholder="Username">
                         <input type="password" name="pass" placeholder="Password">

@@ -129,7 +129,7 @@
                                 {% if session.uid %}
                                     <input type="button" id="submit_reviews" value="Write">
                                 {% else %}
-                                    <a href="{{ url_for('login') }}"}}>
+                                    <a href="{{ url_for('login', redirect_url=url_for('events', event_id=event[0])) }}">
                                     <input type="button" value="Login First!"></a>
                                 {% endif %}
                             </form>

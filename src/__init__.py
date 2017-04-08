@@ -2,7 +2,7 @@
 # @Author: Aman Priyadarshi
 # @Date:   2017-03-20 20:09:41
 # @Last Modified by:   amaneureka
-# @Last Modified time: 2017-04-04 12:14:41
+# @Last Modified time: 2017-04-08 16:19:46
 
 import os
 import json
@@ -33,14 +33,20 @@ def login():
 	if 'logged' in session:
 		return redirect(url_for('index'))
 	status = None
+	r_url = 'index'
 	if request.method == 'POST':
+		print request.query_string
 		status = LR.do_login(request.form)
 		status['submit'] = 'login'
 		if status['success'] == True:
 			session['logged'] = True
 			session['uid'] = status['uid']
 			session['username'] = status['username']
-	return render_template('login-register.html', status=status)
+	try:
+		r_url = request.args.get('redirect_url')
+	except:
+		pass
+	return render_template('login-register.html', status=status, redirect_url=r_url)
 
 @app.route('/events', methods=['GET', 'POST'])
 @app.route('/events/<int:event_id>', methods=['GET', 'POST'])
@@ -61,7 +67,8 @@ def events(event_id = None):
 		if event_detail is None:
 			return render_template('error-404.html'), 404
 		recentevents = DB.query_event("", 3);
-		return render_template('event-detail.html', upcomingevents = recentevents, event = event_detail)
+		eurl = url_for('events', event_id=event_id)
+		return render_template('event-detail.html', upcomingevents=recentevents, event=event_detail, event_url=eurl)
 
 	if request.method == 'POST':
 		name = request.form['event_name']
