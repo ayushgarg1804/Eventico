@@ -2389,11 +2389,11 @@ header .bottom-header .main-nav ul li ul li:hover ul {
 .footer-v1 .footer-map iframe {
     height: 650px;
     width: 100%;
-    margin: -100px 0;
+    margin: -30px 0;
 }
 .footer-v1 .bottom-footer {
     position: relative;
-    margin-top: -230px;
+    margin-top: -225px;
     z-index: 2;
     background: #252b30;
     padding-top: 20px;
