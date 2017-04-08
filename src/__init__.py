@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 # @Author: Aman Priyadarshi
 # @Date:   2017-03-20 20:09:41
-# @Last Modified by:   amaneureka
-# @Last Modified time: 2017-04-08 22:55:07
+# @Last Modified by:   Ayush Garg
+# @Last Modified time: 2017-04-09 01:57:13
 
 import os
 import json
@@ -90,11 +90,14 @@ def event_edit(event_id = None):
 		if 'logged' in session:
 			uid = session['uid']
 			form = request.form
-			# do black magic here
-			# query database, check permissions
-			# check if we are creating new event or editing old one
-			# by verifying event_id value, == None if new post
-			# return status
+			if DB.check_user_level(uid) == True:
+				if event_id == None:
+					new_event_id = DB.insert_event(form, uid)
+					status = {
+						'success' : True,
+						'event_id' : str(new_event_id),
+						'query' : request.form
+					}
 		return json.dumps(status)
 	recentevents = DB.query_event("", 3);
 	event_detail = DB.query_event_by_id(event_id)

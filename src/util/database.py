@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 # @Author: Aman Priyadarshi
 # @Date:   2017-03-21 10:05:17
-# @Last Modified by:   amaneureka
-# @Last Modified time: 2017-04-08 22:54:45
+# @Last Modified by:   Ayush Garg
+# @Last Modified time: 2017-04-09 01:26:27
 
 import os
 import re
@@ -53,9 +53,6 @@ def get_json_val(data, attri):
 	if data[attri[0]] is None:
 		return None
 	return get_json_val(data[attri[0]], attri[1:])
-
-def id_gen(size = 6, chars = string.letters + string.digits):
-	return ''.join(random.choice(chars) for _ in range(size))
 
 def get_user(username, password):
 	connection = sql_connect()
@@ -118,18 +115,12 @@ def query_event_by_id(event_id):
 	row = row + row2 + row3 + row4 + row5
 	return row
 
-def monthdelta(date, delta):
-	m, y = (date.month+delta) % 12, date.year + ((date.month)+delta-1) // 12
-	if not m: m = 12
-	d = min(date.day, [31,29 if y%4==0 and not y%400==0 else 28,31,30,31,30,31,31,30,31,30,31][m-1])
-	return date.replace(day=d,month=m, year=y)
-
 def query_event(name, limit = 20, asc = True):
 	connection = sql_connect()
 	cursor = connection.cursor()
 
 	# name = '%' + re.escape(name) + '%'
-	# spaces gets replaced by \\ due to which no match is found
+	# spaces gets replaced by // due to which no match is found
 	name = '%' + name + '%'
 	if(asc == False):
 		t = (name, unicode(monthdelta(datetime.now(), 1)), limit, )
@@ -138,6 +129,64 @@ def query_event(name, limit = 20, asc = True):
 		t = (name, limit, )
 		row = cursor.execute('SELECT * FROM Events WHERE name like ? ORDER BY start_utc ASC LIMIT ?', t)
 	return row.fetchall()
+
+def check_user_level(uid):
+	connection = sql_connect()
+	cursor = connection.cursor()
+	t = (uid, )
+	cursor.execute('SELECT user_level FROM users WHERE uid = ?', t)
+	row = cursor.fetchone()
+	if row[0] > 1:
+		return True
+	return False
+
+def insert_event(data, uid):
+	connection = sql_connect()
+	cursor = connection.cursor()
+	
+	t = (data['category'], )
+	try:
+		cursor.execute('INSERT INTO categories (name) VALUES (?)', t)
+	except:
+		# who cares
+		pass
+	cursor.execute('SELECT id FROM categories WHERE name = ?', t)
+	category_id = cursor.fetchone()[0]
+	
+	t = (uid, data['author'])
+	try:
+		cursor.execute('INSERT INTO organizers (id, name) VALUES (?, ?)', t)
+	except:
+		# who cares
+		pass
+	organizer_id = uid
+	
+	t = (data['place'], data['city'], )
+	try:
+		cursor.execute('INSERT INTO venues (name, city) VALUES (?, ?)', t)
+	except:
+		# who cares
+		pass
+	cursor.execute('SELECT id FROM venues WHERE name = ? AND city = ?', t)
+	venue_id = cursor.fetchone()[0]
+
+	t = (data['title'], data['start_utc'], data['end_utc'], data['desc'], 
+		 category_id, organizer_id, venue_id, "LIVE")
+	cursor.execute('INSERT INTO events (name, start_utc, end_utc, description, category_id, ' +
+					'organizer_id, venue_id, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?)', t)
+	cursor.execute('SELECT id FROM events WHERE name = ? AND start_utc = ? AND end_utc = ? AND description = ? AND category_id = ? AND ' +
+					'organizer_id = ? AND venue_id = ? AND status = ?', t)
+	event_id = cursor.fetchone()[0]
+	return event_id
+
+def monthdelta(date, delta):
+	m, y = (date.month+delta) % 12, date.year + ((date.month)+delta-1) // 12
+	if not m: m = 12
+	d = min(date.day, [31,29 if y%4==0 and not y%400==0 else 28,31,30,31,30,31,31,30,31,30,31][m-1])
+	return date.replace(day=d,month=m, year=y)
+
+def id_gen(size = 6, chars = string.letters + string.digits):
+	return ''.join(random.choice(chars) for _ in range(size))
 
 def create_event_database():
 	# unicode to sqlite supported format conversion not required
