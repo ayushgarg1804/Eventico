@@ -2597,7 +2597,7 @@ header .bottom-header .main-nav ul li ul li:hover ul {
     }
     .coming-events .event-filter input,
     .coming-events .event-filter select {
-        margin-bottom: 20px;
+        margin-bottom: 0px;
     }
     .event-header .event-header-box .box-event-info {
         min-height: 70px;
