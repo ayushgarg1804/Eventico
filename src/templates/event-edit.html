@@ -1,0 +1,131 @@
+{% extends "layout.html" %}
+{% block title %}Event - add or edit any event{% endblock %}
+{% block main_div_class %}site-image page-img{% endblock %}
+{% block sections %}
+    <section class="path-section">
+        <div class="container">
+            <h3>Event</h3>
+            <ul class="site-dot">
+                <li></li>
+                <li><span><i></i></span></li>
+                <li></li>
+            </ul>
+            <p>Home / Events / Single Event</p>
+        </div>
+    </section>
+{% endblock %}
+{% block extra_sections %}
+<section class="event-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="event-post">
+                    <div class="event-header">
+                        <div class="event-header-box">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="box-event-info">
+                                        <i class="fa fa-calendar"></i>
+                                        <p>Feb 17, 2017<br/>13:30 - 22:00</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="box-event-info">
+                                        <i class="fa fa-map-marker"></i>
+                                        <p><strong id="event_place" class="editable">Place</strong><br/><strong id="event_city" class="editable">City</strong></p>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="box-event-info">
+                                        <i class="fa fa-street-view"></i>
+                                        <p>Author:<br/><strong id="event_author" class="editable">Author Name</strong></p>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="box-event-info">
+                                        <i class="fa fa-cubes"></i>
+                                        <p>Category:<br/><strong id="event_category" class="editable">Event Category</strong></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <h2 id="event_title" class="editable">Title of the Event</h2>
+                    </div>
+                    <div id="event_desc" class="event-content editable">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vitae quam in arcu elementum sodales. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc a porttitor libero. Proin finibus dolor ligula, quis interdum elit euismod vel. Suspendisse cursus consequat purus, vel rutrum est consectetur ac. Integer lobortis eros mi. Quisque tempus felis vel quam lobortis vestibulum. Etiam egestas ac diam at cursus. Fusce interdum nunc a aliquam accumsan. Morbi egestas ex vel sem tempor, ac dignissim ex molestie. In hac habitasse platea dictumst. Mauris dictum iaculis magna, sit amet pulvinar tellus blandit sit amet. Proin rhoncus erat eu augue luctus mattis. Morbi aliquam nisi quis urna porta maximus.<br>
+                        Ut dignissim nisi at felis ultricies volutpat. Nunc sed ante eu eros pretium lobortis. Donec a enim cursus, placerat purus ac, aliquet risus. Suspendisse quis rutrum magna. Praesent at porta arcu, volutpat egestas elit. Sed lacinia, justo nec blandit sodales, magna augue pulvinar massa, aliquam faucibus ante turpis vitae diam. Nunc ornare varius massa ac aliquam. In hendrerit turpis felis, ac commodo neque viverra quis. Pellentesque felis mi, ultrices sit amet malesuada eget, ornare vitae purus. Quisque malesuada est non ullamcorper euismod. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aliquam ut sagittis libero, vitae cursus elit. Maecenas in neque sollicitudin, suscipit felis ut, euismod mauris. Cras aliquet ornare massa.
+                    </div>
+                    <div class="event-footer">
+                        <div class="row">
+                        <div class="col-md-4"></div>
+                        <div class="col-md-4"></div>
+                                <div class="col-md-4">
+                        <div class="rsvp">
+                            <form method="POST">
+                                <input type="button" id="submit_event" value="Submit!">
+                             </form>
+                        </div>
+                                </div>
+                        </div>
+                        <br>
+                        <div class="event-selections">
+                            <a href="#" class="the-link-3">Upcomming events</a>
+                        </div>
+                    </div>
+                </div>
+                <section class="coming-events">
+                    <div class="row">
+                        {% for item in upcomingevents %}
+                            <div class="col-md-4 col-xs-6">
+                                <div class="event-box">
+                                    <div class="event-box-cover">
+                                        <div class="event-box-hover">
+                                            <div class="event-box-share">{{ item[9] }}<span>Shares</span></div>
+                                            <h6>{{ item[3] }}</h6>
+                                        </div>
+                                        {% if item[10] %}
+                                            <img src="{{ item[10] }}" alt="event" />
+                                        {% else %}
+                                            <img src="{{ url_for('static', filename='images/default-event.png') }}" alt="event" />
+                                        {% endif %}
+                                    </div>
+                                    <h4><a href="{{ url_for('events', event_id=item[0]) }}">{{ item[1] }}</a></h4>
+                                    <p>{{ item[5]|strftime('%b %d, %Y') }}</p>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+{% block extra_scripts %}
+    <script type="text/javascript">
+         $(function () {
+            $(".editable").dblclick(function (e) {
+                e.stopPropagation();
+                $(this).attr('contenteditable','true');
+                $(this).attr('class', 'inEdit');
+            });
+            $(".editable").blur(function (e) {
+                e.stopPropagation();
+                $(this).attr('contenteditable','false');
+                $(this).attr('class', '');
+            });
+            $('#submit_event').click(function() {
+                $.ajax({
+                    url: '#',
+                    type: 'POST',
+                    data: {
+                        // add something here
+                    },
+                    success: function (response){
+                        // here too
+                    }
+                });
+            });
+        });
+    </script>
+{% endblock %}

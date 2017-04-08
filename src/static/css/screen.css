@@ -3331,3 +3331,10 @@ header .bottom-header .main-nav ul li ul li:hover ul {
     border: 1px solid #eb3739;
     background: #eb3739;
 }
+.text-area-styled {
+    width: 100%;
+    height: auto;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    background-color: rgba(255, 255, 255, 0);
+}

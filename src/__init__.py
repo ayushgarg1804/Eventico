@@ -2,7 +2,7 @@
 # @Author: Aman Priyadarshi
 # @Date:   2017-03-20 20:09:41
 # @Last Modified by:   amaneureka
-# @Last Modified time: 2017-04-08 16:19:46
+# @Last Modified time: 2017-04-08 18:04:10
 
 import os
 import json
@@ -79,6 +79,13 @@ def events(event_id = None):
 		}
 		return json.dumps(status)
 	return render_template('events.html')
+
+@app.route('/events/add')
+@app.route('/events/edit/<int:event_id>')
+def event_edit():
+
+	recentevents = DB.query_event("", 3);
+	return render_template('event-edit.html', upcomingevents=recentevents)
 
 @app.route('/logout')
 def logout():
