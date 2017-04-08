@@ -51,9 +51,8 @@
                     <div class="event-footer">
                         <ul class="event-socials">
                             <li>Share: </li>
-                            <li><a href="#"><i class="fa fa-twitter"></i>Twitter</a></li>
-                            <li><a href="#"><i class="fa fa-facebook"></i>Facebook</a></li>
-                            <li><a href="#"><i class="fa fa-google-plus"></i>Google+</a></li>
+                            <li><a href="http://twitter.com/share?text={{ event[1] }}&url=https://eventico.herokuapp.com{{ url_for('events', event_id=event[0]) }}&hashtags=Eventico"><i class="fa fa-twitter"></i>Twitter</a></li>
+                            <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://eventico.herokuapp.com{{ url_for('events', event_id=event[0]) }}"><i class="fa fa-facebook"></i>Facebook</a></li>
                         </ul>
                         <div class="event-selections">
                             <a href="#" class="the-link-3">Upcomming events</a>
