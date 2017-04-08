@@ -26,34 +26,70 @@
                                 <div class="col-md-3">
                                     <div class="box-event-info">
                                         <i class="fa fa-calendar"></i>
-                                        <p>Feb 17, 2017<br/>13:30 - 22:00</p>
+                                        <p id="daterange">
+                                            {% if event %}
+                                                {% if event[4]|strftime('%b %d, %Y') == event[6]|strftime('%b %d, %Y')  %}
+                                                    {{ event[4]|strftime('%b %d, %Y') }} <br> {{ event[4]|strftime('%H:%M') }} - {{ event[6]|strftime('%H:%M') }}
+                                                {% else %}
+                                                    {{ event[4]|strftime('%H:%M') }} {{ event[4]|strftime('%b %d, %Y') }} <br>{{ event[6]|strftime('%H:%M') }} {{ event[6]|strftime('%b %d, %Y') }}
+                                                {% endif %}
+                                            {% else %}
+                                                Start Date<br/>End Date
+                                            {% endif %}
+                                        </p>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="box-event-info">
                                         <i class="fa fa-map-marker"></i>
-                                        <p><strong id="event_place" class="editable">Place</strong><br/><strong id="event_city" class="editable">City</strong></p>
+                                        {% if event %}
+                                            <p><strong id="event_place" class="editable">{{ event[15] }}</strong><br/><strong id="event_city" class="editable">{{ event[18] }}</strong></p>
+                                        {% else %}
+                                            <p><strong id="event_place" class="editable">Place</strong><br/><strong id="event_city" class="editable">City</strong></p>
+                                        {% endif %}
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="box-event-info">
                                         <i class="fa fa-street-view"></i>
-                                        <p>Author:<br/><strong id="event_author" class="editable">Author Name</strong></p>
+                                        <p>Author:<br/><strong id="event_author" class="editable">
+                                            {% if event %}
+                                                {{ event[24] }}
+                                            {% else %}
+                                                Author Name
+                                            {% endif %}
+                                        </strong></p>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="box-event-info">
                                         <i class="fa fa-cubes"></i>
-                                        <p>Category:<br/><strong id="event_category" class="editable">Event Category</strong></p>
+                                        <p>Category:<br/><strong id="event_category" class="editable">
+                                            {% if event %}
+                                                {{ event[31] }}
+                                            {% else %}
+                                                Event Category
+                                            {% endif %}
+                                        </strong></p>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <h2 id="event_title" class="editable">Title of the Event</h2>
+                        <h2 id="event_title" class="editable">
+                            {% if event %}
+                                {{ event[1] }}
+                            {% else %}
+                                Title of the Event
+                            {% endif %}
+                        </h2>
                     </div>
                     <div id="event_desc" class="event-content editable">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vitae quam in arcu elementum sodales. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc a porttitor libero. Proin finibus dolor ligula, quis interdum elit euismod vel. Suspendisse cursus consequat purus, vel rutrum est consectetur ac. Integer lobortis eros mi. Quisque tempus felis vel quam lobortis vestibulum. Etiam egestas ac diam at cursus. Fusce interdum nunc a aliquam accumsan. Morbi egestas ex vel sem tempor, ac dignissim ex molestie. In hac habitasse platea dictumst. Mauris dictum iaculis magna, sit amet pulvinar tellus blandit sit amet. Proin rhoncus erat eu augue luctus mattis. Morbi aliquam nisi quis urna porta maximus.<br>
-                        Ut dignissim nisi at felis ultricies volutpat. Nunc sed ante eu eros pretium lobortis. Donec a enim cursus, placerat purus ac, aliquet risus. Suspendisse quis rutrum magna. Praesent at porta arcu, volutpat egestas elit. Sed lacinia, justo nec blandit sodales, magna augue pulvinar massa, aliquam faucibus ante turpis vitae diam. Nunc ornare varius massa ac aliquam. In hendrerit turpis felis, ac commodo neque viverra quis. Pellentesque felis mi, ultrices sit amet malesuada eget, ornare vitae purus. Quisque malesuada est non ullamcorper euismod. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aliquam ut sagittis libero, vitae cursus elit. Maecenas in neque sollicitudin, suscipit felis ut, euismod mauris. Cras aliquet ornare massa.
+                        {% if event %}
+                            {{ event[8]|safe }}
+                        {% else %}
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vitae quam in arcu elementum sodales. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc a porttitor libero. Proin finibus dolor ligula, quis interdum elit euismod vel. Suspendisse cursus consequat purus, vel rutrum est consectetur ac. Integer lobortis eros mi. Quisque tempus felis vel quam lobortis vestibulum. Etiam egestas ac diam at cursus. Fusce interdum nunc a aliquam accumsan. Morbi egestas ex vel sem tempor, ac dignissim ex molestie. In hac habitasse platea dictumst. Mauris dictum iaculis magna, sit amet pulvinar tellus blandit sit amet. Proin rhoncus erat eu augue luctus mattis. Morbi aliquam nisi quis urna porta maximus.<br>
+                            Ut dignissim nisi at felis ultricies volutpat. Nunc sed ante eu eros pretium lobortis. Donec a enim cursus, placerat purus ac, aliquet risus. Suspendisse quis rutrum magna. Praesent at porta arcu, volutpat egestas elit. Sed lacinia, justo nec blandit sodales, magna augue pulvinar massa, aliquam faucibus ante turpis vitae diam. Nunc ornare varius massa ac aliquam. In hendrerit turpis felis, ac commodo neque viverra quis. Pellentesque felis mi, ultrices sit amet malesuada eget, ornare vitae purus. Quisque malesuada est non ullamcorper euismod. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aliquam ut sagittis libero, vitae cursus elit. Maecenas in neque sollicitudin, suscipit felis ut, euismod mauris. Cras aliquet ornare massa.
+                        {% endif %}
                     </div>
                     <div class="event-footer">
                         <div class="row">
@@ -104,6 +140,26 @@
 {% block extra_scripts %}
     <script type="text/javascript">
          $(function () {
+            {% if event %}
+                var startDate = "{{ event[4]|strftime('%H:%M %b %d, %Y') }}";
+                var endDate = "{{ event[6]|strftime('%H:%M %b %d, %Y') }}";
+            {% else %}
+                var startDate = null;
+                var endDate = null;
+            {% endif %}
+            $('#daterange').daterangepicker({
+                timePicker: true,
+                timePickerIncrement: 30,
+                autoUpdateInput: false,
+                locale: {
+                    cancelLabel: 'Clear'
+                }
+            });
+            $('#daterange').on('apply.daterangepicker', function(ev, picker) {
+                startDate = picker.startDate.format('mm:hh MMMM DD, YYYY');
+                endDate = picker.endDate.format('mm:hh MMMM DD, YYYY');
+                $(this).html(picker.startDate.format('mm:hh MMMM DD, YYYY') + '<br>' + picker.endDate.format('mm:hh MMMM DD, YYYY'));
+            });
             $(".editable").dblclick(function (e) {
                 e.stopPropagation();
                 $(this).attr('contenteditable','true');
@@ -119,10 +175,17 @@
                     url: '#',
                     type: 'POST',
                     data: {
-                        // add something here
+                        start_utc: startDate,
+                        end_utc: endDate,
+                        title: $('#event_title').html(),
+                        desc: $('#event_desc').html(),
+                        category: $('#event_category').html(),
+                        author: $('#event_author').html(),
+                        place: $('#event_place').html(),
+                        city: $('#event_city').html(),
                     },
-                    success: function (response){
-                        // here too
+                    success: function (response) {
+                        alert(response);
                     }
                 });
             });

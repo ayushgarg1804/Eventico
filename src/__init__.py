@@ -2,7 +2,7 @@
 # @Author: Aman Priyadarshi
 # @Date:   2017-03-20 20:09:41
 # @Last Modified by:   amaneureka
-# @Last Modified time: 2017-04-08 18:04:10
+# @Last Modified time: 2017-04-08 22:55:07
 
 import os
 import json
@@ -80,12 +80,25 @@ def events(event_id = None):
 		return json.dumps(status)
 	return render_template('events.html')
 
-@app.route('/events/add')
-@app.route('/events/edit/<int:event_id>')
-def event_edit():
-
+@app.route('/events/add', methods=['GET', 'POST'])
+@app.route('/events/edit/<int:event_id>', methods=['GET', 'POST'])
+def event_edit(event_id = None):
+	if request.method == 'POST':
+		status = {
+			'success' : False
+		}
+		if 'logged' in session:
+			uid = session['uid']
+			form = request.form
+			# do black magic here
+			# query database, check permissions
+			# check if we are creating new event or editing old one
+			# by verifying event_id value, == None if new post
+			# return status
+		return json.dumps(status)
 	recentevents = DB.query_event("", 3);
-	return render_template('event-edit.html', upcomingevents=recentevents)
+	event_detail = DB.query_event_by_id(event_id)
+	return render_template('event-edit.html', upcomingevents=recentevents, event=event_detail)
 
 @app.route('/logout')
 def logout():

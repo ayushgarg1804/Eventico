@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 # @Author: Aman Priyadarshi
 # @Date:   2017-03-20 20:05:09
-# @Last Modified by:   Ayush Garg
-# @Last Modified time: 2017-04-01 01:12:18
+# @Last Modified by:   amaneureka
+# @Last Modified time: 2017-04-08 22:23:36
 
 from flask_assets import Bundle, Environment
 from .. import app
@@ -14,6 +14,7 @@ bundles = {
 		'css/swipebox.css',
 		'css/bootstrap.css',
 		'css/font-awesome.min.css',
+		'css/daterangepicker.css',
 		filters='cssmin',
 		output='gen/default.css'),
 
@@ -26,6 +27,8 @@ bundles = {
 		'js/imagesloaded.pkgd.min.js',
 		'js/masonry.pkgd.js',
 		'js/instagram.js',
+		'js/moment.min.js',
+		'js/daterangepicker.js',
 		'js/jquery.swipebox.min.js',
 		'js/countdown.js',
 		'js/sticky.js',

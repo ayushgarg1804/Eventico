@@ -2,7 +2,7 @@
 # @Author: Aman Priyadarshi
 # @Date:   2017-03-21 10:05:17
 # @Last Modified by:   amaneureka
-# @Last Modified time: 2017-04-08 22:07:41
+# @Last Modified time: 2017-04-08 22:54:45
 
 import os
 import re
@@ -92,6 +92,9 @@ def insert_new_review(eid, uid, rating, comment):
 	connection.commit()
 
 def query_event_by_id(event_id):
+	if event_id == None:
+		return None
+
 	connection = sql_connect()
 	cursor = connection.cursor()
 
