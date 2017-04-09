@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 # @Author: Aman Priyadarshi
 # @Date:   2017-03-20 20:09:41
-# @Last Modified by:   Ayush Garg
-# @Last Modified time: 2017-04-09 19:32:57
+# @Last Modified by:   amaneureka
+# @Last Modified time: 2017-04-10 00:58:43
 
 import os
 import json
@@ -45,6 +45,7 @@ def login():
 			session['logged'] = True
 			session['uid'] = status['uid']
 			session['username'] = status['username']
+			session.modified = True
 	try:
 		if request.args.get('redirect_url') is not None:
 			r_url = request.args.get('redirect_url')
@@ -142,6 +143,7 @@ def logout():
 			session.pop('uid', None)
 			session.pop('logged', None)
 			session.pop('username', None)
+			session.modified = True
 	return redirect(url_for('index'))
 
 @app.errorhandler(404)
