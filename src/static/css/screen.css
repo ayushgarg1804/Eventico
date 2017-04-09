@@ -536,7 +536,7 @@ header .bottom-header .main-nav ul li ul li:hover ul {
     margin-bottom: 30px;
 }
 .site-image.home-img {
-    background: url('../images/countdown-bg.png') no-repeat top center;
+    background: url('../images/countdown-bg.jpg') no-repeat top right;
 }
 .site-image.page-img {
     background: url('../images/path-bg.jpg') no-repeat top center;
