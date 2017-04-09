@@ -2434,7 +2434,7 @@ header .bottom-header .main-nav ul li ul li:hover ul {
 }
 .footer-v1 .subscribe-box {
     background: #30383e;
-    padding: 20px 10px 20px 66px;
+    padding: 20px 10px 20px 10px;
     max-width: 600px;
     margin: -40px auto 0;
     position: absolute;
