@@ -1050,6 +1050,10 @@ header .bottom-header .main-nav ul li ul li:hover ul {
     letter-spacing: 1px;
     line-height: 1em;
     margin-bottom: 40px;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 100%;
+    text-overflow: ellipsis;
 }
 .countdown-section h1 a {
     color: #5a6a70;
