@@ -55,8 +55,14 @@
                                     <div class="responsive-menu"><i class="fa fa-bars"></i></div>
                                     <ul>
                                         <li><a href="{{ url_for('index') }}">Home</a></li>
-                                        <li><a href="{{ url_for('events') }}">Search Events</a></li>
-                                        <li><a href="{{ url_for('event_edit') }}"> Add Event </a></li> 
+                                        <li><a href="{{ url_for('events') }}">Find Events</a></li>
+                                        {% if event_url is defined %}
+                                            <li><a href="{{ url_for('event_edit', event_id = event[0])}}"> Edit Event </a>
+                                            <ul>
+                                                <li><a href="{{ url_for('event_edit')}}">Add event </a></li></ul></li>
+                                        {% else %}
+                                            <li><a href="{{ url_for('event_edit')}}">Add event </a></li>
+                                        {% endif %}
                                         <li><a href="#">Contact</a>
                                             <ul>
                                                 <li><a href="mailto:aman.eureka@gmail.com">Aman Priyadarshi </a></li>
@@ -69,7 +75,7 @@
                                                 <li><a href="{{ url_for('logout') }}">Logout</a></li>
                                             </ul></li>
                                         {% else %}
-                                            <li><a href="{{ url_for('login') }}">Login / Register</a></li>
+                                            <li><a href="{{ url_for('login') }}">Login</a></li>
                                         {% endif %}
                                     </ul>
                                 </nav>
