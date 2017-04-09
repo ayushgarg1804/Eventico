@@ -3349,3 +3349,20 @@ span.stars, span.stars span {
 span.stars span {
     background-position: 0 0;
 }
+
+.slider-logo img{
+    max-height: 150px;
+    max-width: 65%;
+}
+
+.about span {
+    display: block;
+    color: #757676;
+    text-transform: uppercase;
+    margin-right: 40px;
+    margin-left: 40px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    font-size: 15px;
+    line-height: 1.5em;
+}

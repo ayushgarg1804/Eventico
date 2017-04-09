@@ -15,12 +15,29 @@
                 <!-- start countdown -->
                 <section class="countdown-section">
                     <div class="container">
-                        <h1><a href="#">How To Organize Your Business</a></h1>
+                        <h1><a href="{{ url_for('index') }}" class="slider-logo" ><img src = "{{ url_for('static', filename='images/logo_big.png') }}" /> </a></h1>
+                        <div class="event-link">
+                            <span>About</span> site
+                        </div>
+                        <div class="countdown-box">
+                            <div class="row align-center" >
+                            <div class = "about"><span>
+                                An online event management platform that will let you add, edit new events and show you user reviews with ease.
+                                </span></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </li>
+            <li class="slide">
+                <section class="countdown-section">
+                    <div class="container">
+                        <h1><a href="{{ url_for('events', event_id=last_event[0]) }}">Last event created: {{ last_event[1]}} </a></h1>
                         <div class="event-link">
                             <span>Event</span> starts in
                         </div>
                         <div class="countdown-box">
-                            <div id="the-countdown" class="row the-countdown" data-duedate="12/12/2017">
+                            <div id="the-countdown" class="row the-countdown" data-duedate=" {{ last_event[5] | strftime('%m/%d/%Y %H:%M')}}"> <!-- 6/1/2017 07:30 -->
                                 <div class="col-md-3 col-xs-6">
                                     <div class="time-box" id="days">00</div>
                                     <span>Days</span>
@@ -45,42 +62,12 @@
             <li class="slide">
                 <section class="countdown-section">
                     <div class="container">
-                        <h1><a href="#">My life needs a change</a></h1>
+                        <h1><a href="{{ url_for('events', event_id=highest_event[0]) }}">Event with highest rating: {{ highest_event[1]}} </a></h1>
                         <div class="event-link">
                             <span>Event</span> starts in
                         </div>
                         <div class="countdown-box">
-                            <div id="the-countdown" class="row the-countdown" data-duedate="6/11/2016 07:30">
-                                <div class="col-md-3 col-xs-6">
-                                    <div class="time-box" id="days">00</div>
-                                    <span>Days</span>
-                                </div>
-                                <div class="col-md-3 col-xs-6">
-                                    <div class="time-box" id="hours">00</div>
-                                    <span>Hours</span>
-                                </div>
-                                <div class="col-md-3 col-xs-6">
-                                    <div class="time-box" id="minutes">00</div>
-                                    <span>Minutes</span>
-                                </div>
-                                <div class="col-md-3 col-xs-6">
-                                    <div class="time-box" id="seconds">00</div>
-                                    <span>Seconds</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            </li>
-            <li class="slide">
-                <section class="countdown-section">
-                    <div class="container">
-                        <h1><a href="#">The Last event You have listed</a></h1>
-                        <div class="event-link">
-                            <span>Event</span> starts in
-                        </div>
-                        <div class="countdown-box">
-                            <div id="the-countdown" class="row the-countdown" data-duedate="6/1/2017 07:30">
+                            <div id="the-countdown" class="row the-countdown" data-duedate=" {{ highest_event[2] | strftime('%m/%d/%Y %H:%M')}}">
                                 <div class="col-md-3 col-xs-6">
                                     <div class="time-box" id="days">00</div>
                                     <span>Days</span>

@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 # @Author: Aman Priyadarshi
 # @Date:   2017-03-20 20:09:41
-# @Last Modified by:   amaneureka
-# @Last Modified time: 2017-04-09 15:14:33
+# @Last Modified by:   Ayush Garg
+# @Last Modified time: 2017-04-09 19:32:57
 
 import os
 import json
@@ -16,7 +16,10 @@ from util import assets, filters, login_register as LR, database as DB
 @app.route('/index')
 def index():
 	events = DB.query_event("",asc =False);
-	return render_template('index.html', events=events)
+	last_event = DB.last_event_created()
+	highest_event = DB.highest_rating()
+	return render_template('index.html', events=events, last_event= last_event,
+							highest_event= highest_event)
 
 @app.route('/register', methods=['POST', 'GET'])
 def register():

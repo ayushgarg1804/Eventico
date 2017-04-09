@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 # @Author: Aman Priyadarshi
 # @Date:   2017-03-21 10:05:17
-# @Last Modified by:   amaneureka
-# @Last Modified time: 2017-04-09 16:39:21
+# @Last Modified by:   Ayush Garg
+# @Last Modified time: 2017-04-09 19:37:49
 
 import os
 import re
@@ -156,6 +156,22 @@ def check_user_level(uid):
 		return True
 	return False
 
+def last_event_created():
+	connection = sql_connect()
+	cursor = connection.cursor()
+	cursor.execute('SELECT * FROM Events ORDER BY created DESC LIMIT 1')
+	row = cursor.fetchone()
+	return row
+
+def highest_rating():
+	connection = sql_connect()
+	cursor = connection.cursor()
+	t = (unicode(datetime.now()), )
+	cursor.execute('SELECT events.id, events.name, events.start_utc FROM Events, reviews '
+					' WHERE events.id = eid AND start_utc > ? GROUP BY eid ORDER BY avg(stars) DESC LIMIT 1', t)
+	row = cursor.fetchone()
+	return row
+
 def update_event(data, event_id):
 	connection = sql_connect()
 	cursor = connection.cursor()
@@ -193,6 +209,7 @@ def update_event(data, event_id):
 	cursor.execute('SELECT count(*) FROM events WHERE name = ? AND start_utc = ? AND end_utc = ? AND description = ? AND category_id = ? AND ' +
 					'organizer_id = ? AND venue_id = ? AND status = ? AND id = ?', t)
 	res = cursor.fetchone()[0]
+	connection.commit()
 	if res == 0:
 		return False
 	return True
@@ -228,12 +245,13 @@ def insert_event(data, uid):
 	venue_id = cursor.fetchone()[0]
 
 	t = (data['title'], data['start_utc'], data['end_utc'], data['desc'],
-		 category_id, organizer_id, venue_id, "LIVE")
+		 category_id, organizer_id, venue_id, "LIVE", unicode(datetime.now()))
 	cursor.execute('INSERT INTO events (name, start_utc, end_utc, description, category_id, ' +
-					'organizer_id, venue_id, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?)', t)
+					'organizer_id, venue_id, status, created) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)', t)
 	cursor.execute('SELECT id FROM events WHERE name = ? AND start_utc = ? AND end_utc = ? AND description = ? AND category_id = ? AND ' +
-					'organizer_id = ? AND venue_id = ? AND status = ?', t)
+					'organizer_id = ? AND venue_id = ? AND status = ? AND created = ?', t)
 	event_id = cursor.fetchone()[0]
+	connection.commit()
 	return event_id
 
 def monthdelta(date, delta):
