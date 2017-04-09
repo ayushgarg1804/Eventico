@@ -2,7 +2,7 @@
 # @Author: Aman Priyadarshi
 # @Date:   2017-03-21 10:05:17
 # @Last Modified by:   Ayush Garg
-# @Last Modified time: 2017-04-09 19:37:49
+# @Last Modified time: 2017-04-09 21:29:34
 
 import os
 import re
@@ -140,10 +140,12 @@ def query_event(name, limit = 20, asc = True):
 	name = '%' + name + '%'
 	if(asc == False):
 		t = (name, unicode(monthdelta(datetime.now(), 1)), limit, )
-		row = cursor.execute('SELECT * FROM Events WHERE name like ? AND start_utc < ? ORDER BY start_utc DESC LIMIT ?', t)
+		row = cursor.execute('SELECT *,avg(stars) FROM Events, Reviews WHERE eid = id AND'
+				' name like ? AND start_utc < ? GROUP BY eid ORDER BY start_utc DESC LIMIT ?', t)
 	else:
 		t = (name, limit, )
-		row = cursor.execute('SELECT * FROM Events WHERE name like ? ORDER BY start_utc ASC LIMIT ?', t)
+		row = cursor.execute('SELECT *,avg(stars) FROM Events, Reviews WHERE eid = id AND'
+				' name like ? GROUP BY eid ORDER BY start_utc  ASC LIMIT ?', t)
 	return row.fetchall()
 
 def check_user_level(uid):
