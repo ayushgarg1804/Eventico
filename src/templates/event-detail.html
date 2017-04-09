@@ -26,10 +26,10 @@
                                 <div class="col-md-3">
                                     <div class="box-event-info">
                                         <i class="fa fa-calendar"></i>
-                                        {% if event[4]|strftime('%b %d, %Y') == event[6]|strftime('%b %d, %Y')  %}
-                                            <p>{{ event[4]|strftime('%b %d, %Y') }} <br> {{ event[4]|strftime('%H:%M') }} - {{ event[6]|strftime('%H:%M') }}</p>
+                                        {% if event[5]|strftime('%b %d, %Y') == event[7]|strftime('%b %d, %Y')  %}
+                                            <p>{{ event[5]|strftime('%b %d, %Y') }} <br> {{ event[5]|strftime('%H:%M') }} - {{ event[7]|strftime('%H:%M') }}</p>
                                         {% else %}
-                                            <p>{{ event[4]|strftime('%H:%M') }} {{ event[4]|strftime('%b %d, %Y') }} <br> {{ event[6]|strftime('%H:%M') }} {{ event[6]|strftime('%b %d, %Y') }}</p>
+                                            <p>{{ event[5]|strftime('%H:%M') }} {{ event[5]|strftime('%b %d, %Y') }} <br> {{ event[7]|strftime('%H:%M') }} {{ event[7]|strftime('%b %d, %Y') }}</p>
                                         {% endif %}
                                     </div>
                                 </div>
