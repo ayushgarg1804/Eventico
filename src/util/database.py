@@ -2,7 +2,7 @@
 # @Author: Aman Priyadarshi
 # @Date:   2017-03-21 10:05:17
 # @Last Modified by:   Ayush Garg
-# @Last Modified time: 2017-04-09 21:29:34
+# @Last Modified time: 2017-04-09 21:45:04
 
 import os
 import re
@@ -393,7 +393,7 @@ def create_fake_database(num_users = 100, num_reviews= 30):
 			review_count = random.randint(0, num_reviews)
 			for i in range(review_count):
 				comment = id_gen(random.randint(20,100), string.letters + " .!")
-				stars = random.randint(0,5)
+				stars = random.randint(1,5)
 				timestamp = datetime(2017, random.randint(1,3), random.randint(1,28), random.randint(00, 23), random.randint(00,59))
 				eid = random.sample(event_ids, 1)
 				eid = eid[0][0]
