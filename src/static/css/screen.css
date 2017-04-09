@@ -2430,7 +2430,7 @@ header .bottom-header .main-nav ul li ul li:hover ul {
 }
 .footer-v1 .subscribe-box {
     background: #30383e;
-    padding: 20px 150px 20px 66px;
+    padding: 20px 10px 20px 66px;
     max-width: 600px;
     margin: -40px auto 0;
     position: absolute;
@@ -2438,25 +2438,6 @@ header .bottom-header .main-nav ul li ul li:hover ul {
     left: 0;
     right: 0;
     top: 0;
-}
-.footer-v1 .subscribe-box .subscribe-button {
-    position: absolute;
-    color: #252b30;
-    font-size: 16px;
-    font-weight: 700;
-    margin: 11px 11px 0 0;
-    text-align: center;
-    padding: 12px 20px;
-    line-height: 1em;
-    text-transform: uppercase;
-    display: block;
-    background: #404c55;
-    border-radius: 3px;
-    top: 0;
-    right: 0;
-}
-.footer-v1 .subscribe-box .subscribe-button:hover {
-    background: #5f7280;
 }
 .footer-v1 .subscribe-box i {
     position: absolute;
@@ -2474,6 +2455,7 @@ header .bottom-header .main-nav ul li ul li:hover ul {
     font-size: 14px;
     background: none;
     width: 100%;
+    text-align: center;
 }
 .footer-v1 .bottom-footer .footer-social {
     margin: 0;
