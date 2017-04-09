@@ -24,7 +24,7 @@
                                     <ul class="header-info no-color">
                                         <li><a href="mailto:aman.eureka@gmail.com">
                                             <i class="fa fa-cog"></i>Aman Priyadarshi (216CO14)</a></li>
-                                        <li><a href="mailto:aman.eureka@gmail.com">
+                                        <li><a href="mailto:ayushgarg1804@gmail.com">
                                             <i class="fa fa-cog"></i>Ayush Garg (236CO14)</a></li>
                                     </ul>
                                 </div>
@@ -51,38 +51,28 @@
                                     </div>
                                 </div>
                                 <div class="col-md-8 col-xs-6">
-                                    <nav class="main-nav">
-                                        <div class="responsive-menu"><i class="fa fa-bars"></i></div>
-                                        <ul>
-                                            <li>
-                                                {% if session.uid %}
-                                                    <a> Hi {{ session.username }}!
-                                                {% else %}
-                                                    <a>Dashboard</a>
-                                                {% endif %}
-                                                <ul>
-                                                    <li><a href="{{ url_for('index') }}">Home</a></li>
-                                                    {% if session.uid %}
-                                                        <li><a href="{{ url_for('logout') }}">Logout</a></li>
-                                                    {% else %}
-                                                        <li><a href="{{ url_for('login') }}">Login / Register</a></li>
-                                                    {% endif %}
-                                                    <li><a href="{{ url_for('events') }}">Search Event</a></li>
-                                                    <li>
-                                                        <a href="#">Gallery</a>
-                                                        <ul>
-                                                            <li><a href="gallery-4c.html">Gallery 4 col</a></li>
-                                                            <li><a href="gallery-3c.html">Gallery 3 col</a></li>
-                                                            <li><a href="gallery-2c.html">Gallery 2 col</a></li>
-                                                        </ul>
-                                                    </li>
-                                                    <li><a href="pricing.html">Pricing</a></li>
-                                                    <li><a href="404">Error 404</a></li>
-                                                    <li><a href="index-footerv2.html">Footer v2</a></li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </nav>
+                                <nav class="main-nav">
+                                    <div class="responsive-menu"><i class="fa fa-bars"></i></div>
+                                    <ul>
+                                        <li><a href="{{ url_for('index') }}">Home</a></li>
+                                        <li><a href="{{ url_for('events') }}">Search Events</a></li>
+                                        <li><a href="{{ url_for('event_edit') }}"> Add Event </a></li> 
+                                        <li><a href="#">Contact</a>
+                                            <ul>
+                                                <li><a href="mailto:aman.eureka@gmail.com">Aman Priyadarshi </a></li>
+                                                <li><a href="mailto:ayushgarg1804@gmail.com">Ayush Garg </a></li>
+                                            </ul>
+                                        </li>
+                                        {% if session.uid %}
+                                            <li><a href = "#"> Hi {{ session.username }}! </a>
+                                            <ul>
+                                                <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                                            </ul></li>
+                                        {% else %}
+                                            <li><a href="{{ url_for('login') }}">Login / Register</a></li>
+                                        {% endif %}
+                                    </ul>
+                                </nav>
                                 </div>
                             </div>
                         </div>
