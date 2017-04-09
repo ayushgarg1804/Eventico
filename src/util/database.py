@@ -2,7 +2,7 @@
 # @Author: Aman Priyadarshi
 # @Date:   2017-03-21 10:05:17
 # @Last Modified by:   Ayush Garg
-# @Last Modified time: 2017-04-09 01:26:27
+# @Last Modified time: 2017-04-09 12:19:58
 
 import os
 import re
@@ -139,6 +139,47 @@ def check_user_level(uid):
 	if row[0] > 1:
 		return True
 	return False
+
+def update_event(data, event_id):
+	connection = sql_connect()
+	cursor = connection.cursor()
+	
+	t = (data['category'], )
+	try:
+		cursor.execute('INSERT INTO categories (name) VALUES (?)', t)
+	except:
+		# who cares
+		pass
+	cursor.execute('SELECT id FROM categories WHERE name = ?', t)
+	category_id = cursor.fetchone()[0]
+	
+	t = (uid, data['author'])
+	try:
+		cursor.execute('INSERT INTO organizers (id, name) VALUES (?, ?)', t)
+	except:
+		# who cares
+		pass
+	organizer_id = uid
+	
+	t = (data['place'], data['city'], )
+	try:
+		cursor.execute('INSERT INTO venues (name, city) VALUES (?, ?)', t)
+	except:
+		# who cares
+		pass
+	cursor.execute('SELECT id FROM venues WHERE name = ? AND city = ?', t)
+	venue_id = cursor.fetchone()[0]
+
+	t = (data['title'], data['start_utc'], data['end_utc'], data['desc'], 
+		 category_id, organizer_id, venue_id, "LIVE", event_id)
+	cursor.execute('UPDATE events  SET (name = ?, start_utc = ?, end_utc = ?, description = ?, category_id = ?, ' +
+					'organizer_id = ?, venue_id = ?, status = ?) WHERE id = ?', t)
+	cursor.execute('SELECT count(*) FROM events WHERE name = ? AND start_utc = ? AND end_utc = ? AND description = ? AND category_id = ? AND ' +
+					'organizer_id = ? AND venue_id = ? AND status = ? AND id = ?', t)
+	res = cursor.fetchone()[0]
+	if res == 0:
+		return False
+	return True
 
 def insert_event(data, uid):
 	connection = sql_connect()

@@ -184,11 +184,11 @@
                     success: function (response) {
                         var result = JSON.parse(response);
                         var html = "<div class=\"alert alert-success fade in col-md-10 col-md-offset-1\"><strong>";
-                        if(result.success){
-                            html += "Success! Event created with id : " + result.event_id;
+                        if(result.success == true){
+                            html += result.message + "with id : " + "<a href=\"{{ url_for('events') }}/" + result.event_id + "\">" + result.event_id +"</a>";
                         }
                         else{
-                            html += "Event could not be created";
+                            html += result.message;
                         }
                         html += "</strong></div>"
                         $('#event-edit').html(html)

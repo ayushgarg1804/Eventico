@@ -2,7 +2,7 @@
 # @Author: Aman Priyadarshi
 # @Date:   2017-03-20 20:09:41
 # @Last Modified by:   Ayush Garg
-# @Last Modified time: 2017-04-09 01:57:13
+# @Last Modified time: 2017-04-09 12:17:01
 
 import os
 import json
@@ -96,8 +96,33 @@ def event_edit(event_id = None):
 					status = {
 						'success' : True,
 						'event_id' : str(new_event_id),
+						'message' : "Succes! Event Created",
 						'query' : request.form
 					}
+				else:
+					check = DB.update_event(form, event_id)
+					if check == True:
+						status = {
+							'success' : True,
+							'event_id' : str(event_id),
+							'message' : "Succes! Event updated",
+							'query' : request.form
+						}
+					else:
+						status = {
+							'success' : False,
+							'message' : 'Event could not be updated'
+						}
+			else:
+				status = {
+					'success' : False,
+					'message' : "You need more access for this operation"
+				}
+		else:
+			status = {
+				'success' : False,
+				'message' : "Login first!"
+			}
 		return json.dumps(status)
 	recentevents = DB.query_event("", 3);
 	event_detail = DB.query_event_by_id(event_id)
