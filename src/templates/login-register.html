@@ -2,7 +2,7 @@
 {% block title %}User{% endblock %}
 {% block main_div_class %}site-image page-img{% endblock %}
 {% block metadata %}
-    {% if status.submit == 'login' %}
+    {% if session.uid %}
         <meta http-equiv="refresh" content="3;url={{ redirect_url }}" >
     {% endif %}
 {% endblock %}

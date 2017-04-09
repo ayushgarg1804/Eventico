@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 # @Author: Aman Priyadarshi
 # @Date:   2017-03-21 10:05:17
-# @Last Modified by:   Ayush Garg
-# @Last Modified time: 2017-04-09 12:19:58
+# @Last Modified by:   amaneureka
+# @Last Modified time: 2017-04-09 14:53:00
 
 import os
 import re
@@ -87,6 +87,16 @@ def insert_new_review(eid, uid, rating, comment):
 	t = (eid, uid, rating, comment, time.strftime('%Y-%m-%d %H:%M:%S'), )
 	cursor.execute('INSERT INTO reviews (eid, uid, stars, comment, posted_time) VALUES (?,?,?,?,?)', t);
 	connection.commit()
+
+def query_reviews(eid):
+	if eid is None:
+		return None
+	connection  = sql_connect()
+	cursor = connection.cursor()
+
+	t = (eid, )
+	row = cursor.execute('SELECT * FROM reviews WHERE eid = ? LIMIT 10', t).fetchall()
+	return row
 
 def query_event_by_id(event_id):
 	if event_id == None:

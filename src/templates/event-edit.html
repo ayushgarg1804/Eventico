@@ -16,10 +16,21 @@
 {% endblock %}
 {% block extra_sections %}
 <section class="event-section">
+    <div id="event-edit-message">
+        {% if not session.uid %}
+            <div class="alert alert-success fade in col-md-10 col-md-offset-1">
+                {% if event_detail %}
+                    <strong><a href="{{ url_for('login', redirect_url=url_for('event_edit', event_id=event_detail[0])) }}">Login First</a></strong>
+                {% else %}
+                    <strong><a href="{{ url_for('login', redirect_url=url_for('event_edit')) }}">Login First</a></strong>
+                {% endif %}
+            </div>
+        {% endif %}
+    </div>
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <div class="event-post" id="event-edit">
+                <div class="event-post">
                     <div class="event-header">
                         <div class="event-header-box">
                             <div class="row">
@@ -191,7 +202,7 @@
                             html += result.message;
                         }
                         html += "</strong></div>"
-                        $('#event-edit').html(html)
+                        $('#event-edit-message').html(html)
                     }
                 });
             });
