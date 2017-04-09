@@ -2,7 +2,7 @@
 # @Author: Aman Priyadarshi
 # @Date:   2017-03-21 10:05:17
 # @Last Modified by:   Ayush Garg
-# @Last Modified time: 2017-04-09 19:37:49
+# @Last Modified time: 2017-04-09 21:45:04
 
 import os
 import re
@@ -140,10 +140,12 @@ def query_event(name, limit = 20, asc = True):
 	name = '%' + name + '%'
 	if(asc == False):
 		t = (name, unicode(monthdelta(datetime.now(), 1)), limit, )
-		row = cursor.execute('SELECT * FROM Events WHERE name like ? AND start_utc < ? ORDER BY start_utc DESC LIMIT ?', t)
+		row = cursor.execute('SELECT *,avg(stars) FROM Events, Reviews WHERE eid = id AND'
+				' name like ? AND start_utc < ? GROUP BY eid ORDER BY start_utc DESC LIMIT ?', t)
 	else:
 		t = (name, limit, )
-		row = cursor.execute('SELECT * FROM Events WHERE name like ? ORDER BY start_utc ASC LIMIT ?', t)
+		row = cursor.execute('SELECT *,avg(stars) FROM Events, Reviews WHERE eid = id AND'
+				' name like ? GROUP BY eid ORDER BY start_utc  ASC LIMIT ?', t)
 	return row.fetchall()
 
 def check_user_level(uid):
@@ -391,7 +393,7 @@ def create_fake_database(num_users = 100, num_reviews= 30):
 			review_count = random.randint(0, num_reviews)
 			for i in range(review_count):
 				comment = id_gen(random.randint(20,100), string.letters + " .!")
-				stars = random.randint(0,5)
+				stars = random.randint(1,5)
 				timestamp = datetime(2017, random.randint(1,3), random.randint(1,28), random.randint(00, 23), random.randint(00,59))
 				eid = random.sample(event_ids, 1)
 				eid = eid[0][0]
