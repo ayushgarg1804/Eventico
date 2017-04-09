@@ -2433,7 +2433,7 @@ header .bottom-header .main-nav ul li ul li:hover ul {
 }
 .footer-v1 .subscribe-box {
     background: #30383e;
-    padding: 20px 10px 20px 66px;
+    padding: 20px 10px 20px 10px;
     max-width: 600px;
     margin: -40px auto 0;
     position: absolute;
@@ -3232,7 +3232,7 @@ header .bottom-header .main-nav ul li ul li:hover ul {
 
 /* star rating */
 .rating {
-
+    direction: rtl;
 }
 
 /* :not(:checked) is a filter, so that browsers that don’t support :checked don’t 

@@ -90,13 +90,20 @@
         {% block extra_sections %}{% endblock %}
         <footer class="footer-v1">
             <div class="footer-map">
+            {% if event and event[16] and event[17] %}
+                <iframe src="https://maps.google.com/maps?q={{ event[17] }},{{ event[16] }}&hl=es;z=14&output=embed" width="600" height="450" frameborder="0" style="border:0"></iframe>
+            {% else %}
                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3502.6881476313824!2d77.03287455020494!3d28.609130882340814!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d053516783c9b%3A0x7e540ab22a28446!2sNetaji+Subhas+Institute+Of+Technology!5e0!3m2!1sen!2sin!4v1490519574224" width="600" height="450" frameborder="0" style="border:0"></iframe>
+            {% endif %}
             </div>
             <div class="container">
                 <div class="bottom-footer">
                     <div class="subscribe-box">
-                        <i class="fa fa-graduation-cap"></i>
-                        <input type="text" class="subscribe-line" value="Netaji Subhas Institute of Technology" disabled>
+                        {% if event and event[20] %}
+                            <input type="text" class="subscribe-line" value="{{ event[20] }}" disabled>
+                        {% else %}
+                            <input type="text" class="subscribe-line" value="Netaji Subhas Institute of Technology" disabled>
+                        {% endif %}
                     </div>
                     <ul class="footer-social">
                         <li><a href="https://www.facebook.com/ayush.garg.940"><i class="fa fa-facebook"></i></a></li>

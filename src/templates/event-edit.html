@@ -39,10 +39,10 @@
                                         <i class="fa fa-calendar"></i>
                                         <p id="daterange">
                                             {% if event %}
-                                                {% if event[4]|strftime('%b %d, %Y') == event[6]|strftime('%b %d, %Y')  %}
-                                                    {{ event[4]|strftime('%b %d, %Y') }} <br> {{ event[4]|strftime('%H:%M') }} - {{ event[6]|strftime('%H:%M') }}
+                                                {% if event[5]|strftime('%b %d, %Y') == event[7]|strftime('%b %d, %Y')  %}
+                                                    {{ event[5]|strftime('%b %d, %Y') }} <br> {{ event[5]|strftime('%H:%M') }} - {{ event[7]|strftime('%H:%M') }}
                                                 {% else %}
-                                                    {{ event[4]|strftime('%H:%M') }} {{ event[4]|strftime('%b %d, %Y') }} <br>{{ event[6]|strftime('%H:%M') }} {{ event[6]|strftime('%b %d, %Y') }}
+                                                    {{ event[5]|strftime('%H:%M') }} {{ event[5]|strftime('%b %d, %Y') }} <br>{{ event[7]|strftime('%H:%M') }} {{ event[7]|strftime('%b %d, %Y') }}
                                                 {% endif %}
                                             {% else %}
                                                 Start Date<br/>End Date
@@ -152,8 +152,8 @@
     <script type="text/javascript">
          $(function () {
             {% if event %}
-                var startDate = "{{ event[4]|strftime('%H:%M %b %d, %Y') }}";
-                var endDate = "{{ event[6]|strftime('%H:%M %b %d, %Y') }}";
+                var startDate = "{{ event[5]|strftime('%H:%M %b %d, %Y') }}";
+                var endDate = "{{ event[7]|strftime('%H:%M %b %d, %Y') }}";
             {% else %}
                 var startDate = null;
                 var endDate = null;
