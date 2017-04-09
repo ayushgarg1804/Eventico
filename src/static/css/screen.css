@@ -1796,7 +1796,6 @@ header .bottom-header .main-nav ul li ul li:hover ul {
     color: #fff;
 }
 .event-post .event-footer ul {
-    margin: 0 0 20px 0;
     padding: 0;
 }
 .event-post .event-footer ul li {
@@ -1822,9 +1821,6 @@ header .bottom-header .main-nav ul li ul li:hover ul {
 .event-post .event-footer ul li a:hover {
     color: #eb3739;
 }
-.event-post .event-footer .event-socials {
-    margin-bottom: 35px;
-}
 .event-post .event-footer .event-socials li {
     margin-right: 10px;
 }
@@ -1848,7 +1844,6 @@ header .bottom-header .main-nav ul li ul li:hover ul {
     color: #ff5619;
 }
 .event-post .event-footer .event-selections {
-    margin-bottom: 30px;
     position: relative;
 }
 .event-post .event-footer .event-selections:after {

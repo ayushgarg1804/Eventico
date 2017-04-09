@@ -65,16 +65,16 @@
                             <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://eventico.herokuapp.com{{ url_for('events', event_id=event[0]) }}"><i class="fa fa-facebook"></i>Facebook</a></li>
                         </ul>
                         {% if reviews %}
-                            <div class="alert alert-success">
-                                <div class="slide">
-                                    {% for item in reviews %}
-                                        <div class="slider-item">
-                                            <span class="stars">{{ item[3] }}</span><br>
-                                            <strong>{{ item[6] }}</strong>
-                                            <h4>{{ item[4] }}</h4>
-                                        </div>
-                                    {% endfor %}
-                                </div>
+                            <div class="slide">
+                                {% for item in reviews %}
+                                    <div class="slider-item">
+                                        <br>
+                                        <blockquote>
+                                            <p>{{ item[4] }}</p>
+                                            <footer><span class="stars">{{ item[3] }}</span><strong><cite title="{{ item[6] }}">{{ item[6] }}</cite></strong></footer>
+                                        </blockquote>
+                                    </div>
+                                {% endfor %}
                             </div>
                         {% endif %}
                         <div class="event-selections">
