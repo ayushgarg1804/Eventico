@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 # @Author: Aman Priyadarshi
 # @Date:   2017-03-20 20:09:41
-# @Last Modified by:   Ayush Garg
-# @Last Modified time: 2017-04-09 12:17:01
+# @Last Modified by:   amaneureka
+# @Last Modified time: 2017-04-09 15:14:33
 
 import os
 import json
@@ -43,7 +43,8 @@ def login():
 			session['uid'] = status['uid']
 			session['username'] = status['username']
 	try:
-		r_url = request.args.get('redirect_url')
+		if request.args.get('redirect_url') is not None:
+			r_url = request.args.get('redirect_url')
 	except:
 		pass
 	return render_template('login-register.html', status=status, redirect_url=r_url)
@@ -68,7 +69,8 @@ def events(event_id = None):
 			return render_template('error-404.html'), 404
 		recentevents = DB.query_event("", 3);
 		eurl = url_for('events', event_id=event_id)
-		return render_template('event-detail.html', upcomingevents=recentevents, event=event_detail, event_url=eurl)
+		reviews = DB.query_reviews(event_id)
+		return render_template('event-detail.html', upcomingevents=recentevents, event=event_detail, event_url=eurl, reviews=reviews)
 
 	if request.method == 'POST':
 		name = request.form['event_name']

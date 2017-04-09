@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 # @Author: Aman Priyadarshi
 # @Date:   2017-03-21 10:05:17
-# @Last Modified by:   Ayush Garg
-# @Last Modified time: 2017-04-09 12:19:58
+# @Last Modified by:   amaneureka
+# @Last Modified time: 2017-04-09 16:39:21
 
 import os
 import re
@@ -88,6 +88,22 @@ def insert_new_review(eid, uid, rating, comment):
 	cursor.execute('INSERT INTO reviews (eid, uid, stars, comment, posted_time) VALUES (?,?,?,?,?)', t);
 	connection.commit()
 
+def query_reviews(eid):
+	if eid is None:
+		return None
+	connection  = sql_connect()
+	cursor = connection.cursor()
+
+	t = (eid, )
+	row = cursor.execute('SELECT * FROM reviews WHERE eid = ? ORDER BY stars DESC LIMIT 10', t).fetchall()
+	if row is None:
+		return None
+	for i in range(len(row)):
+		t = (row[i][2], )
+		username = cursor.execute('SELECT username FROM users WHERE uid = ?', t).fetchone()
+		row[i] = row[i] + username
+	return row
+
 def query_event_by_id(event_id):
 	if event_id == None:
 		return None
@@ -143,7 +159,7 @@ def check_user_level(uid):
 def update_event(data, event_id):
 	connection = sql_connect()
 	cursor = connection.cursor()
-	
+
 	t = (data['category'], )
 	try:
 		cursor.execute('INSERT INTO categories (name) VALUES (?)', t)
@@ -152,7 +168,7 @@ def update_event(data, event_id):
 		pass
 	cursor.execute('SELECT id FROM categories WHERE name = ?', t)
 	category_id = cursor.fetchone()[0]
-	
+
 	t = (uid, data['author'])
 	try:
 		cursor.execute('INSERT INTO organizers (id, name) VALUES (?, ?)', t)
@@ -160,7 +176,7 @@ def update_event(data, event_id):
 		# who cares
 		pass
 	organizer_id = uid
-	
+
 	t = (data['place'], data['city'], )
 	try:
 		cursor.execute('INSERT INTO venues (name, city) VALUES (?, ?)', t)
@@ -170,7 +186,7 @@ def update_event(data, event_id):
 	cursor.execute('SELECT id FROM venues WHERE name = ? AND city = ?', t)
 	venue_id = cursor.fetchone()[0]
 
-	t = (data['title'], data['start_utc'], data['end_utc'], data['desc'], 
+	t = (data['title'], data['start_utc'], data['end_utc'], data['desc'],
 		 category_id, organizer_id, venue_id, "LIVE", event_id)
 	cursor.execute('UPDATE events  SET (name = ?, start_utc = ?, end_utc = ?, description = ?, category_id = ?, ' +
 					'organizer_id = ?, venue_id = ?, status = ?) WHERE id = ?', t)
@@ -184,7 +200,7 @@ def update_event(data, event_id):
 def insert_event(data, uid):
 	connection = sql_connect()
 	cursor = connection.cursor()
-	
+
 	t = (data['category'], )
 	try:
 		cursor.execute('INSERT INTO categories (name) VALUES (?)', t)
@@ -193,7 +209,7 @@ def insert_event(data, uid):
 		pass
 	cursor.execute('SELECT id FROM categories WHERE name = ?', t)
 	category_id = cursor.fetchone()[0]
-	
+
 	t = (uid, data['author'])
 	try:
 		cursor.execute('INSERT INTO organizers (id, name) VALUES (?, ?)', t)
@@ -201,7 +217,7 @@ def insert_event(data, uid):
 		# who cares
 		pass
 	organizer_id = uid
-	
+
 	t = (data['place'], data['city'], )
 	try:
 		cursor.execute('INSERT INTO venues (name, city) VALUES (?, ?)', t)
@@ -211,7 +227,7 @@ def insert_event(data, uid):
 	cursor.execute('SELECT id FROM venues WHERE name = ? AND city = ?', t)
 	venue_id = cursor.fetchone()[0]
 
-	t = (data['title'], data['start_utc'], data['end_utc'], data['desc'], 
+	t = (data['title'], data['start_utc'], data['end_utc'], data['desc'],
 		 category_id, organizer_id, venue_id, "LIVE")
 	cursor.execute('INSERT INTO events (name, start_utc, end_utc, description, category_id, ' +
 					'organizer_id, venue_id, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?)', t)

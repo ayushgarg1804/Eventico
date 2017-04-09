@@ -10,7 +10,7 @@
                 <li><span><i></i></span></li>
                 <li></li>
             </ul>
-            <p>Home / Events</p>
+            <p>Home / Events / Search</p>
         </div>
     </section>
 {% endblock %}
@@ -36,6 +36,13 @@
 {% endblock %}
 {% block extra_scripts %}
     <script type="text/javascript">
+        $('#event_name').keypress(function (e) {
+            if(e.which == 13)
+            {
+                $('#search_event').click();
+                    return false;
+            }
+        });
         $('#search_event').click(function() {
             $("#event-container").html("<i class=\"fa fa-spinner fa-pulse fa-3x fa-fw\"></i>");
             $.ajax({
