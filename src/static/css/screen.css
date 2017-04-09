@@ -3233,7 +3233,7 @@ header .bottom-header .main-nav ul li ul li:hover ul {
 
 /* star rating */
 .rating {
-
+    direction: rtl;
 }
 
 /* :not(:checked) is a filter, so that browsers that don’t support :checked don’t 
