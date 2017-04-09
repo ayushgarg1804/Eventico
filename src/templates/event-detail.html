@@ -64,6 +64,19 @@
                             <li><a href="http://twitter.com/share?text={{ event[1] }}&url=https://eventico.herokuapp.com{{ url_for('events', event_id=event[0]) }}&hashtags=Eventico"><i class="fa fa-twitter"></i>Twitter</a></li>
                             <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://eventico.herokuapp.com{{ url_for('events', event_id=event[0]) }}"><i class="fa fa-facebook"></i>Facebook</a></li>
                         </ul>
+                        {% if reviews %}
+                            <div class="alert alert-success">
+                                <div class="slide">
+                                    {% for item in reviews %}
+                                        <div class="slider-item">
+                                            <span class="stars">{{ item[3] }}</span><br>
+                                            <strong>{{ item[6] }}</strong>
+                                            <h4>{{ item[4] }}</h4>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        {% endif %}
                         <div class="event-selections">
                             <a href="#" class="the-link-3">Upcomming events</a>
                         </div>
@@ -117,6 +130,7 @@
                             </div>
                         </div>
                     </div>
+                    
                     <div class="widget widget-buy">
                         <div class="rsvp">
                             <h3 class="widget-title">Add Review</h3>
@@ -152,6 +166,14 @@
 {% endblock %}
 {% block extra_scripts %}
     <script type="text/javascript">
+        $.fn.stars = function() {
+            return $(this).each(function() {
+                var val = parseFloat($(this).html());
+                var size = Math.max(0, (Math.min(5, val))) * 16;
+                var $span = $('<span />').width(size);
+                $(this).html($span);
+            });
+        }
         $('#submit_reviews').click(function() {
             $.ajax({
                 url: '#',
@@ -166,5 +188,11 @@
                 }
             });
         });
+        $('.slide').textSlider({
+            timeout: 4000,
+            slideTime: 750,
+            loop: 1
+        });
+        $('span.stars').stars();
     </script>
 {% endblock %}

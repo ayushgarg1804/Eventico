@@ -2,7 +2,7 @@
 # @Author: Aman Priyadarshi
 # @Date:   2017-03-20 20:05:09
 # @Last Modified by:   amaneureka
-# @Last Modified time: 2017-04-08 22:23:36
+# @Last Modified time: 2017-04-09 15:45:36
 
 from flask_assets import Bundle, Environment
 from .. import app
@@ -26,6 +26,7 @@ bundles = {
 		'js/placeholder.js',
 		'js/imagesloaded.pkgd.min.js',
 		'js/masonry.pkgd.js',
+		'js/text-slider.js',
 		'js/instagram.js',
 		'js/moment.min.js',
 		'js/daterangepicker.js',
