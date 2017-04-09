@@ -2,7 +2,7 @@
 # @Author: Aman Priyadarshi
 # @Date:   2017-03-20 20:09:41
 # @Last Modified by:   Ayush Garg
-# @Last Modified time: 2017-04-09 19:32:57
+# @Last Modified time: 2017-04-09 23:58:36
 
 import os
 import json
@@ -18,8 +18,11 @@ def index():
 	events = DB.query_event("",asc =False);
 	last_event = DB.last_event_created()
 	highest_event = DB.highest_rating()
+	schedule_events = []
+	for i in range(4):
+		schedule_events.append(DB.get_schedule( DB.monthdelta(DB.get_current_time(),i) ) )
 	return render_template('index.html', events=events, last_event= last_event,
-							highest_event= highest_event)
+							highest_event= highest_event, schedule_events= schedule_events)
 
 @app.route('/register', methods=['POST', 'GET'])
 def register():

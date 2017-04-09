@@ -164,129 +164,26 @@
         <div class="container">
             <h3 class="site-title">Events <span>schedule</span><i></i></h3>
             <div role="tabpanel">
-                <ul class="nav nav-tabs" role="tablist">
-                    <li role="presentation"><a href="#schedule1" aria-controls="schedule1" role="tab" data-toggle="tab">April</a></li>
-                    <li role="presentation" class="active"><a href="#schedule2" aria-controls="schedule2" role="tab" data-toggle="tab">May</a></li>
-                    <li role="presentation"><a href="#schedule3" aria-controls="schedule3" role="tab" data-toggle="tab">June</a></li>
-                    <li role="presentation"><a href="#schedule4" aria-controls="schedule4" role="tab" data-toggle="tab">July</a></li>
-                </ul>
+            <ul class="nav nav-tabs" role="tablist">
+                {% for i in range(schedule_events|length) %}
+                    <li role="presentation"><a href="#schedule{{i+1}}" aria-controls="schedule{{i+1}}" role="tab" data-toggle="tab">{{ schedule_events[i][0][5] | strftime('%B') }}</a></li>
+                {% endfor %}
+            </ul>
                 <div class="tab-content">
-                    <div role="tabpanel" class="tab-pane" id="schedule1">
-                        <div class="event-day">
-                            <h5>April <span>20</span></h5>
-                            <ul class="row">
-                                <li class="col-md-1"><span>10:00 AM</span>13:30 PM</li>
-                                <li class="col-md-5"><a href="event.html">How to organize your business.</a></li>
-                                <li class="col-md-2"><i>Speaker: Walter Baines</i></li>
-                                <li class="col-md-3"><span>Venue:</span> London Baker street, 386F</li>
-                            </ul>
-                            <ul class="row">
-                                <li class="col-md-1"><span>14:00 PM</span>16:00 PM</li>
-                                <li class="col-md-5"><a href="event.html">The next web conference.</a></li>
-                                <li class="col-md-2"><i>Speaker: Steve Maguire</i></li>
-                                <li class="col-md-3"><span>Venue:</span> London Baker street, 236C</li>
-                            </ul>
+                    {% for i in range(schedule_events|length) %}
+                        <div role="tabpanel" class="tab-pane" id="schedule{{i+1}}">
+                            <div class="event-day">
+                                {% for item in schedule_events[i] %}
+                                    <ul class="row">
+                                        <li class="col-md-1"><span>{{item[5]|strftime('%b %d, ')}}{{item[5]|strftime('%H:%M')}}</span>{{item[7]|strftime('%b %d, ')}}{{item[7]|strftime('%H:%M')}}</li>
+                                        <li class="col-md-5 no-overflow"><a href="{{ url_for('events', event_id = item[0] )}}">{{item[1] | safe}}</a></li>
+                                        <li class="col-md-2 no-overflow"><i>Organizer: {{item[17]}}</i></li>
+                                        <li class="col-md-3 no-overflow"><span>Venue:</span> {{item[21]}}, {{item[24]}}</li>
+                                    </ul>
+                                {% endfor %}
+                            </div>
                         </div>
-                        <div class="event-day">
-                            <h5>April <span>23</span></h5>
-                            <ul class="row">
-                                <li class="col-md-1"><span>10:00 AM</span>13:30 PM</li>
-                                <li class="col-md-5"><a href="event.html">How to organize your business.</a></li>
-                                <li class="col-md-2"><i>Speaker: Walter Baines</i></li>
-                                <li class="col-md-3"><span>Venue:</span> London Baker street, 386F</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div role="tabpanel" class="tab-pane active" id="schedule2">
-                        <div class="event-day">
-                            <h5>May <span>18</span></h5>
-                            <ul class="row">
-                                <li class="col-md-1"><span>10:00 AM</span>13:30 PM</li>
-                                <li class="col-md-5"><a href="event.html">How to organize your business.</a></li>
-                                <li class="col-md-2"><i>Speaker: Walter Baines</i></li>
-                                <li class="col-md-3"><span>Venue:</span> London Baker street, 386F</li>
-                            </ul>
-                            <ul class="row">
-                                <li class="col-md-1"><span>14:00 PM</span>16:00 PM</li>
-                                <li class="col-md-5"><a href="event.html">The next web conference.</a></li>
-                                <li class="col-md-2"><i>Speaker: Steve Maguire</i></li>
-                                <li class="col-md-3"><span>Venue:</span> London Baker street, 236C</li>
-                            </ul>
-                            <ul class="row">
-                                <li class="col-md-1"><span>16:20 PM</span>18:30 PM</li>
-                                <li class="col-md-5"><a href="event.html">Grow intelligence, through learning.</a></li>
-                                <li class="col-md-2"><i>Speaker: Walter Baines</i></li>
-                                <li class="col-md-3"><span>Venue:</span> Vienta Amadeus street, 129A</li>
-                            </ul>
-                            <ul class="row">
-                                <li class="col-md-1"><span>19:00 PM</span>20:30 PM</li>
-                                <li class="col-md-5"><a href="event.html">The more you learn, the better.</a></li>
-                                <li class="col-md-2"><i>Speaker: Steve Maguire</i></li>
-                                <li class="col-md-3"><span>Venue:</span> London Baker street, 236C</li>
-                            </ul>
-                        </div>
-                        <div class="event-day">
-                            <h5>May <span>21</span></h5>
-                            <ul class="row">
-                                <li class="col-md-1"><span>10:00 AM</span>13:30 PM</li>
-                                <li class="col-md-5"><a href="event.html">How to organize your business.</a></li>
-                                <li class="col-md-2"><i>Speaker: Walter Baines</i></li>
-                                <li class="col-md-3"><span>Venue:</span> London Baker street, 386F</li>
-                            </ul>
-                            <ul class="row">
-                                <li class="col-md-1"><span>14:00 PM</span>16:00 PM</li>
-                                <li class="col-md-5"><a href="event.html">The next web conference.</a></li>
-                                <li class="col-md-2"><i>Speaker: Steve Maguire</i></li>
-                                <li class="col-md-3"><span>Venue:</span> London Baker street, 236C</li>
-                            </ul>
-                            <ul class="row">
-                                <li class="col-md-1"><span>16:20 PM</span>18:30 PM</li>
-                                <li class="col-md-5"><a href="event.html">Grow intelligence, through learning.</a></li>
-                                <li class="col-md-2"><i>Speaker: Walter Baines</i></li>
-                                <li class="col-md-3"><span>Venue:</span> Vienta Amadeus street, 129A</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div role="tabpanel" class="tab-pane" id="schedule3">
-                        <div class="event-day">
-                            <h5>June <span>09</span></h5>
-                            <ul class="row">
-                                <li class="col-md-1"><span>10:00 AM</span>13:30 PM</li>
-                                <li class="col-md-5"><a href="event.html">How to organize your business.</a></li>
-                                <li class="col-md-2"><i>Speaker: Walter Baines</i></li>
-                                <li class="col-md-3"><span>Venue:</span> London Baker street, 386F</li>
-                            </ul>
-                            <ul class="row">
-                                <li class="col-md-1"><span>14:00 PM</span>16:00 PM</li>
-                                <li class="col-md-5"><a href="event.html">The next web conference.</a></li>
-                                <li class="col-md-2"><i>Speaker: Steve Maguire</i></li>
-                                <li class="col-md-3"><span>Venue:</span> London Baker street, 236C</li>
-                            </ul>
-                            <ul class="row">
-                                <li class="col-md-1"><span>16:20 PM</span>18:30 PM</li>
-                                <li class="col-md-5"><a href="event.html">Grow intelligence, through learning.</a></li>
-                                <li class="col-md-2"><i>Speaker: Walter Baines</i></li>
-                                <li class="col-md-3"><span>Venue:</span> Vienta Amadeus street, 129A</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div role="tabpanel" class="tab-pane" id="schedule4">
-                        <div class="event-day">
-                            <h5>July <span>28</span></h5>
-                            <ul class="row">
-                                <li class="col-md-1"><span>10:00 AM</span>13:30 PM</li>
-                                <li class="col-md-5"><a href="event.html">How to organize your business.</a></li>
-                                <li class="col-md-2"><i>Speaker: Walter Baines</i></li>
-                                <li class="col-md-3"><span>Venue:</span> London Baker street, 386F</li>
-                            </ul>
-                            <ul class="row">
-                                <li class="col-md-1"><span>16:20 PM</span>18:30 PM</li>
-                                <li class="col-md-5"><a href="event.html">Grow intelligence, through learning.</a></li>
-                                <li class="col-md-2"><i>Speaker: Walter Baines</i></li>
-                                <li class="col-md-3"><span>Venue:</span> Vienta Amadeus street, 129A</li>
-                            </ul>
-                        </div>
-                    </div>
+                    {% endfor %}
                 </div>
             </div>
         </div>

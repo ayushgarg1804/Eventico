@@ -2,7 +2,7 @@
 # @Author: Aman Priyadarshi
 # @Date:   2017-03-21 10:05:17
 # @Last Modified by:   Ayush Garg
-# @Last Modified time: 2017-04-09 21:45:04
+# @Last Modified time: 2017-04-10 00:01:43
 
 import os
 import re
@@ -216,6 +216,40 @@ def update_event(data, event_id):
 		return False
 	return True
 
+def get_schedule(in_date):
+	connection = sql_connect()
+	cursor = connection.cursor()
+
+	in_month = in_date.month
+	if(get_current_time().month == in_month):
+		start = datetime.now()
+		start2 = datetime.now()
+		start2 = start2.replace(month = in_month, day = 1, hour = 00, minute = 00)
+		end = monthdelta(start, 1)
+		end = end.replace(day = 1, hour = 00, minute = 00)
+		t = (unicode(start), unicode(end), unicode(start2), )
+		cursor.execute('SELECT * FROM events, organizers, venues ' +
+						' WHERE venue_id = venues.id AND organizer_id = organizers.id ' +
+						' AND end_utc > ? AND end_utc < ? AND start_utc > ? ORDER BY start_utc' +
+						' ASC LIMIT 20', t)
+		res = cursor.fetchall()
+		return res
+	else:
+		start = datetime.now()
+		start = start.replace(month = in_month, day = 1, hour = 00, minute = 00)
+		end = monthdelta(start, 1)
+		end = end.replace(day = 1, hour = 00, minute = 00)
+		t = (unicode(start), unicode(end), )
+		cursor.execute('SELECT * FROM events, organizers, venues'
+						' WHERE venue_id = venues.id AND organizer_id = organizers.id '
+						' AND start_utc > ? AND end_utc < ? ORDER BY start_utc'
+						' ASC LIMIT 20', t)
+		res = cursor.fetchall()
+		return res
+
+def get_current_time():
+	return datetime.now()
+
 def insert_event(data, uid):
 	connection = sql_connect()
 	cursor = connection.cursor()
@@ -257,6 +291,8 @@ def insert_event(data, uid):
 	return event_id
 
 def monthdelta(date, delta):
+	if delta == 0:
+		return date
 	m, y = (date.month+delta) % 12, date.year + ((date.month)+delta-1) // 12
 	if not m: m = 12
 	d = min(date.day, [31,29 if y%4==0 and not y%400==0 else 28,31,30,31,30,31,31,30,31,30,31][m-1])

@@ -1955,7 +1955,6 @@ header .bottom-header .main-nav ul li ul li:hover ul {
 .event-schedule .event-day {
     border-top: 1px solid #e9eef1;
     position: relative;
-    padding-left: 80px;
     margin-top: -1px;
 }
 .event-schedule .event-day h5 {
@@ -3369,4 +3368,11 @@ span.stars span {
     letter-spacing: 1px;
     font-size: 15px;
     line-height: 1.5em;
+}
+
+.no-overflow {
+    white-space: nowrap;
+    overflow: hidden;
+    width: 100%;
+    text-overflow: ellipsis;
 }
