@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 # @Author: Aman Priyadarshi
 # @Date:   2017-03-20 20:09:41
-# @Last Modified by:   Ayush Garg
-# @Last Modified time: 2017-04-10 01:18:11
+# @Last Modified by:   amaneureka
+# @Last Modified time: 2017-04-10 10:24:23
 
 import os
 import json
@@ -109,7 +109,7 @@ def event_edit(event_id = None):
 						'query' : request.form
 					}
 				else:
-					check = DB.update_event(form, event_id)
+					check = DB.update_event(uid, form, event_id)
 					if check == True:
 						status = {
 							'success' : True,

@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 # @Author: Aman Priyadarshi
 # @Date:   2017-03-21 10:05:17
-# @Last Modified by:   Ayush Garg
-# @Last Modified time: 2017-04-10 00:01:43
+# @Last Modified by:   amaneureka
+# @Last Modified time: 2017-04-10 10:29:07
 
 import os
 import re
@@ -174,7 +174,7 @@ def highest_rating():
 	row = cursor.fetchone()
 	return row
 
-def update_event(data, event_id):
+def update_event(uid, data, event_id):
 	connection = sql_connect()
 	cursor = connection.cursor()
 
@@ -206,8 +206,8 @@ def update_event(data, event_id):
 
 	t = (data['title'], data['start_utc'], data['end_utc'], data['desc'],
 		 category_id, organizer_id, venue_id, "LIVE", event_id)
-	cursor.execute('UPDATE events  SET (name = ?, start_utc = ?, end_utc = ?, description = ?, category_id = ?, ' +
-					'organizer_id = ?, venue_id = ?, status = ?) WHERE id = ?', t)
+	cursor.execute('UPDATE events SET name = ?, start_utc = ?, end_utc = ?, description = ?, category_id = ?, ' +
+					'organizer_id = ?, venue_id = ?, status = ? WHERE id = ?', t)
 	cursor.execute('SELECT count(*) FROM events WHERE name = ? AND start_utc = ? AND end_utc = ? AND description = ? AND category_id = ? AND ' +
 					'organizer_id = ? AND venue_id = ? AND status = ? AND id = ?', t)
 	res = cursor.fetchone()[0]
